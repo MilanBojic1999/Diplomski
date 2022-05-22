@@ -1,0 +1,75 @@
+\documentclass[12pt, letterpaper, oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[LGR,T1]{fontenc}
+\usepackage{braket}
+\usepackage{amsmath}
+
+\title{Kvantno masinsko ucenje}
+\author{Milan Bojic}
+\date{Jun 2022}
+
+\renewcommand*\contentsname{Sadrzaj}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+\section{Kvantno racunarstvo}
+Pre nego sto se pocne pricati o Kvantnom masinskom ucenju, treba objasniti neki osnovni pojmovi da bi lakse razumeli ostatak rada
+
+\subsection{Osnovni pojmovi}
+Potrebni pojmovi su:
+\begin{itemize}
+    \item Kubit (eng. Qubit)
+    \item Kvantna kola (eng. Quantum Gates)
+    \item Kvantna uvezanost (eng. Quantum entanglement)
+    \item Kvantan memorija, Kvantni registri
+\end{itemize}
+
+\subsubsection*{Kubit}
+Kubit (eng. Qubit ) je najmanja jedinica informacije u kvantnom računarstvu, slično bit-u u klasičnom računarstvu.
+Razlika od bita jeste u tome što kubit pored stanja 1 i 0, može da se nalazi i u superpoziciji između oba.
+Oni se mogu predstaviti formulom (koristeci "bra-ket" notaciju):
+\[ \braket{\gamma} =  \alpha\braket{0}+\beta\braket{1} \]
+Ovde su $\braket{0}$ i $\braket{1}$ zapravo stanja kao i kod klasičnog bita, a $\alpha$ i $\beta$ su kompleksni brojevi koji predstavljaju aplitude zadatih stanja i za njih važi:
+
+\[ |\alpha|^2+|\beta|^2 = 1 \]
+Posto stanje kubita ima dva stepena slobode sto dovodi do toga da amplitude se mogu zapisati kao:
+\[
+    \alpha = \cos{\frac{\Theta}{2}} 
+\]
+\[
+    \beta = e^{i\phi}\sin{\frac{\Theta}{2}}
+\]
+Takodje mozemo da vidimo da je $|\alpha|^2$ verovatnoca da se kubit nalazi u stanju 0, isto vazi i za $ |\beta|^2$ i 1.
+Saznanje o tomo u kom stanju se nalazi kubit ce se dobiti merenjem kubita, tade ce da kubit izadje iz superpozicije i "pasce" u stanje 1 ili stanje 0. U tom slucaku kubit ce imati ponasanje kao i obican bit, ali ovako gubimo predjasnje kvantno stanje kubita.
+U fizičkom svetu kubit se moze predstaviti kao polarizovani fotoni, pre cemu se dva stanje se uzimaju kao vertikalna i horizontalna polarizacija.
+\subsubsection*{Kvantna kola}
+Kvantna kola (eng. Quantum Gates ) su logički predstavljaju matricama i oni rade na određenom broju kubita.Matrice su unitarne sa oblikom $2^n \times 2^n$, gde je $n$ broj qubita na kojim radimo . Neke od poznatih kola su: Hademardovo kolo (stavalja kubit u superpoziciju), bit flip kolo (zamenjuje aplitude na kubitu), ali nas najviše zanima rotaciono kolo:
+\[
+    R = \begin{bmatrix}
+        \cos{\Theta} & -\sin{\Theta} \\
+        \sin{\Theta} & \cos{\Theta} 
+    \end{bmatrix}
+\]
+Ovo kolo rotira kubite u prostoru, odnosno menja njihove amplitude za $\Theta$ radiana.
+
+\subsubsection*{Kvantna uvezanost}
+Kvantna uvezanost (eng. Quantum entanglement) je fizički pojam gde su dva ,ili više, kubita povezana tako da zajedno prave novo kvantno stanje.
+U čistim stanjima oni su matematički zapravo proizvodi tenzora amplituda:
+\[
+    \braket{\gamma} \otimes \braket{\delta} = \alpha_1\alpha_2\braket{00} + \alpha_1\beta_2\braket{01} + \beta_1\alpha_2\braket{10} + \beta_1\beta_2\braket{11}
+\]
+I ovako napisano kvantno stanje se moze razdvojiti na dva kubita. Ali postoje i kvanta stanja koja se ne mogu razdvojiti npr.
+\[
+ \frac{1}{\sqrt{2}}\braket{00} + \frac{1}{\sqrt{2}}\braket{11}
+\]
+Zanimljiva stvar kod uvazanih kubita jeste u tome što dele informacije. Ako bi jedan kubit iz para odneli u neko veoma daleko mesto (na primer druga galaksija), i tamo bi ga izmerili mi bi smo dobili 0 ili 1, međutim drugi kubit bi takođe upao u određeno stanje i to u istom trenutni kad smo izmerili prvi daleki kubit. Ovo je zapravno gde se nalazi glavan različitost između klasičnog i kvantnog računarstva, ova pojava ne postoji u klasičnom računarstvu i ne može se "lako" simulirati.
+\subsubsection*{Kvantni registri}
+Kvantni registri se sastoje od kvantnog stanja od $m$ uvezanih kubita i moze da se predstavlja do $2^m$ vrednosti stanja istovremeno.
+Kvantan memorija su uredjaji koji cuvaju kvantna stanja fotona, bez da unistavaju kvanten informacije koja se nalazi u fotonu.
+Ovakva memorija zahteva koherentni sistem materije, jer bi u suprotnom kvantna informacija unitar uredjaja bila izgubljena zbog nekoherentnosti.
+\subsection{Kvantno racunarstvo}
+\end{document}
