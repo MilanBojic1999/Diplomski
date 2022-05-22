@@ -1,7 +1,6 @@
-/latt.aux
-/latt.fdb_latexmk
-/latt.fls
-/latt.ilg
-/latt.log
-/latt.synctex.gz
-/latt.toc
+*
+
+!.gitignore
+!*.tex
+!*.latex
+!*.pdf
