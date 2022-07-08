@@ -3,6 +3,9 @@
 \usepackage[LGR,T1]{fontenc}
 \usepackage{braket}
 \usepackage{amsmath}
+\usepackage{biblatex}
+
+\addbibresource{refx.bib}
 
 \title{Kvantno masinsko ucenje}
 \author{Milan Bojic}
@@ -13,6 +16,7 @@
 \begin{document}
 
 \maketitle
+\newpage
 
 \tableofcontents
 \newpage
@@ -46,8 +50,8 @@ Posto stanje kubita ima dva stepena slobode sto dovodi do toga da amplitude se m
 Takodje mozemo da vidimo da je $|\alpha|^2$ verovatnoca da se kubit nalazi u stanju 0, isto vazi i za $ |\beta|^2$ i 1.
 Saznanje o tomo u kom stanju se nalazi kubit ce se dobiti merenjem kubita, tade ce da kubit izadje iz superpozicije i "pasce" u stanje 1 ili stanje 0. U tom slucaku kubit ce imati ponasanje kao i obican bit, ali ovako gubimo predjasnje kvantno stanje kubita.
 U fizičkom svetu kubit se moze predstaviti kao polarizovani fotoni, pre cemu se dva stanje se uzimaju kao vertikalna i horizontalna polarizacija.
-\subsubsection*{Kvantna kola}
-Kvantna kola (eng. Quantum Gates ) su logički predstavljaju matricama i oni rade na određenom broju kubita.Matrice su unitarne sa oblikom $2^n \times 2^n$, gde je $n$ broj qubita na kojim radimo . Neke od poznatih kola su: Hademardovo kolo (stavalja kubit u superpoziciju), bit flip kolo (zamenjuje aplitude na kubitu), ali nas najviše zanima rotaciono kolo:
+\subsubsection*{Kvantna kapija}
+Kvantna kapije (eng. Quantum Gates ) su logički predstavljaju matricama i oni rade na određenom broju kubita.Matrice su unitarne sa oblikom $2^n \times 2^n$, gde je $n$ broj qubita na kojim radimo . Neke od poznatih kola su: Hademardovo kolo (stavalja kubit u superpoziciju), bit flip kolo (zamenjuje aplitude na kubitu), ali nas najviše zanima rotaciono kolo:
 \[
     R = \begin{bmatrix}
         \cos{\Theta} & -\sin{\Theta} \\
@@ -73,9 +77,26 @@ Kvantan memorija su uredjaji koji cuvaju kvantna stanja fotona, bez da unistavaj
 Ovakva memorija zahteva koherentni sistem materije, jer bi u suprotnom kvantna informacija unitar uredjaja bila izgubljena zbog nekoherentnosti.
 \subsection{Kvantno racunarstvo}
 Kvantno racunarstvo je vrsta racunarstva gde se koriste kolekcije fizickih osobina kvantne mehanike kao sto su superpozicija i kvantna uvezanost,
-tako da se izvrsi neka kalkulacija. Uredjaja koji izvrsava kvante kalkulacije zovu se kvantni racunari.
-Kvantni racunari se sastoje od kvantnih kola koji sluze za prenosenje i manipulisanje kvantnih inforamcija.  
+tako da se izvrsi neka kalkulacija. Uredjaja koji izvrsava kvante kalkulacije zovu se \textbf{kvantni racunari}.
+Kvantni racunari se sastoje od kvantnih kola i elemntarnih kvantnih kapija koje sluze za prenosenje i manipulisanje kvantnih inforamcija.
+\cite{nielsen_chuang_10th} \\
+Jedna od glavnih primena Kvantnih racunara jeste simulacija fizickih sistema, bili oni kvantne ili klasince prirode.
 %% Pogledati Quantum Computation and Quantum Information za dopune
 \subsection{Kvantna inforamcija}
+Kvantan informacija je informacija o stanju kvantnog sistema. O njihovim svojstvima bavi se \textbf{kvantna teorija informacije}.
+Takodje, kvantan informacija mogu izmeriti na isti nacin kao i klasicna informacija koristeci se Šenononvoj metodi. 
+Odnosno, postoji jednistveno merilo to jest funkcija nad kvantnim stanjem, koje je funkcija verovatnoce, kontinuiteta i sumiranja.\cite{vlatko_v}
+Ova funkcija se zove \textbf{von Neumann entropy} i za neki ulazni kubit $\varrho$ postoji ekvivalent u  \textbf{Shannon entropy} $H$
+za neku slucajnu promenljivu $X$
+\[
+    S(\varrho) = H(X)
+\]
+%% Opisati metod u Apendexu mozda
+Jos jedna od merila za kvantno stanje jeste merenje "istinitosti" (eng. Fidelity) izmedju dva kvantna stanja$ \braket{\phi} i \braket{psi}$.
+Neka je $F$ funkcija koja meri osobinu, ona meri verovatnocu da merenjem stanja $\braket{\phi}$ dobijemo stanje $\braket{\psi}$.
+Izlaz funkcije je izmedju 0 i 1, gde ako je izlaz 0 onda su dva stanja ortogonalna jedna od drugog, a ako je izlaz 1 onda su dva stanja jednaka.\cite{vlatko_v}
+\subsubsection*{Odnost kvantne i klasicne informacije}
 
+\newpage
+\printbibliography
 \end{document}
