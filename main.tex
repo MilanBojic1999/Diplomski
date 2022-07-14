@@ -114,11 +114,22 @@ Primeri algoritama koji su deo qBLAS-a su:
 \begin{itemize}
     \item HHL algoritam: koristi se za resavanje sistema linearnih jednacina, koristeci $2^n$ dimenzijonalni vektorski prostor
         za resavanje sistema sa $n$ promenljivih. \cite{Quantum_machine_learning}
-    \item Kvantna Furijeova transformacije 
-
+    \item Kvantna Furijeova transformacije \cite{Classical&quantum_info_Fourie_Phase}
+    \item Kvantan procena faza za eigenvalues i eigenvectors. \cite{Classical&quantum_info_Fourie_Phase}
 \end{itemize}
-
+Ovi algoritmi se koriste kao osnova napredinij algoritama i algoritama za Kvantno masinsko ucenje.
+Samo treba pripaziti kod pominjanja ovih algoritama, jer neki od njih koriste neke koncepte koji su samo
+teorijske prirode ili su tesko kreirani u realnom svetu (npr. QRAM).
+\section{Kvantna teorija kompleksnosti}
 \section{Kvantno masinsko ucenje}
+Kvantno masinsko ucenje je spoj kvantnih racunara i masinskog ucenja. U programima Kvantnog masinskog ucenja koriste se kvantni algoritmi (npr. qBLAS algoritmi)
+kao deo metoda optimizacija slicne klasicnim metodama masinskog ucenja. 
+
+Prema vrsti podataka koji se obradjuju oblast mozemo da dalimo na dve podoblasti
+\begin{enumerate}
+    \item Obrada klasicnih podataka na kvantnim masinama (\textbf{Masinsko ucenje dopunjeno kvantnim racunarima} eng. Quantum-enhanced machine learning)
+    \item Obrada kvantnim podataka na kvantnim masinama
+\end{enumerate}
 
 \newpage
 \printbibliography
