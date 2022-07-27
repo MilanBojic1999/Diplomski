@@ -154,7 +154,7 @@ moze zapisati iskljucivo kao dot prodakt izmedju primera.
     w^{T}x + b = b + \sum_{i=1}^m \alpha_ix^Tx_i
 \]
 Gde je $x_i$ trening primer a $\alpha$ je vektor koeficijenata. Ovako zapisivanje funkcije nam dozvoljva da zamenim $x$ sa izlazom funkcije $\phi(x)$, a dot prodact sa funkcijom $k(x,x_i) = \phi(x)*\phi(x_i)$.
-Funkcija $k$ se zove \textbf{kernel}, dok funkcija $\psi$ je funkcija koja preslikava podatke iz jednog prostora u drugi. Operator $<*>$ predstavlja unutrasnji prodakt ekvivalentno $\phi(x)^T\phi(x_i)$. \cite{goodfellow2016deep}
+Funkcija $k$ se zove \textbf{kernel}, dok funkcija $\psi$ je funkcija koja preslikava podatke iz jednog prostora u drugi. Operator $\langle * \rangle$ predstavlja unutrasnji prodakt ekvivalentno $\phi(x)^T\phi(x_i)$. \cite{goodfellow2016deep}
 
 Kada zamenimo dot prodakt sa kernelom, funkciju predikcije mozemo da zapisemo kao
 \[
