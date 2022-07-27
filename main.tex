@@ -139,6 +139,15 @@ izmedju dva razlicita skupa podataka, tako da sa velikom verovatnocom svi podaci
 \subsubsection{Klasican algoritam}
 Ova metoda odredjuje klase koristeci linarnu funkciju $w^{T}x + b$. SVD predvidja prvu klasu ako je izlaz funkcije je pozitivan, a predvidja drugu klasu je izlaz negativan.
 Posto kod vecina slucajeva odvojenost izmedju dve klase podataka nije linearzibilno odvojivo, sa SVM metodom koristi se i \textbf{Kernel metoda}. \\
+Pronalazenje optimalne hiper-ravni se sastoji od minimizacije $|w|^{2}/2$ u nejednacini $y_j(w*x_j+b) \geq 1$ za svako j. 
+Ovo minimizicija se moze uraditi, ako uvedemo Karush-Kuhn-Tucker mnozioca $\overrightarrow{\alpha} = (\alpha_1,...,\alpha_M)$ i maksimizujemo ih nad funkcijom:
+\[
+    L(\overrightarrow{\alpha}) = \sum_{j=1}^{M}{y_j\alpha_j} - \frac{1}{2}\sum_{j,k=1}^{M}{\alpha_j\alpha_kx_jx_k}
+\]
+Sa sledecim ogranicenjima $\sum_{j=1}^{M}{\alpha_j=0}$ i $\forall j \leq M $ $y_j\alpha_j \geq 0$. Tako da, parametre za hiper-ravan se izvode kao:
+$w = \sum_{j=1}^{M}\alpha_jx_j$ i $b = y_j - wx_j$ (za one $j$ gde vazi da $\alpha_j \neq 0$). Mali broj $\alpha_j$ je razlicitno od nule, takve promenljive se odnose na vectore $x_j$ koji leze na ravni,
+ti vektori se zovu \textbf{Support vektori} \cite{rebentrost2014quantum}
+
 Kernel metoda transformise podatke u prostor gde su dve klase linearno odvojive. Metoda se oslanja na to da se linearna funkcija
 moze zapisati iskljucivo kao dot prodakt izmedju primera.
 \[
@@ -151,6 +160,15 @@ Kada zamenimo dot prodakt sa kernelom, funkciju predikcije mozemo da zapisemo ka
 \[
     f(x) = b + \sum_i \alpha_{i}k(x,x_i)
 \]
+Jedan od velikih mana kernel metode jeste cena evaluacije izlaza kernel funkcije je linarna u odnosu na broj trening primera, jer $i$-ti bi oznacavao clana $\alpha_ik(x,x_i)$ kernel funkcije. \cite{goodfellow2016deep} \\
+Slozenost SVM je $O(log(1/\epsilon)M^2(N+M))$, gde je $\epsilon$ preciznost resenja, $N$ je broj dimenzija prostora nad kojem radimo ,a $M$ je broj trening primera. \\
+Takodje krajnje resenje se je binarni klasifikator za neki vektor $x$:
+\[
+    y(x) = sign(\sum_{j=1}^{M}\alpha_jkk(x,x_j) + b)
+\]
+
+\subsubsection{Kvantni algoritam}
+
 \subsection{Quantum principal component analysis}
 
 \newpage
