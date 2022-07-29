@@ -108,12 +108,15 @@ Kvantana teorija informacije se bavi:
 \end{enumerate}
 \subsubsection{Priprema podataka}
 Za obradu podataka treba nam kvantni RAM (QRAM), koji nam dozvoljava paralelan pristup kvantnim podacima. 
-Neka imamo kopleksan vektor $\overrightarrow{v}$ sa $N=2^n$ dimenzija, gde su njegove komponente oblika $v_j = |v'_j|e^{i\varPhi_j}$.
+Neka imamo kopleksan vektor $\overrightarrow{v}$ sa $N=2^n$ dimenzija, gde su njegove komponente oblika 
+\[
+    v_j = |v'_j|e^{i\varPhi_j}
+\]
 Ako imamo parove ${|v'_j|,\varPhi_j}$ cuvamo kao float brojeve u QRAM-u, onda mozemo da konstruisemo
 $\log_{2}N$ kubit kvantno stanje $\ket{v} = |\overrightarrow{v}|^{-\frac{1}{2}}\overrightarrow{v}$ u $O(\log N)$ koraka
 
 Kada smo kreirali kompresovane kvantne vektore od ulaznih vektora, mozemo da vrsimo transformacije koristeci kvantne algoritme, za dalje koriscenje podataka za masinsko ucenje.
-Ovaj proces zove se \textbf{postprocessing} i u opstem obliku njemu je potrebno $O(poly(\log{}N))$ koraka. 
+Ovaj proces zove se \textbf{postprocessing} i u opstem obliku njemu je potrebno $O(poly(\log{}N))$ koraka. \cite{lloyd2013quantum}
 
 
 \section{Linearne algebra za kvantno masinsko ucenje}
