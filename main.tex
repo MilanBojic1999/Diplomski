@@ -112,6 +112,7 @@ Neka imamo kopleksan vektor $\overrightarrow{v}$ sa $N=2^n$ dimenzija, gde su nj
 \[
     v_j = |v'_j|e^{i\varPhi_j}
 \]
+
 Ako imamo parove ${|v'_j|,\varPhi_j}$ cuvamo kao float brojeve u QRAM-u, onda mozemo da konstruisemo
 $\log_{2}N$ kubit kvantno stanje $\ket{v} = |\overrightarrow{v}|^{-\frac{1}{2}}\overrightarrow{v}$ u $O(\log N)$ koraka
 
@@ -167,7 +168,7 @@ moze zapisati iskljucivo kao dot prodakt izmedju primera.
 \[
     w^{T}x + b = b + \sum_{i=1}^m \alpha_ix^Tx_i
 \]
-Gde je $x_i$ trening primer a $\alpha$ je vektor koeficijenata. Ovako zapisivanje funkcije nam dozvoljva da zamenim $x$ sa izlazom funkcije $\phi(x)$, a dot prodact sa funkcijom $k(x,x_i) = \phi(x)*\phi(x_i)$.
+Gde je $x_i$ trening primer a $\alpha$ je vektor koeficijenata. Ovako zapisivanje funkcije nam dozvoljva da zamenim $x$ sa izlazom funkcije $\phi(x)$, a dot prodakt sa funkcijom $k(x,x_i) = \phi(x)*\phi(x_i)$.
 Funkcija $k$ se zove \textbf{kernel}, dok funkcija $\psi$ je funkcija koja preslikava podatke iz jednog prostora u drugi. Operator $\langle * \rangle$ predstavlja unutrasnji prodakt ekvivalentno $\phi(x)^T\phi(x_i)$. \cite{goodfellow2016deep}
 
 Kada zamenimo dot prodakt sa kernelom, funkciju predikcije mozemo da zapisemo kao
@@ -182,7 +183,11 @@ Takodje krajnje resenje se je binarni klasifikator za neki vektor $x$:
 \]
 
 \subsubsection{Kvantni algoritam}
-
+Pretpostavimo da imamo metodu za treniranje koja vraca norme $|x_j|$, labele $y_j$ 
+i kvanten vektore $\Ket{x_j} = \frac{1}{|x_j|}\sum_{k=1}^{N}(x_j)_k\Ket{k}$. \\
+Bitno nam je za algoritam da ova metoda vraca podatke pod donjom granicom, da bi se kompleksost jezgra algoritma mogla iskazati.
+Koristeci evaluaciju inner prodakt priprema se kernel matrica, moze se dobiti SVD algoritam kompleksnoscu $O(log(1/\epsilon)M^3 + M^{2}\log(N/\epsilon))$
+Kernel matrica je od velike vaznosti za least-squares reformulaciju algoritma. 
 \subsection{Quantum principal component analysis}
 
 \newpage
