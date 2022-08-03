@@ -4,6 +4,7 @@
 \usepackage{braket}
 \usepackage{amsmath}
 \usepackage{biblatex}
+\usepackage{bbold}
 
 \addbibresource{refx.bib}
 
@@ -201,8 +202,8 @@ Ako uzmemo parcijalno derivat od Lagranzove funkcije i eliminisemo promenljivu $
         \overrightarrow{\alpha}
     \end{bmatrix}
     \equiv \begin{bmatrix}
-        0 & \overrightarrow{1} \\
-        \overrightarrow{1} & K+\gamma^{-1}
+        0 & \overrightarrow{1}^T \\
+        \overrightarrow{1} & K+\gamma^{-1} \mathbb{1}
     \end{bmatrix}
     \begin{bmatrix}
         b \\
@@ -212,7 +213,26 @@ Ako uzmemo parcijalno derivat od Lagranzove funkcije i eliminisemo promenljivu $
         0 \\
         \overrightarrow{y}
     \end{bmatrix}
-\] 
+\]
+Ovde $K_{ij} = x_i^T \cdot x_j$ je simetricna kernel matrica, $y = (y_1,...,y_m)$ kao i
+$\overrightarrow{1} = (1,...,1)$. Matrica $F$ je dimenzija $(M+1)\times(M+1)$. Dodatna dimenzija (red i kolona) se sastoji od jedinica,
+zbog offset-a $b$. Promenljiva $\alpha_j$ ima ulogu odredjivanje distance od optimalnog resenja. Tako da na resenje, odnonsno
+pronalazenje promenljivih za SVM je oblika:
+\[
+    \begin{bmatrix}
+        b \\
+        \overrightarrow{\alpha}
+    \end{bmatrix} =
+    F^{-1} \begin{bmatrix}
+        0 \\
+        \overrightarrow{y}
+    \end{bmatrix}
+\]
+U klasicnom algoritmu kopleksnost SVM sa funkcijom kvadratnog troska je $O(M^3)$ 
+
+U kvantnom algoritmu, zadatak je generisanje stanja $\Ket{b,\overrightarrow{\alpha}}$ koja opisuju hiper-ravan i onda klasifikuju stanja
+$\Ket{x}$. U algoritmu, resavamo normalizovanu jednacinu $\hat{F}\Ket{b,\overrightarrow{\alpha}} = \Ket{y}$, gde je $\hat{F} = F/trF$ sa 
+ogranicenjem $\Vert F \Vert \leq 1$
 \subsection{Quantum principal component analysis}
 
 \newpage
