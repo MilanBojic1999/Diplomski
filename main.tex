@@ -155,7 +155,7 @@ izmedju dva razlicita skupa podataka, tako da sa velikom verovatnocom svi podaci
 Ova metoda odredjuje klase koristeci linarnu funkciju $w^{T}x + b$. SVD predvidja prvu klasu ako je izlaz funkcije je pozitivan, a predvidja drugu klasu je izlaz negativan.
 Posto kod vecina slucajeva odvojenost izmedju dve klase podataka nije linearzibilno odvojivo, sa SVM metodom koristi se i \textbf{Kernel metoda}. \\
 Pronalazenje optimalne hiper-ravni se sastoji od minimizacije $|w|^{2}/2$ u nejednacini $y_j(w*x_j+b) \geq 1$ za svako j. 
-Ovo minimizicija se moze uraditi, ako uvedemo Karush-Kuhn-Tucker mnozioca $\overrightarrow{\alpha} = (\alpha_1,...,\alpha_M)$ i maksimizujemo ih nad funkcijom:
+Ovo minimizicija se moze uraditi, ako uvedemo Karush-Kuhn-Tucker mnozioca $\overrightarrow{\alpha} = (\alpha_1,...,\alpha_M)$ i maksimizujemo ih nad Lagranzovoj funkcijom:
 \[
     L(\overrightarrow{\alpha}) = \sum_{j=1}^{M}{y_j\alpha_j} - \frac{1}{2}\sum_{j,k=1}^{M}{\alpha_j\alpha_kx_jx_k}
 \]
@@ -183,11 +183,36 @@ Takodje krajnje resenje se je binarni klasifikator za neki vektor $x$:
 \]
 
 \subsubsection{Kvantni algoritam}
-Pretpostavimo da imamo metodu za treniranje koja vraca norme $|x_j|$, labele $y_j$ 
+Pretpostavimo da imamo metodu za treniranje(eng. Oracle) koja vraca norme $|x_j|$, labele $y_j$ 
 i kvanten vektore $\Ket{x_j} = \frac{1}{|x_j|}\sum_{k=1}^{N}(x_j)_k\Ket{k}$. \\
 Bitno nam je za algoritam da ova metoda vraca podatke pod donjom granicom, da bi se kompleksost jezgra algoritma mogla iskazati.
 Koristeci evaluaciju inner prodakt priprema se kernel matrica, moze se dobiti SVD algoritam kompleksnoscu $O(log(1/\epsilon)M^3 + M^{2}\log(N/\epsilon))$
-Kernel matrica je od velike vaznosti za least-squares reformulaciju algoritma. 
+Kernel matrica je od velike vaznosti za reformulaciju algoritma kao funkciju kvadratnog troska. 
+Uvodimo simplifikaciju za nejednakosti, tako sto uvocimo promenljivu $e_j$ i koristimo osoboinu labela da $y_j^2=1$
+\[
+    y_{j}(w \cdot x_j + b) \geq 1 \to (w \cdot x_j + b) = y_{j} - y_{j}e_{j}
+\]
+Porod ove jednacine imamo i implicitan uslov Lagranzove funkcije da sadrzi taksanu (eng. penalty) promenljvi
+$\gamma/2\sum_{j=1}^{M}e_j^2$ gde definisana $\gamma$ za relativne tezinu greske treniranja.
+Ako uzmemo parcijalno derivat od Lagranzove funkcije i eliminisemo promenljivu $u$ i $e_j$ dovodi do aprokcismaciju funkcije kvadratnog troska problema:
+\[
+    F\begin{bmatrix}
+        b \\
+        \overrightarrow{\alpha}
+    \end{bmatrix}
+    \equiv \begin{bmatrix}
+        0 & \overrightarrow{1} \\
+        \overrightarrow{1} & K+\gamma^{-1}
+    \end{bmatrix}
+    \begin{bmatrix}
+        b \\
+        \overrightarrow{\alpha}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        0 \\
+        \overrightarrow{y}
+    \end{bmatrix}
+\] 
 \subsection{Quantum principal component analysis}
 
 \newpage
