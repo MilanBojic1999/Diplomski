@@ -274,8 +274,19 @@ Gde nam je $N_x=M|x|^2 + 1$. Konstruisemo dva nova stanja $\Ket{\psi}$ i $\Ket{\
 $\Ket{\phi} = \frac{1}{\sqrt{2}}(\Ket{0}-\Ket{1})$. Merenjem swap testa, verovatnoca dobivanja pozitivne vrendosti je $P=|\braket{\psi|\phi}|^2=\frac{1}{2}(1-\braket{\tilde{u}|\tilde{x}})$. 
 Ovde unutrasnji produkt, odnosno 
 $\braket{\tilde{u}|\tilde{x}} = \frac{1}{\sqrt{N_xN_u}}(b+\sum_{k=1}^M{\alpha_k |x_k||x|\braket{x_k|x}})$, koji se obicno izracunava u $O(1)$ na kvatnom racunaru.
-Ako hocemo preciznost $\epsilon$, treba da iteriramo kroz algoritam merenja $O(P(1-P)/\epsilon^2)$ puta. 
+Ako hocemo preciznost $\epsilon$, treba da iteriramo kroz algoritam merenja $O(P(1-P)/\epsilon^2)$ puta. \cite{rebentrost2014quantum}
 \subsection{Quantum principal component analysis}
+\subsubsection{Klasicni algoritam}
+Ova je metoda koja se koristni za smanjivanje dimenzija vektora podataka gde nam je bitno da sacuvamo sto vise informacije o podatku -
+labava kompresija (eng. lossy compression). \\
+Neka za svaku tacku $x^{(i)} \in \mathbb{C}^n$ zelimo da transformisemo u tacku $c^{(i)} \in \mathbb{C}^l$ gde je $l < n$.
+Zelimo da nadjemo funkciju enkodovanja koja za ulaz $x$ vraca $c$, odnosno, $f(x)=c$. Takodje zelimo da nadjemo funkciju dekodovanja $g(f(x)) \approx x$.
+
+Zbog jednostavnosti, uzecemo funkciju mnozenja matrica kao funkciju dekodavanja. Neka je $g(c)=Dc$, gde je
+$D \in \mathbb{C}^{n \times l}$ matrica definisana za dekodovanje. Takodje zbog optimalno izracunavanja funkcije enkodovanja, 
+PCA uvodi ogranicenje da su kolone medjusobno ortogonalne. Jos jedno ogranicenje koje moze da se uvede u algoritam,
+i koji ce dovesti do jedinstvenog resenja, jeste da su sve kolone matrice $D$ u unitarnoj normi.
+
 
 \newpage
 \printbibliography
