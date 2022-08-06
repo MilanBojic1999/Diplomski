@@ -286,7 +286,32 @@ Zbog jednostavnosti, uzecemo funkciju mnozenja matrica kao funkciju dekodavanja.
 $D \in \mathbb{C}^{n \times l}$ matrica definisana za dekodovanje. Takodje zbog optimalno izracunavanja funkcije enkodovanja, 
 PCA uvodi ogranicenje da su kolone medjusobno ortogonalne. Jos jedno ogranicenje koje moze da se uvede u algoritam,
 i koji ce dovesti do jedinstvenog resenja, jeste da su sve kolone matrice $D$ u unitarnoj normi.
-
+Jedan od nacina na koji hocemo da nadjemo optimalnu projekciju $c$ za ulaz $x$ jeste da nadjemo najmanju L2 distancu izmedju
+ulaza $x$ i dekodovane vrednosti $g(c)$
+\[
+  c^{*} = \underset{c}{\mathrm{argmin}} \Vert x-g(c) \Vert_2^2
+\]
+I ova za pronalazenje minimalne distance ce dovesti do optimalnog resenje $c=D^{T}x$\cite{goodfellow2016deep}. Tako da funkcija enkodovanja je oblika:
+\[
+f(x) = D^Tx  
+\]
+Takodje, mozemo da uvedemo novu funkciju rekonstrukcije ulaza $x$
+\[
+  r(x) = g(f(x)) = DD^Tx  
+\]
+Sada treba da se nadje optimalna matrica $D$. Ovo ce se resiti na isti nacin kao i pronalazenje optimalnog $c$ za ulaz $x$, odnostno kao pronalazenje minimalne L2 distance za ulazne vektore
+njihove rekonstrukcije.
+\[
+    D^{*} =\underset{D}{\mathrm{argmin}} \sqrt{\sum_{i,j}(x^i_j - r(x^i)_j)^2} \text{ gde vazi } D^TD = I_l
+\]
+Posle procesa izvodjenja \cite{goodfellow2016deep}, jendacina za optimalnu matricu $D$ je oblika:
+\[
+    D^{*} =\underset{D}{\mathrm{argmin}} Tr(D^TX^TXD) \text{ gde vazi } D^TD = I_l
+\] 
+Gde nam je $X \in C^{m \times n}$ matrica gde su redovi ulazni vektori $x$. Ova jednacna se moze resiti koristeci eigen dekompoziciju. Gde bi 
+se pronasli eigen vektor za $X^TX$ za najvecu eigne vrednost. 
+\subsubsection{Kvantni algoritam}
+U algoritmu nam je bitno da 
 
 \newpage
 \printbibliography
