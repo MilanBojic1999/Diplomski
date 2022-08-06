@@ -311,7 +311,13 @@ Posle procesa izvodjenja \cite{goodfellow2016deep}, jendacina za optimalnu matri
 Gde nam je $X \in C^{m \times n}$ matrica gde su redovi ulazni vektori $x$. Ova jednacna se moze resiti koristeci eigen dekompoziciju. Gde bi 
 se pronasli eigen vektor za $X^TX$ za najvecu eigne vrednost. 
 \subsubsection{Kvantni algoritam}
-U algoritmu nam je bitno da 
+U kvantnom algoritmu bitno nam je da nedjenmo eigen vektore i eigen vrednosti za ulaz. Ovo se dosta olanja na drugi deo metode koji je opisan u Support vector machine sekciju.
+Ako izaberemo random vektor $v_j$ iz skupa ulaznih vektora,kreiramo kvanto stanje $\Ket{v_j}$; tada mozemo da kreiramo \textit{density} matricu $\rho = (1/N)\sum_j\Ket{v}\Bra{v}$ gde je $N$ velinica skupa vektora. \cite{Quantum_machine_learning}
+Slicno \textbf{qSVM} nad \textit{density} matricom $\rho$ mozemo da apliciramo algoritam esitacije faze stanja. Odnosnto, da primenimo $e^{-i \rho t}$, $t$ puta nad inicijalnim stanjem:
+\[
+    \Ket{\psi}\Ket{0} \to \sum_i \psi_i\Ket{\chi_i}\Ket{r_i}
+\] 
+Gde je $\Ket{\chi_i}$ eigen vektor od matrice $\rho$, $r_i$ je esimacija eigen vrednosti, a $\psi_i = \Braket{\chi_i|\psi}$
 
 \newpage
 \printbibliography
