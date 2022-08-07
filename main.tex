@@ -276,9 +276,9 @@ Ovde unutrasnji produkt, odnosno
 $\braket{\tilde{u}|\tilde{x}} = \frac{1}{\sqrt{N_xN_u}}(b+\sum_{k=1}^M{\alpha_k |x_k||x|\braket{x_k|x}})$, koji se obicno izracunava u $O(1)$ na kvatnom racunaru.
 Ako hocemo preciznost $\epsilon$, treba da iteriramo kroz algoritam merenja $O(P(1-P)/\epsilon^2)$ puta. \cite{rebentrost2014quantum}
 \subsection{Quantum principal component analysis}
-\subsubsection{Klasicni algoritam}
 Ova je metoda koja se koristni za smanjivanje dimenzija vektora podataka gde nam je bitno da sacuvamo sto vise informacije o podatku -
-labava kompresija (eng. lossy compression). \\
+labava kompresija (eng. lossy compression). 
+\subsubsection{Klasicni algoritam}
 Neka za svaku tacku $x^{(i)} \in \mathbb{C}^n$ zelimo da transformisemo u tacku $c^{(i)} \in \mathbb{C}^l$ gde je $l < n$.
 Zelimo da nadjemo funkciju enkodovanja koja za ulaz $x$ vraca $c$, odnosno, $f(x)=c$. Takodje zelimo da nadjemo funkciju dekodovanja $g(f(x)) \approx x$.
 
@@ -306,7 +306,7 @@ njihove rekonstrukcije.
 \]
 Posle procesa izvodjenja \cite{goodfellow2016deep}, jendacina za optimalnu matricu $D$ je oblika:
 \[
-    D^{*} =\underset{D}{\mathrm{argmin}} Tr(D^TX^TXD) \text{ gde vazi } D^TD = I_l
+    D^{*} =\underset{D}{\mathrm{argmin}}  Tr(D^TX^TXD) \text{ gde vazi } D^TD = I_l
 \] 
 Gde nam je $X \in C^{m \times n}$ matrica gde su redovi ulazni vektori $x$. Ova jednacna se moze resiti koristeci eigen dekompoziciju. Gde bi 
 se pronasli eigen vektor za $X^TX$ za najvecu eigne vrednost. 
@@ -315,9 +315,19 @@ U kvantnom algoritmu bitno nam je da nedjenmo eigen vektore i eigen vrednosti za
 Ako izaberemo random vektor $v_j$ iz skupa ulaznih vektora,kreiramo kvanto stanje $\Ket{v_j}$; tada mozemo da kreiramo \textit{density} matricu $\rho = (1/N)\sum_j\Ket{v}\Bra{v}$ gde je $N$ velinica skupa vektora. \cite{Quantum_machine_learning}
 Slicno \textbf{qSVM} nad \textit{density} matricom $\rho$ mozemo da apliciramo algoritam esitacije faze stanja. Odnosnto, da primenimo $e^{-i \rho t}$, $t$ puta nad inicijalnim stanjem:
 \[
-    \Ket{\psi}\Ket{0} \to \sum_i \psi_i\Ket{\chi_i}\Ket{r_i}
+    \Ket{\psi}\Ket{0} \to \sum_i \psi_i\Ket{\chi_i}\Ket{\widetilde{r_i}}
 \] 
-Gde je $\Ket{\chi_i}$ eigen vektor od matrice $\rho$, $r_i$ je esimacija eigen vrednosti, a $\psi_i = \Braket{\chi_i|\psi}$
+Gde je $\Ket{\chi_i}$ eigen vektor od matrice $\rho$, $\widetilde{r_i}$ je esimacija eigen vrednosti, a $\psi_i = \Braket{\chi_i|\psi}$.
+I primenom SWAP testa na dobijenim stanjem dobijamo stanje:
+\[
+    \sum_i r_i \Ket{\chi_i}\Bra{\chi_i}\otimes \Ket{\widetilde{r_i}}\Bra{\widetilde{r_i}}
+\]
+Merenjem ovog stanja mi dobojamo eigen vrednost i eigen vektor za \textit{density} matricu $\rho$. Ako uradimo 
+ovaj proces nad vecem brojem kopija matrice $\rho$, dobicemo preciznije estimacije eigen vrednosti i eigen vektora. \\
+Sada kada imamo eigen vrednost i eigen vektor mozemo da rekonstruisemo matricu za enkodovanje $D$.
+Vremenska slozenost ovog algoritma je $O(\log d)$. \cite{Lloyd_2014}
+
+\subsection{Kvantna neuralna mreza}
 
 \newpage
 \printbibliography
