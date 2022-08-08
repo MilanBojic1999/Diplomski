@@ -315,9 +315,9 @@ U kvantnom algoritmu bitno nam je da nedjenmo eigen vektore i eigen vrednosti za
 Ako izaberemo random vektor $v_j$ iz skupa ulaznih vektora,kreiramo kvanto stanje $\Ket{v_j}$; tada mozemo da kreiramo \textit{density} matricu $\rho = (1/N)\sum_j\Ket{v}\Bra{v}$ gde je $N$ velinica skupa vektora. \cite{Quantum_machine_learning}
 Slicno \textbf{qSVM} nad \textit{density} matricom $\rho$ mozemo da apliciramo algoritam esitacije faze stanja. Odnosnto, da primenimo $e^{-i \rho t}$, $t$ puta nad inicijalnim stanjem:
 \[
-    \Ket{\psi}\Ket{0} \to \sum_i \psi_i\Ket{\chi_i}\Ket{\widetilde{r_i}}
+    \Ket{v_j}\Ket{0} \to \sum_i \psi_i\Ket{\chi_i}\Ket{\widetilde{r_i}}
 \] 
-Gde je $\Ket{\chi_i}$ eigen vektor od matrice $\rho$, $\widetilde{r_i}$ je esimacija eigen vrednosti, a $\psi_i = \Braket{\chi_i|\psi}$.
+Gde je $\Ket{\chi_i}$ eigen vektor od matrice $\rho$, $\widetilde{r_i}$ je esimacija eigen vrednosti, a $\psi_i = \Braket{\chi_i|v_j+}$.
 I primenom SWAP testa na dobijenim stanjem dobijamo stanje:
 \[
     \sum_i r_i \Ket{\chi_i}\Bra{\chi_i}\otimes \Ket{\widetilde{r_i}}\Bra{\widetilde{r_i}}
@@ -328,6 +328,46 @@ Sada kada imamo eigen vrednost i eigen vektor mozemo da rekonstruisemo matricu z
 Vremenska slozenost ovog algoritma je $O(\log d)$. \cite{Lloyd_2014}
 
 \subsection{Kvantna neuralna mreza}
+Neuralne mreze su osnova polja koji se naziva \textbf{Duboko ucenje} i zato ima veliku paznju za razvog i primenjivanje istog.
+U papiru \cite{Classification_wit_QNN}, autori su predstavili osnove algoritama za Kvantnu neuralnu mrezu (QNN).
+Da li su neke primere, neke prednosti i neke nedostatke kvantnog pristupa neuralnim mrezema\\
+
+Neka unani skup stringova $\phi$ oblika $z=z_1 z_2 \dots z_n$ gde svako $z_i$ je bit cija vrednost moze da bude $+1$ ili $-1$,
+kao i binarnu oznake $l(z)$ koje moze da bude $+1$ ili $-1$. Zbog jednostavnosti neka se u nasem setu nalazi sve permutacije 
+ovako opisanog stringa, to jest neka $|\phi|=2^n$.
+Predstavicemo kvantni proces koji radi na $n+1$ kubita (poslednji kubit sluzi kao izlaz procesa). Kvantni proces se sastoji od 
+unitarnih transformacija ulaznih stanja: ${U_a(\theta)}$.
+Svaka transformacija radi nad podskupu ulaznih kubita i zavisi od promenljive $\theta$.
+Sada izabracemo podskup od $L$ transformacija:
+\[
+  \mathbf{U}(\overrightarrow{\theta}) = U_{L}(\theta_{L}) U_{L-1}(\theta_{L-1}) \dots U_{1}(\theta_{1}) 
+\]
+koja zavise od $L$ parametara $\overrightarrow{\theta}=\theta_{L} \theta_{L-1} \dots \theta_{1}$.
+Za svaki string $z$ kreiracemo pocetno stanje:
+\[
+    \Ket{z,1} = \Ket{z_1, z_2, \dots z_n, 1}
+\]
+Primenjivanje unitarne transformacije vraca stanje: $U(\overrightarrow{\theta})\Ket{z,1}$
+Na izlazu meri se dodati kubit sa Puali-jevim operatorom $\sigma_y$, koji se kasnije naziva i $Y_{n+1}$.
+Tako da na kraju imamo izlaz $+1$ ili $-1$. Cilj je isti kao i kod klasicnih neuralnih mreze da "naucimo" proces da vraca
+tacne vrednosti za dati ulazni string. Posto merenje izlaznog kubita nije sigurno, odnosno merenje kubita dobijamo tacnu vrednost 
+sa nekom verovatnocom uvodimo transformaciju:
+\[
+    \bra{z,1}U^T(\overrightarrow{\theta})Y_{n+1}U(\overrightarrow{\theta})\Ket{z,1}
+\]
+koji predstavlja prosecnu vrednost merenja, ako $Y_{n+1}$ merimo na vise kopija originalno izlaza. 
+
+Ovde, kao i u klasicnoj neuralnoj mrezi, cilj nam je da nadjemo parametar $\overrightarrow{\theta}$ koja vraca tacnu vrednost sa velikom preciznoscu.
+Slicno kao i prethodnoj postavci imamo: $L$ unitarnih promenljivi sa korespodentnim promenljivama $\overrightarrow{\theta}$, kao i ulazni string $z$; 
+tada mozemo da predstavimo funkciju troska:
+\[
+    \mathit{loss}(\overrightarrow{\theta},z) = 1 - l(z)\bra{z,1}U^T(\overrightarrow{\theta})Y_{n+1}U(\overrightarrow{\theta})\Ket{z,1}
+\]
+Mozemo primetiti da ova funkcija troska je linearna i da je minimum u $0$, jer je vracema vrednost izmedju $-1$ i $+1$.
+Ako pretpostavimo da kvantna neuralna mreza radi savrseno, tako da za svaki ulazni string $z$, merenje uvek vraca tacnu oznaku.
+To onda znaci da optamalna promenljiva $\overrightarrow{\theta}$ postoji i da je minimum za funkciju trosa u $0$ za sve ulaze $z$.
+
+
 
 \newpage
 \printbibliography
