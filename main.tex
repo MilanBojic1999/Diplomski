@@ -367,7 +367,35 @@ Mozemo primetiti da ova funkcija troska je linearna i da je minimum u $0$, jer j
 Ako pretpostavimo da kvantna neuralna mreza radi savrseno, tako da za svaki ulazni string $z$, merenje uvek vraca tacnu oznaku.
 To onda znaci da optamalna promenljiva $\overrightarrow{\theta}$ postoji i da je minimum za funkciju trosa u $0$ za sve ulaze $z$.
 
+Neka imamo skup stringova $S$ za treniranje, sa njihovim oznakama. Imamo kvantni proces koji ima mogucnost da
+prikaze trazene labele i zavisi od parametara $\overrightarrow{\theta}$. Opisacemo proces kako da dodjemo do optimalnih parametara $\overrightarrow{\theta}$.
+Neka pocnemo sa random promenljivom $\overrightarrow{\theta}$ (ili ako imamo neku pretpostavku vrednosti parametara). Izaberimo neki string $z^1$ iz skupa za traniranje.
+Primenjujemo kvanti proces nad izabranim stringom:
+\[
+    U(\overrightarrow{\theta})\Ket{z,1}
+\] 
+i merimo $Y_{n+1}$ na zadnjem kubitu. Nakon nekoliko merenja mozemo da imamo dobru aproksimaciju ocekivane vrednosti od $Y_{n+1}$
+i tada izracunavamo $\mathit{loss}(\overrightarrow{\theta},z^1)$. Nakon toga, zelimo da promenimo parametar$\overrightarrow{\theta}$ tako da smanjimo
+funkciju troska za string $z^1$. Postoje dva nacina da se uradi trazeno: (1) da uradimo pomeraj po nekom uzimanju uzorka u $[\overrightarrow{\theta}-\epsilon,\overrightarrow{\theta}+\epsilon]$ intervalu.
+(2) da izracunamo derivat funkcije troska po $\overrightarrow{\theta}$ i da se malo pomerimo ka pravcu koji smanjuje funkciju.
+Ovo nam daje novi parametar $\overrightarrow{\theta^1}$. Sada biramo ponovo iz skupa neki string $z^2$ i ponovimo prethodni proces ali sa parametrom $\overrightarrow{\theta^1}$.
+Ovako dobijamo novi parametar $\overrightarrow{\theta^2}$ koji ima manju funkciju troska za string $z^2$ nego parametar $\overrightarrow{\theta^1}$.
+Ovako prolazimo kroz proces sve dok ne prodjemo kroz ceo skup $S$. Kao rezultat ovoga generisali smo sekvencu parametara
+$\overrightarrow{\theta^1}, \overrightarrow{\theta^2}, \dots \overrightarrow{\theta^S}$. Ako nam je "ucenje" parametara uspesno onda bi smo dobila
+da operator $U(\overrightarrow{\theta^S})$, kada se primeni na stanju $\Ket{z,1}$, vratice stanje koje kada se izmeri na izlazu vraca tacnu oznaku $l(z)$.
+Ako je $z$ iz skupa za traniranje, reci cemo da je model fitovao podatke za treniranje. Ako je $z$ izvan skupa za treniranje, mozemo raci da je model naucio da generalizuje i za nevidjenje podatke.
 
+Ovaj proces koji je opisan, primeti ce te, u klasicnom masinskom ucenje zove se "Stohasticko uvenje".
+U tradicijonalnom masinskom ucenju sa neuronskim mrezama, parametri se prikazuju kao promenljive unutar matrice, koja 
+je linarna u odnosu na unutrasnje vektore. Nad Komponentama tih vektora vrsi se nelinearne transformacije, pre nego sto se mnoze sa
+ostalim parametrima. Uvedjenje dobre ne linearnosti je jedan od glavnih delova uspesne implementiacije modela u klasicnom masinskom ucenju.
+Ovu osobinu klasnih neuralnim mreza tesko je prebaciti u kvantni sistem, jer je kvantna mehanika, osnova celog koncepta kvantnog racunarstva, samo po sebi linearna.
+U metodi koja je opisana, svaka unitarna opearcija se izvrsava nad izlazom prethodne operacije, pri cemu se izmedju operacija ne izvrsava nikakva nelinearna transformacije.
+Neka name je svaka unitarne transformacija oblika $e^{i\theta\sum}$, gde je $\sum$ produkt tenzora koji se sastoji iz skupa Paulijevih operatora, i rade nad nekolicinom kubita.
+Derivat operatora po $\overrightarrow{\theta}$ je ogranica po $L$, to jest po broju parametara.
+Ovo je znacajno, jer znaci da gradijent ne moze da ode u beskonacno i tako izbegavamo veliko problem koji se moze desiti klasicnim neuralnim mrezama.
+
+\subsubsection{Prikazivanje modela}
 
 \newpage
 \printbibliography
