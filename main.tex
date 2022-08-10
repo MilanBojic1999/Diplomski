@@ -328,7 +328,7 @@ Sada kada imamo eigen vrednost i eigen vektor mozemo da rekonstruisemo matricu z
 Vremenska slozenost ovog algoritma je $O(\log d)$. \cite{Lloyd_2014}
 
 \subsection{Kvantna neuralna mreza}
-Neuralne mreze su osnova polja koji se naziva \textbf{Duboko ucenje} i zato ima veliku paznju za razvog i primenjivanje istog.
+Neuralne mreze su osnova polja koji se naziva \textbf{Duboko ucenje} i zato postoji veliku paznja za razvoj istog.
 U papiru \cite{Classification_wit_QNN}, autori su predstavili osnove algoritama za Kvantnu neuralnu mrezu (QNN).
 Da li su neke primere, neke prednosti i neke nedostatke kvantnog pristupa neuralnim mrezema\\
 
@@ -367,7 +367,7 @@ Mozemo primetiti da ova funkcija troska je linearna i da je minimum u $0$, jer j
 Ako pretpostavimo da kvantna neuralna mreza radi savrseno, tako da za svaki ulazni string $z$, merenje uvek vraca tacnu oznaku.
 To onda znaci da optamalna promenljiva $\overrightarrow{\theta}$ postoji i da je minimum za funkciju trosa u $0$ za sve ulaze $z$.
 
-Neka imamo skup stringova $S$ za treniranje, sa njihovim oznakama. Imamo kvantni proces koji ima mogucnost da
+Neka imamo skup stringova \(S\) za treniranje, sa njihovim oznakama. Postoji kvantni proces koji ima mogucnost da
 prikaze trazene labele i zavisi od parametara $\overrightarrow{\theta}$. Opisacemo proces kako da dodjemo do optimalnih parametara $\overrightarrow{\theta}$.
 Neka pocnemo sa random promenljivom $\overrightarrow{\theta}$ (ili ako imamo neku pretpostavku vrednosti parametara). Izaberimo neki string $z^1$ iz skupa za traniranje.
 Primenjujemo kvanti proces nad izabranim stringom:
@@ -532,7 +532,40 @@ Isto tako gradijent bi bio veoma mali sem oko optimalnih uglova. Zato cak i ako 
 bi mogao biti koriscen za pronalazenje optimalnog ugla za bilo koji primer sa povecim $n$, gradijent bi radio izvan preciznosti masine u tom slucaju.
 
 \subsubsection{Ucenje osobina kvantnih stanja}
+Sa kvantnom neuralnom mrezom, ocekuje sa da na ulazu moze da ima bilo koje kvantno stanje (koje nije izvedeno iz nekog klasicnog podatkja)
+i da moze da nauci neke njegov osobine i da ih izbaci u obliku nekih oznaka. Ne postoji ni jedna klasicna neuralna mreza koja moze to da uradi, jer klasicni racunari ne mogu da prihvate kvantno stanje kao ulaz.
+Osnovna ideja je da se $n$-kubitno stanje $\Ket{\psi}$ ubaci u kvantnu neuralnu mrezu sa dodatim kubitom, koji sluzi za citanje rezultata, koji je postavljen na $1$.
+Pa neka nam je data unitarna transformacija $U(\overrightarrow{\theta})$ tako da imamo stanje
+\[
+    U(\overrightarrow{\theta})\Ket{\psi,1}
+\] 
+i onda merimo $Y_{n+1}$. Cilj ovoga je da namestimo da izlaz ovog merenje bude ekvivalntan nekim dvema oznaka koje oznacavaju neke osobine kvantog stanja.
+To je prikazano u sledecem primeru.
+Posmatrajmo Hamiltojev operator $H$ (eng. Hamiltonian), koji je suma lokalnih vredosti sa dodatnom osobino da ima i pozitivne i negetivne eigen vrednosti.
+Sa datim kvantnim stanjem $\ket{\psi}$, obelezava se oznakom koja pokazuje da li je ocekivana vrednost Hamiltoijevog operatora pozitivna ili negativna:
+\[
+    l(\Ket{\psi}) = sign(\bra{\psi}H\Ket{\psi})
+\]
+Posmatrajmo operator $U_H(\beta) = e^{i\beta HX_{n+1}}$, gde je $\beta$ mala i pozitivna vrednost. Sada
+\[
+    \Bra{\psi,1}U_H^T(\beta)Y_{n+1}U_H(\beta)\Ket{\psi,1} = \bra{\psi}sin(2\beta H)\Ket{\psi}
+\]
+tako da ze dovoljno malo $\beta$ ovo je priblizno jednako $2\beta\bra{\psi}H\Ket{\psi}$ i tako imamo znak ocekivane vrednosti za 
+predikciju oznake koje je jednata sa tacnom oznakom. Ovako prikazana, ovo je funkcija oznake sa kvantnim kolima koja
+ima malu gresku. Mala greska dolazi iz toga sto $\bra{\psi}sin(2\beta H)\Ket{\psi}$ samo priblizno jednako $2\beta\bra{\psi}H\Ket{\psi}$
+Ako uzmemo da $\beta$ bude dosta manje od $1/\Vert H \Vert$ (inverz of norme matrice H), mozemo da napravimo da nam greska bude mala.
 
+Posmatrajmo graf gde na svakoj ivici imamo \textit{ZZ} uparivanje sa koeficijenatom ili $+1$ ili $-1$.
+Hamiltonijev operator je oblika: $H = \sum_{i,j}J_{ij}Z_iZ_j$ gde prvobitna suma ogranicena na ivice grafa i $J_{ij}$ je ili $+1$ ili $-1$.
+Neka postoje $M$ vrednosti u $H$. Prvo, treba da izaberemo $M$ uglova $\theta_{ij}$ i neka je kvantno kolo koje implementira transformaciju oblika:
+\[
+    U(\overrightarrow{\theta}) = e^{i\sum_{i,j}J_{ij}Z_iZ_jX_{n+1}}
+\]
+Ako izaberemo $\theta_{ij}=\beta J_{ij}$ imamo operator $U_H(\beta)$ koja osigurava da mozemo da oznacimo trazenu oznaku
+ako izaberemo malo $\beta$ \\
+Kvantno stanje $\Ket{\psi}$ je u Hilbertovom prostoru sa $2^n$ dimenzija i ne mozemo da ocekujemo da naucimo oznake za svako stanje.
+Posmatrani Hamiltojev operator ima bitovnu strukturum, tako da mozemo da se ogranicimo kvantna stanja sa bitnovnim strukturama.
+Tako da je predlozeno da se za treniranje koriste stanja samo sa ovom formom i za testiranje isto.
 \newpage
 \printbibliography
 \end{document}
