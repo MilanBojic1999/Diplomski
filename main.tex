@@ -425,9 +425,27 @@ gde je $B$ operator, dijagonalan u odnostu na kompuntacione baze, koji odgovara 
 Svaka vrednostu u $B$ se mnozi sa $X_{n+1}$ tako da svaka vrednost je komutativna sa ostalim vrednostima. 
 Svaka clan, razlicit od nule, u \textbf{Reed-Muller} formuli utice u $U_l$ na kontrolni \textit{bit flip} na izlaznom kubitu.
 
-Ovaj rezultat kvantno reprezentacije ima analog u klasicnoj teoriji reprezentacije \cite{Cybenko1989ApproximationBS}.
+Ovaj rezultat kvantno reprezentacije ima analog u klasicnoj teoriji \\
+reprezentacije \cite{Cybenko1989ApproximationBS}.
 Ona pokazuje da bilo koja \textit{boolean} funkcija ozneke moze da se prestavi u neuralnoj mrezi dubine tri, gde srednji slog 
-ima velicinu $2^n$
+ima velicinu $2^n$. Ovako velika matrica ne bi mogla da se prestavi na klasicnim racunarima, ali na kvantnim racunarima, oni po prirori rade
+nad Hilbertovim prostorim sa eksponencijalnim dimenzijama. Ali jos nije dokazano da svaka \textit{boolean} funkcija moze da se prestavi u
+kvantno kolo koje nije eksponencionalne dubine. Na tome se trenutno dosta radi u naucnim krugobima.
+
+\paragraph*{Reprezentacija parnosti podskupa}
+Neka imamo datu funkciju oznaka koja vraca parnost podskupa bitova datog stringa. Neka je podskup $\mathbb{S}$
+i neka je $a_j=1$ ako bit $j$ je u podskupu i $a_j=0$ ako $j$ nije u podskupu. Reed-Muller formula za parnost podskup je:
+\[
+    P_{\mathbb{S}}(z) = \sum_j \oplus a_jb_j
+\]
+Ovo nam dozvoljava da napravimo unitarnu transformaciju koja implementira parnost podskupa:
+\[
+    U_{P_{\mathbb{S}}} = e^{i\frac{\pi}{4}X_{n+1}}e^{-i\frac{\pi}{2}\sum_j a_jB_jX_{n+1}}
+\]
+Kolo se sastoji od, najvise, $n$ operatora nad dva kubita koji su komutativni medjusobno, gde je pridodati kubit u svim operatorima nad dva kubita.
+
+\subsubsection{Ucenje modela}
+
 
 \newpage
 \printbibliography
