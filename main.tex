@@ -506,6 +506,32 @@ Ovde se u klasicnom masinskom ucenju obicno uvodi promenljiva, stepem ucenja $r 
 Deo uspesne implementacije masinskog ucenja je racionalno odaberemo vrednost stepena ucenja.
 
 \paragraph{Ucenje parnosti podskupa}
+Za dati podskup $\mathbb{S}$, unitarna transformacija $U_{P_\mathbb{S}}$ moze da prikaze parnost podskupa za sve ulazne stringove.
+Na bi se "naucio" skup unitarnih operacija koji zavise od parametara, sa tim da za svaki podskup postoje parametri koji opisuju $U_{P_\mathbb{S}}$.
+Najlaksi nacin da se ovo postigne jeste da se koriste $n$ parametara
+\[
+    U(\overrightarrow{\theta}) = e^{i\frac{\pi}{4}X_{n+1}}e^{-i\sum_j^n \theta_jB_jX_{n+1}}
+\]
+ovde se vidi da je reprezentacija savrsena kada je $\theta_j = \frac{\pi}{2}$ ako je $j$ u podskupu i$\theta_j = 0$ ako $j$ nije u podskupu.
+Posle eksperimenta sa malim brojem kubita gde su uspeli da nauce model, njihov argument je da sa povecanjem velicine sistema postaje nemoguce da se nauci kvantni model.
+Da bi to pokazali, izracunali eksplicitnu formulu su ocekivanu vrednost za $Y_{n+1}$
+\[
+    \bra{z,1}U^T(\overrightarrow{\theta})Y_{n+1}U(\overrightarrow{\theta})\Ket{z,1} = cos(2\sum_j\theta_jb_j)
+\]
+Sa oznakom $l(z)$ moze se ubaciti u funkciju troska, ali sada moze da se izracuna prosek
+troska za sve $2^n$ stringove, jer imamo eksplicitnu formulu za oznake i njihovo ocekivanje.
+Postoje vise verzija izracunate funkcije, koja zavise od izlaza $n \bmod 4$ i koliko bitova se nalazi u podskupu $\mathbb{S}$.
+Za prikaz uzeli su primer gde je $n$ deljiv sa 4 i skup $\mathbb{S}$ sadrzi svih $n$ bitova.
+U tom slucaju prosecan trosak za sve stringove je 
+\[
+    1 - cos(\theta_1 + \theta_2 + \dots \theta_n)sin(\theta_1)sin(\theta_2) \dots sin(\theta_n)
+\]
+Iz formule se vidi da je u minimum kada su sve $\theta=\frac{\pi}{2}$. Zamislite kakva bi bila pretraga minimuma (pored ovog primera) funkcije
+nad intervalom $[0\;\pi]^n$. Funkcija bi samo prikazivala vrednosti eksponencijalno blizu $1$, sem u eksponencijalno malim intervalima oko optimalnih uglova.
+Isto tako gradijent bi bio veoma mali sem oko optimalnih uglova. Zato cak i ako imamo pristup prosecnom trosku, nijedan metod koji se oslanja na gradijentalni pristup
+bi mogao biti koriscen za pronalazenje optimalnog ugla za bilo koji primer sa povecim $n$, gradijent bi radio izvan preciznosti masine u tom slucaju.
+
+\subsubsection{Ucenje osobina kvantnih stanja}
 
 \newpage
 \printbibliography
