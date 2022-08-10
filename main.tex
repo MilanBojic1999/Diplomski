@@ -395,7 +395,39 @@ Neka name je svaka unitarne transformacija oblika $e^{i\theta\sum}$, gde je $\su
 Derivat operatora po $\overrightarrow{\theta}$ je ogranica po $L$, to jest po broju parametara.
 Ovo je znacajno, jer znaci da gradijent ne moze da ode u beskonacno i tako izbegavamo veliko problem koji se moze desiti klasicnim neuralnim mrezama.
 
-\subsubsection{Prikazivanje modela}
+\subsubsection{Reprezentacija modela}
+Neka imamo $2^n$, $n$-bitnih stringova i vezano za njih postoje $2^{(2^n)}$ funkcija oznaka $l(z)$.
+Ako nam je data odredjena funkcija oznaka onda mozemo da definisemo operator nad komputacionim osnovama kao:
+\[
+    U_l\Ket{z,z_{n+1}} = e^{i\frac{\pi}{4}l(z)X_{n+1}}\Ket{z,z_{n+1}}
+\]
+Ovaj operator rotira ulazni kubit oko $x$-ose za $\frac{\pi}{4}$ puta oznaka za string $z$.
+Tako da iz toga imamo:
+\[
+    U_l^TY_{n+1}U_l = cos(\frac{\pi}{4}l(Z))Y_{n+1} + sin(\frac{\pi}{4}l(Z))Z_{n+1}
+\]
+gde u formuli $l(Z)$ je interpretirana kao operator dijagonalan u odnosu na komputaciona osnovna stanja.
+Takodje, posto funkcija oznaka l(z) moze da vrati ili $+1$ ili $-1$ iz toga imamo $\bra{z,1}U_l^TY_{n+1}U_l\ket{z,1} = l(z)$.
+Ovo nam pokazuje da bar na nekom abstraktnom nivou imamo mogucnost da predstavimo bilo koju funkciju oznake kao kvantno kolo.
+
+Objasnjenje kako da se napise operator $U_l$ kao produkt dve kubit unitarne transformacije. Zbog ovoga treba da se predje na \textit{boolean} promenljive $b_i=\frac{1}{2}(1-z_i)$ i 
+neka funkcija oznake $l$ bude oblika $1-2b$ gde je $b \in {0,1}$. Sada mozemo da iskoristimo \textbf{Reed-Muller} iskazivanje bilo koje \textit{boolean} funkcije u obliku bitova $b_1 \dots b_n$:
+\[
+    b = a_0 \oplus (a_1b_1 \oplus a_2b_2 \oplus \dots a_nb_n) \oplus (a_{12}b_1b_2 \oplus a_{13}b_1b_3 \oplus \dots) \oplus \dots \oplus a_{12 \dots n}b_1b_2 \dots b_n
+\]
+gde su koeficijenati $a \in {0,1}$. Primecuje se da imamo $2^n$ koeficijenta i posto su oni ili 0 ili 1 da stvarno imao
+$2^{(2^n)}$ mogucih \textit{boolean} funkcija. Nasa funkcija $b$ moze biti ekoponencijalno dugacka.
+Sada mozemo da zapisemo unitarnu transformaciju koja zavisi od funkcije oznaka kao:
+\[
+    U_l = e^{i\frac{\pi}{4}X_{n+1}}e^{-1\frac{\pi}{2}BX_{n+1}}
+\]
+gde je $B$ operator, dijagonalan u odnostu na kompuntacione baze, koji odgovara nama data funklcija $b$. 
+Svaka vrednostu u $B$ se mnozi sa $X_{n+1}$ tako da svaka vrednost je komutativna sa ostalim vrednostima. 
+Svaka clan, razlicit od nule, u \textbf{Reed-Muller} formuli utice u $U_l$ na kontrolni \textit{bit flip} na izlaznom kubitu.
+
+Ovaj rezultat kvantno reprezentacije ima analog u klasicnoj teoriji reprezentacije \cite{Cybenko1989ApproximationBS}.
+Ona pokazuje da bilo koja \textit{boolean} funkcija ozneke moze da se prestavi u neuralnoj mrezi dubine tri, gde srednji slog 
+ima velicinu $2^n$
 
 \newpage
 \printbibliography
