@@ -391,7 +391,7 @@ je linarna u odnosu na unutrasnje vektore. Nad Komponentama tih vektora vrsi se 
 ostalim parametrima. Uvedjenje dobre ne linearnosti je jedan od glavnih delova uspesne implementiacije modela u klasicnom masinskom ucenju.
 Ovu osobinu klasnih neuralnim mreza tesko je prebaciti u kvantni sistem, jer je kvantna mehanika, osnova celog koncepta kvantnog racunarstva, samo po sebi linearna.
 U metodi koja je opisana, svaka unitarna opearcija se izvrsava nad izlazom prethodne operacije, pri cemu se izmedju operacija ne izvrsava nikakva nelinearna transformacije.
-Neka name je svaka unitarne transformacija oblika $e^{i\theta\sum}$, gde je $\sum$ produkt tenzora koji se sastoji iz skupa Paulijevih operatora, i rade nad nekolicinom kubita.
+Neka name je svaka unitarne transformacija oblika $e^{i\theta\Sigma}$, gde je $\Sigma$ produkt tenzora koji se sastoji iz skupa Paulijevih operatora, i rade nad nekolicinom kubita.
 Derivat operatora po $\overrightarrow{\theta}$ je ogranica po $L$, to jest po broju parametara.
 Ovo je znacajno, jer znaci da gradijent ne moze da ode u beskonacno i tako izbegavamo veliko problem koji se moze desiti klasicnim neuralnim mrezama.
 
@@ -445,7 +445,67 @@ Ovo nam dozvoljava da napravimo unitarnu transformaciju koja implementira parnos
 Kolo se sastoji od, najvise, $n$ operatora nad dva kubita koji su komutativni medjusobno, gde je pridodati kubit u svim operatorima nad dva kubita.
 
 \subsubsection{Ucenje modela}
+U ovoj podsekciji ce se objasniti dve potencijalne metode kako da menja parametar $\overrightarrow{\theta}$ tako da se funkcija troska smanjejue.
+Ako su nam dati paramteri $\overrightarrow{\theta}$ i trening primer $z$, prvo procenjujemo vrednost trosak od $\mathit{loss}(\overrightarrow{\theta},z)$.
+Da bi smo ovo uradili treba da napravimo vise merenje $Y_{n+1}$ za $U(\overrightarrow{\theta})\Ket{z,1}$.
+Da bi smo ovo uspeli sa verovatnocom vecom od $99\%$, procena of funkcije trosa koja je $\delta$ intervaluj od prave vrednosti funkcije troska
+treba da napravimo najmanje $2/\delta^2$ merenja($\delta \in (0,1)$).
 
+Nako sto procenimo vrednost funkcije troske zelimo da izracunamo gradijent od funkcije trosa u odnosu na $\overrightarrow{\theta}$.
+Jedan od nacina jeste da menjamo jedenu po jednu promenljivu u $\overrightarrow{\theta}$. Nakon svake promene treba da se izracuna
+$\mathit{loss}(\overrightarrow{\theta'},z)$, gde $\overrightarrow{\theta'}$ je razlicit od $\overrightarrow{\theta}$ za neku malu vrednost u jednoj promenljivi.
+Ako bi se koristio simetrican derivat funkcije troska svaku promenljivu parametra bi mogli da izrazunamo do preciznosti $\eta$ u oko $1/\eta^3$ merenja.
+Ovaj proces bi trebao da se ponavlja $L$ puta da bi se dobio puni gradijent.
+
+Alternativna strategija jeste da se menja svaka promenljiva gradijenta, sto se koristi kada su sve unitarne transformacije oblika $e^{i\theta\Sigma}$.
+Ako posmatramo derivat za funkciju troska $\mathit{loss}(\overrightarrow{\theta},z)$ za parametar $\theta_k$, koji je vezan za transformaciju $U_k(\theta_k)$
+(koja ima i generalni Pauli-jer operator $\Sigma_k$). Sada:
+\[
+    \frac{d\mathit{loss}(\overrightarrow{\theta},z)}{d\theta_k} = 2Im(\Bra{z,1}U_1^T \dots U_L^TY_{n+1}U_L \dots U_{k+1} \Sigma_k U_k \dots U_1 \Ket{z,1})
+\]
+Ako primetimo da su $Y_{n+1}$ i $\Sigma_k$ unitarni operatori, tada definisemo unitarni operator:
+\[
+    \mathcal{U}(\overrightarrow{\theta}) = U_1^T \dots U_L^TY_{n+1}U_L \dots U_{k+1} \Sigma_k U_k \dots U_1
+\]
+tako da derivat mozemo da zapisemo kao:
+\[
+    \frac{d\mathit{loss}(\overrightarrow{\theta},z)}{d\theta_k} = 2Im(\Bra{z,1}\mathcal{U}\Ket{z,1})
+\]
+$\mathcal{U}(\overrightarrow{\theta})$ se mozemo posmatrati kao kvanto kolo koji sadrzi $2L+2$ unitarnih transformacija.
+Sada mozemo da primenimo $\mathcal{U}(\overrightarrow{\theta})$ nad stanjem $\Ket{z,1}$. Ako koristimo dodati kubit, mozemo da merimo imaginarni deo
+derivata funkcije. Zapocecemo sa stanjem $\Ket{z,1}\frac{1}{\sqrt{2}}(\Ket{0}+\Ket{1})$ i primenicemo $i\mathcal{U}(\overrightarrow{\theta})$ na dodatim kubitom vrednosti $1$.
+Ovo kreira:
+\[
+    \frac{1}{\sqrt{2}}(\Ket{z,1}\Ket{0} + i\mathcal{U}(\overrightarrow{\theta})\Ket{z,1}\Ket{1})
+\]
+Ako primenimo Hademardovu kapiju na dodatim kubitom dobijamo:
+\[
+    \frac{1}{2}(\Ket{z,1}+\mathcal{U}(\overrightarrow{\theta})\Ket{z,1}\Ket{0}) + \frac{1}{2}(\Ket{z,1}-i\mathcal{U}(\overrightarrow{\theta})\Ket{z,1}\Ket{1})
+\]
+Sada kada izmerimo dodati kubit, verovatnoca da se dobije $0$ je:
+\[
+    \frac{1}{2} - \frac{1}{2}Im(\bra{z,1}\mathcal{U}(\overrightarrow{\theta})\Ket{z,1})
+\]
+tako da, ponavljanjem ovog merenja mozemo da dobijemo dobru procenu imaginarnog dela stanja iz kojeg mozemo da izvucemo procenu k-te komponente trazenog gradijenta.
+Ovaj metod izbegava numbricne nepreciznosti prethodne strategije. Cena ove metode je potreba da dodatim kubitom kao i kvatno kolo $2L+2$ dubine.
+
+Posto samo izracunali gradijent, sada treba metod za izmenu $\overrightarrow{\theta}$. Neka je $\overrightarrow{g}$ gradijent funkcije troska po parametru $\overrightarrow{\theta}$.
+Sada menjamo $\overrightarrow{\theta}$ u pravcu $\overrightarrow{g}$. Sa velicinom "koraka" $\gamma$ imamo
+\[
+    \mathit{loss}(\overrightarrow{\theta}+\gamma \overrightarrow{g}) = \mathit{loss}(\overrightarrow{\theta},z)+ \gamma \overrightarrow{g}^2 + O(\gamma^2)
+\]
+Posto zelimo da smanjimo trosak na $0$ mozemo da napravimo da:
+\[
+    \gamma = -\frac{\mathit{loss}(\overrightarrow{\theta},z)}{\overrightarrow{g}^2}
+\]
+Ovako nesto bi dovelo da trosak bude $0$ za trenutni primer, ali moze da dovede do losih efekata za ostale primera. 
+Ovde se u klasicnom masinskom ucenju obicno uvodi promenljiva, stepem ucenja $r \in (0,1]$ i onda imamo sledece:
+\[
+    \overrightarrow{\theta} \arrowvert \overrightarrow{\theta} - r(\frac{\mathit{loss}(\overrightarrow{\theta},z)}{\overrightarrow{g}^2})\overrightarrow{g}
+\]
+Deo uspesne implementacije masinskog ucenja je racionalno odaberemo vrednost stepena ucenja.
+
+\paragraph{Ucenje parnosti podskupa}
 
 \newpage
 \printbibliography
