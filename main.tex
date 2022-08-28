@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{biblatex}
 \usepackage{bbold}
+\usepackage{quantikz}
 
 \addbibresource{refx.bib}
 
@@ -94,7 +95,7 @@ za neku slucajnu promenljivu $X$
     S(\varrho) = H(X)
 \]
 %% Opisati metod u Apendexu mozda
-Jos jedna od merila za kvantno stanje jeste merenje "istinitosti" (eng. Fidelity) izmedju dva kvantna stanja $ \ket{\phi}$ i $\ket{\psi}$.
+Jos jedna od merila za kvantno stanje jeste merenje "validnost" (eng. fidelity) izmedju dva kvantna stanja $ \ket{\phi}$ i $\ket{\psi}$.
 Neka je $F$ funkcija koja meri osobinu, ona meri verovatnocu da merenjem stanja $\ket{\phi}$ dobijemo stanje $\ket{\psi}$.
 Izlaz funkcije je izmedju 0 i 1, gde ako je izlaz 0 onda su dva stanja ortogonalna jedna od drugog, a ako je izlaz 1 onda su dva stanja jednaka.\cite{vlatko_v}
 \subsubsection*{Odnost kvantne i klasicne teorije informacije}
@@ -136,8 +137,29 @@ Primeri algoritama koji su deo qBLAS-a su:
 Ovi algoritmi se koriste kao osnova napredinij algoritama i algoritama za Kvantno masinsko ucenje.
 Samo treba pripaziti kod pominjanja ovih algoritama, jer neki od njih koriste neke koncepte koji su samo
 teorijske prirode ili su tesko kreirani u realnom svetu (npr. QRAM).
-% \section{Kvantna teorija kompleksnosti}
-% \subsubsection{SWAP Test}
+
+\section{Kvantna teorija kompleksnosti}
+\subsection{SWAP Test}
+Ova rutina je jednostavan kvantni algoritam koji izrazava skalarni prodakt za dva ulazna kvantna stanja $\Ket{a}$ i $\Ket{b}$. \cite{fastovets2019machine}
+\begin{center}
+\begin{quantikz}[row sep={10mm,between origins}]
+    \lstick{$\Ket{0}$} & \gate{H} & \ctrl{} & \gate{H} & \meter{} \\
+    \lstick{$\Ket{a}$} & \qw & \swap{-1} & \qw & \qw \\
+    \lstick{$\Ket{b}$} & \qw & \swap{-1} & \qw & \qw
+\end{quantikz}
+\end{center}
+
+Verovatnoca da se pri merenju kontrolnog kubita dobije stanje $\Ket{0}$ je definisano kao:
+\[
+  P(\Ket{0}) = \frac{1}{2} + \frac{1}{2}F(\Ket{a},\Ket{b})  
+\]
+gde je $F(\Ket{a},\Ket{b}) = |\Braket{a|b}|^2$ - validnost izmedju dva kvantan stanja.
+Verovatnoca $P(\Ket{0}) = 0.5$ znaci da su kvantan stanja  $\Ket{a}$ i $\Ket{b}$ su medjusobno ortogonalna, 
+a verovatnoca $P(\Ket{0}) = 1$ znaci da su kvantan stanja identicna. Ova rutina treba da se ponavalja vise puta
+da bi se dobila dobra estimacija vrednosti validnosti. \\
+SWAP test se moze koristiti za izracunavanje Euklidske distanfce izmedju kvantnih stanja u visedimenzionom prostoru kao i u velikom 
+broju kvatninh algoritama.
+
 \section{Kvantno masinsko ucenje}
 Kvantno masinsko ucenje je spoj kvantnih racunara i masinskog ucenja. U programima Kvantnog masinskog ucenja koriste se kvantni algoritmi (npr. qBLAS algoritmi)
 kao deo metoda optimizacija slicne klasicnim metodama masinskog ucenja. 
