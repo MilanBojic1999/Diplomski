@@ -23,6 +23,7 @@
 
 \tableofcontents
 \newpage
+\section{Uvod}
 \section{Kvantno racunarstvo}
 Pre nego sto se pocne pricati o Kvantnom masinskom ucenju, treba objasniti neki osnovni pojmovi da bi lakse razumeli ostatak rada
 
@@ -175,6 +176,54 @@ Kada se trazi gornja granica kvantnih problema prvo se dolazi do $\textbf{BQP} \
 do najvise \textit{eksponencijalnog ubzanja} u odnosu na klasicni racunar \cite{aaronson2013quantum}.
 Bolja gornja granica za $\textbf{BQP}$ jeste $\textbf{BQP} \subseteq \textbf{PP}$. Ovo su dokazali Adleman, DeMarrais i Huang u \cite{adleman1997quantum}
 \subsection{Primeri kvantnih algoritama}
+\subsubsection{Šorov algoritam}
+Posto je trenetno najoptimalniji algoritam na klasičnom računaru (general number filed sieve) se izvršava u sub-ekponencijalnom vremenu.
+Šorov algoritam rešava problem nalaženja periode, koji može da se iskoristi za problem faktorizacije. \cite{QiskiShoreAlgo} \\
+\textbf{Problem}: ako imamo periodicnu funkciju
+\[
+    f(x) = a^x \bmod N
+\]
+gde su $a$ i $N$ prirodni brojevi,$a < N$ i nemaju zajednickog faktora. Period $r$ je najmanji prirodan broj tako da:
+\[
+    a^r \bmod N = 1
+\]
+Sorov algoritam koristi estimaciju kvantne faze na unitarnom operatoru:
+\[
+    U\Ket{y} = \Ket{ay \bmod N}
+\]
+Tako da bi eigen vrednost za U bila jednaka superpoziciji stajna $\Ket{u_0}$
+\[
+    \Ket{u_0}=\frac{1}{\sqrt{r}}\sum_{k=0}^{r-1}\Ket{a^k \bmod N}
+\]
+\[
+    U\Ket{u_0} = \Ket{u_0}
+\]
+Ovde eigen stanje ima eigen vredost 1, sto nam nista ne znaci. Zanimljivije je kada se gledaju eigen stanja
+gde su faze drugacije za svako bazno stanje. Posebno se posmatraju slucajevi gde faza k-tog stanja je proporciona $k$:
+\[
+    \Ket{u_1}=\frac{1}{\sqrt{r}}\sum_{k=0}^{r-1}e^{-\frac{2\pi i k}{r}}\Ket{a^k \bmod N}
+\]
+\[
+    U\Ket{u_1} = e^\frac{2\pi i}{r}\Ket{u_1}
+\]
+U ovom slucaju eigen vrednost sadrzi $r$. Ovde $r$ kao faktor normalizacije izmedju $r$ baznih stanja.
+Sada, mozemo ova stanja da pomnozimo sa $s \in N_0$ koji ce uticati na krajnju eigne vrednost.
+\[
+    \Ket{u_s}=\frac{1}{\sqrt{r}}\sum_{k=0}^{r-1}e^{-\frac{2\pi isk}{r}}\Ket{a^k \bmod N}
+\]
+\[
+    U\Ket{u_s} = e^\frac{2\pi is}{r}\Ket{u_s}
+\]
+Sada imamo jedinstvene eigne stanja za svako $s$ ($0 \leq s \leq r-1$). Ako saberemo sva dobijena eigen stanja, 
+razlike u fazama se ponistavaju medjusobno tako da se dobije stanje $\Ket{1}$
+\[
+    \frac{1}{\sqrt{r}}\sum_{s=0}^{r-1}\Ket{u_s} = \Ket{1}
+\]
+Posto je bazno stanje $\Ket{1}$ superpozicija za data eigen stanja, sto znaci da mozemo da uradimo \textit{kvantnu esitmaciju faze} nad $U$
+koristeci se stanjem $\Ket{1}$, u tom slucaju cemo da izmerimo fazu $\Phi$
+\[
+    \Phi = \frac{s}{r}
+\]
 \subsubsection{SWAP Test}
 Ova rutina je jednostavan kvantni algoritam koji izrazava skalarni prodakt za dva ulazna kvantna stanja $\Ket{a}$ i $\Ket{b}$. \cite{fastovets2019machine}
 \begin{center}
@@ -626,5 +675,6 @@ Kvantno stanje $\Ket{\psi}$ je u Hilbertovom prostoru sa $2^n$ dimenzija i ne mo
 Posmatrani Hamiltojev operator ima bitovnu strukturum, tako da mozemo da se ogranicimo kvantna stanja sa bitnovnim strukturama.
 Tako da je predlozeno da se za treniranje koriste stanja samo sa ovom formom i za testiranje isto.
 \newpage
+\section{Zakljucak}
 \printbibliography
 \end{document}
