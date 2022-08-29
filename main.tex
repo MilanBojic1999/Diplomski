@@ -8,6 +8,7 @@
 \usepackage{quantikz}
 
 \addbibresource{refx.bib}
+\newtheorem{definition}{Definition}
 
 \title{Kvantno masinsko ucenje}
 \author{Milan Bojic}
@@ -139,7 +140,42 @@ Samo treba pripaziti kod pominjanja ovih algoritama, jer neki od njih koriste ne
 teorijske prirode ili su tesko kreirani u realnom svetu (npr. QRAM).
 
 \section{Kvantna teorija kompleksnosti}
-\subsection{SWAP Test}
+U klasicnoj teoriji kompleksnoti klasifikuju se algoritamski problemi po njihovoj tezini resavanja.
+Problemi se klasifikuju u \textbf{klase kompleksnosti}, oni se mogu posmatrati kao kolekcija algoritamskikh problema koji dele neku zajednicku osobinu
+vezanu za potrebna komputaciona sredstva potrebna da bi se oni resili (uglavnom vreme i prostor). \cite{nielsen_chuang_10th}\\
+
+\subsection{Primeri klasa kompleksnosti}
+Medju kojima su najpoznatiji i najvazniji \textbf{P} i \textbf{NP}. Zbog prirode kvantnih racunara objasnicu neke druge klase kompleksnosti.
+
+Klasa kompleksnosti \textbf{PSPASE} je klasa problema koja se mogu resiti u polinimijalnom prostoru, ali sa neogranicenim vremenom izvrsavanja.
+
+
+Klasa kompleksnosti \textbf{PP} (Probabilistic Polynomial-Time) je klasa problema za koje postoji nasomicni algoritam u polinomijalnom vremenu koji vraca
+tacno resenje sa verovatnocom vecom od $\frac{1}{2}$.
+
+Klasa kompleksnosti \textbf{BPP} (Bounded-Error Probabilistic Polynomial-Time) je klasa problema za koje postoji nasomicni algoritam u polinomijalnom vremenu koji vraca
+tacno resenje sa verovatnocom vecom od $\frac{2}{3}$. \cite{aaronson2013quantum}
+\subsection{BQP}
+Klasa komepleksnoti \textbf{BQP} (Bounded-Error Quantum Polynomial-Time) je klasa problema koji se mogu efikasno resiti na kvantnom racunaru, ako se dopusti ogranicena verovatnoca greske \cite{nielsen_chuang_10th}.
+Formalija definicija bi bila:\cite{aaronson2013quantum}
+\begin{definition}
+    \textbf{BQP} je klasa jezika $L \subseteq \{0,1\}^{*}$ za koje postoji uniformni skup kvantnih kola polinomijalne velicine ($C_n$)
+    tako da za svako $x \in \{0,1\}^{n}$:
+    \begin{itemize}
+        \item ako $x \in L$ onda $C_n$ prihvata ulaz $\Ket{x}\Ket{0...0}$ sa verovatnocom vecom od $\frac{2}{3}$.
+        \item ako $x \notin L$ onda $C_n$ prihvata ulaz $\Ket{x}\Ket{0...0}$ sa verovatnocom ne vecom od $\frac{1}{3}$.
+    \end{itemize} 
+\end{definition}
+Ovako definisano moze se primetitni da problemi iz \textbf{BQP} su dosta blizi problemima iz \textbf{BPP} nego iz \textbf{P}.
+\subsubsection*{Odnos sa klasnicnim klasam kompleksnosti}
+Prva stvar koja vazi jeste da $\textbf{BPP} \subseteq \textbf{BQP}$, odnosno da sve sto mozes da uradis sa klasicnom probalisticnim racunarom moze da 
+se uradi i na kvantnom racunaru.
+
+Kada se trazi gornja granica kvantnih problema prvo se dolazi do $\textbf{BQP} \subseteq \textbf{EXP}$, ovo znaci da kvantni racunari mogu da dovedu
+do najvise \textit{eksponencijalnog ubzanja} u odnosu na klasicni racunar \cite{aaronson2013quantum}.
+Bolja gornja granica za $\textbf{BQP}$ jeste $\textbf{BQP} \subseteq \textbf{PP}$. Ovo su dokazali Adleman, DeMarrais i Huang u \cite{adleman1997quantum}
+\subsection{Primeri kvantnih algoritama}
+\subsubsection{SWAP Test}
 Ova rutina je jednostavan kvantni algoritam koji izrazava skalarni prodakt za dva ulazna kvantna stanja $\Ket{a}$ i $\Ket{b}$. \cite{fastovets2019machine}
 \begin{center}
 \begin{quantikz}[row sep={10mm,between origins}]
