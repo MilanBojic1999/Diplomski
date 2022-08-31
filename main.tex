@@ -124,7 +124,7 @@ Izlaz funkcije je između 0 i 1, gde ako je izlaz 0 onda su dva stanja ortogonal
 \subsubsection*{Odnost kvantne i klasicne teorije informacije}
 Kvantna i klasična informacija se u dosta stvari razlikuju. Dok klasična informacija prolazi kroz sisteme sa dobro definisanim stanjima, može se kopirati i pri procesu merenja se ne menja,
 Kvantna informacija je enkodovana u kvantnim sistemima, ne može se kopirati i pri procesu merenje ona se menja. Takođe kvantan informacija ima neke osobine koje se ne
-mogu iskazati u klasicnoj informaciji, kao sto su superpozicija i kvantan uvezanost \cite{Classical&quantum_info} \\
+mogu iskazati u klasicnoj informaciji, kao što su superpozicija i kvantan uvezanost \cite{Classical&quantum_info} \\
 Kvantana teorija informacije se bavi: 
 \begin{enumerate}
     \item Prenošenje klasicnih informacija preko kvantnih kanala
@@ -317,7 +317,7 @@ Pretpostavimo da imamo metodu za treniranje(eng. Oracle) koja vraća norme $|x_j
 Bitno nam je za algoritam da ova metoda vraća podatke pod donjom granicom, da bi se kompleksost jezgra algoritma mogla iskazati.
 Koristeći evaluaciju unutrašnjeg produkta priprema se kernel matrica, može se dobiti SVM algoritam kompleksnošću $O(log(1/\epsilon)M^3 + M^{2}\log(N/\epsilon))$
 Kernel matrica je od velike važnosti za reformulaciju algoritma kao funkciju kvadratnog troška. 
-Uvodimo simplifikaciju za nejednakosti, tako sto uvodimo promenljivu $e_j$ i koristimo osobinu labela da $y_j^2=1$
+Uvodimo simplifikaciju za nejednakosti, tako što uvodimo promenljivu $e_j$ i koristimo osobinu labela da $y_j^2=1$
 \[
     y_{j}(w \cdot x_j + b) \geq 1 \to (w \cdot x_j + b) = y_{j} - y_{j}e_{j}
 \]
@@ -493,30 +493,29 @@ Primenjujemo kvanti proces nad izabranim stringom:
 \[
     U(\overrightarrow{\theta})\Ket{z,1}
 \] 
-i merimo $Y_{n+1}$ na zadnjem kubitu. Nakon nekoliko merenja možemo da imamo dobru aproksimaciju ocekivane vrednosti od $Y_{n+1}$
-i tada izračunavamo $\mathit{loss}(\overrightarrow{\theta},z^1)$. Nakon toga, želimo da promenimo parametar$\overrightarrow{\theta}$ tako da smanjimo
-funkciju troška za string $z^1$. Poštoje dva nacina da se uradi trazeno: (1) da uradimo pomeraj po nekom uzimanju uzorka u $[\overrightarrow{\theta}-\epsilon,\overrightarrow{\theta}+\epsilon]$ intervalu.
-(2) da izračunamo izvod funkcije troška po $\overrightarrow{\theta}$ i da se malo pomerimo ka pravcu koji smanjuje funkciju.
+i merimo $Y_{n+1}$ na zadnjem kubitu. Nakon nekoliko merenja možemo da imamo dobru aproksimaciju očekivane vrednosti od $Y_{n+1}$
+i tada izračunavamo $\mathit{loss}(\overrightarrow{\theta},z^1)$. Nakon toga, želimo da promenimo parametar $\overrightarrow{\theta}$ tako da smanjimo
+funkciju troška za string $z^1$. Poštoje dva načina da se uradi traženo: (1) da uradimo pomeraj ka nekom izabranom uzorku u $[\overrightarrow{\theta}-\epsilon,\overrightarrow{\theta}+\epsilon]$ intervalu.
+(2) da izračunamo izvod funkcije troška po $\overrightarrow{\theta}$ i da se malo pomerimo ka pravcu koji minimizuje funkciju.
 Ovo nam daje novi parametar $\overrightarrow{\theta^1}$. Sada biramo ponovo iz skupa neki string $z^2$ i ponovimo prethodni proces ali sa parametrom $\overrightarrow{\theta^1}$.
 Ovako dobijamo novi parametar $\overrightarrow{\theta^2}$ koji ima manju funkciju troška za string $z^2$ nego parametar $\overrightarrow{\theta^1}$.
-Ovako prolazimo kroz proces sve dok ne prođemo kroz ceo skup $S$. Kao rezultat ovoga generisali smo sekvencu parametara
-$\overrightarrow{\theta^1}, \overrightarrow{\theta^2}, \dots \overrightarrow{\theta^S}$. Ako nam je "učenje" parametara uspesno onda bi smo dobila
-da operator $U(\overrightarrow{\theta^S})$, kada se primeni na stanju $\Ket{z,1}$, vratice stanje koje kada se izmeri na izlazu vraća tačnu oznaku $l(z)$.
-Ako je $z$ iz skupa za traniranje, reci cemo da je model fitovao podatke za treniranje. Ako je $z$ izvan skupa za treniranje, možemo raci da je model naucio da generalizuje i za neviđenje podatke.
+Ovako prolazimo kroz proces sve dok ne prođemo kroz ceo skup $S$. Kao rezultat ovoga generisana je sekvenca parametara $\overrightarrow{\theta^1}, \overrightarrow{\theta^2}, \dots \overrightarrow{\theta^S}$.
+Ako je "učenje" parametara uspešno, onda bi bilo dobijeno da operator $U(\overrightarrow{\theta^S})$, kada se primeni na stanju $\Ket{z,1}$, vraća stanje koje kada se izmeri na izlazu vraća tačnu oznaku $l(z)$.
+Ako je $z$ iz skupa za traniranje, reći ćemo da je model naučio podatke za treniranje. Ako je $z$ izvan skupa za treniranje, možemo raći da je model naučio da generalizuje i za neviđenje podatke.
 
-Ovaj proces koji je opisan, primeti ce te, u klasicnom mašinskom učenje zove se "Stohasticko uvenje".
-U tradicijonalnom mašinskom učenju sa neuronskim mrezama, parametri se prikazuju kao promenljive unutar matrice, koja 
-je linarna u odnosu na unutrašnje vektore. Nad Komponentama tih vektora vrsi se nelinearne transformacije, pre nego sto se mnoze sa
-ostalim parametrima. Uveđenje dobre ne linearnosti je jedan od glavnih delova uspesne implementiacije modela u klasicnom mašinskom učenju.
-Ovu osobinu klasnih neuralnim mreža tesko je prebaciti u kvantni sistem, jer je kvantna mehanika, osnova celog koncepta kvantnog računarstva, samo po sebi linearna.
-U metodi koja je opisana, svaka unitarna opearcija se izvrsava nad izlazom prethodne operacije, pri cemu se između operacija ne izvrsava nikakva nelinearna transformacije.
+Ovaj proces koji je opisan, primetićete, u klasičnom mašinskom učenje zove se "Stohasticko učenje".
+U tradicijonalnom mašinskom učenju sa neuronskim mrežama, parametri se prikazuju kao promenljive unutar matrice, koja je linarna u odnosu na unutrašnje vektore.
+Nad Komponentama tih vektora vrši se nelinearne transformacije, pre nego što se pomnože sa ostalim parametrima. 
+Uveđenje dobre nelinearnosti je jedan od glavnih delova uspešne implementiacije modela u klasicnom mašinskom učenju.
+Ovu osobinu klasčnih neuralnim mreža teško je prebaciti u kvantni sistem, jer je kvantna mehanika, osnova celog koncepta kvantnog računarstva, samo po sebi linearna.
+U metodi koja je opisana, svaka unitarna opearcija se izvrsava nad izlazom prethodne operacije, pri čemu se između operacija ne izvršava nikakva nelinearna transformacije.
 Neka name je svaka unitarne transformacija oblika $e^{i\theta\Sigma}$, gde je $\Sigma$ produkt tenzora koji se sastoji iz skupa Paulijevih operatora, i rade nad nekolicinom kubita.
-Derivat operatora po $\overrightarrow{\theta}$ je ogranica po $L$, to jest po broju parametara.
-Ovo je znacajno, jer znači da gradijent ne može da ode u beskonacno i tako izbegavamo veliko problem koji se može desiti klasicnim neuralnim mrezama.
+Izvod operatora po $\overrightarrow{\theta}$ je ograničen po $L$, to jest po broju parametara. Ovo je značajno, jer znači da gradijent ne može da ode u beskonačnost i tako izbegavamo 
+veliki problem koji se može desiti klasičnim neuralnim mrežama.
 
 \subsubsection{Reprezentacija modela}
 Neka imamo $2^n$, $n$-bitnih stringova i vezano za njih postoje $2^{(2^n)}$ funkcija oznaka $l(z)$.
-Ako nam je data određena funkcija oznaka onda možemo da definisemo operator nad komputacionim osnovama kao:
+Ako nam je data određena funkcija oznaka onda možemo da definišemo operator nad komputacionim osnovama kao:
 \[
     U_l\Ket{z,z_{n+1}} = e^{i\frac{\pi}{4}l(z)X_{n+1}}\Ket{z,z_{n+1}}
 \]
@@ -527,27 +526,26 @@ Tako da iz toga imamo:
 \]
 gde u formuli $l(Z)$ je interpretirana kao operator dijagonalan u odnosu na komputaciona osnovna stanja.
 Takođe, posto funkcija oznaka l(z) može da vrati ili $+1$ ili $-1$ iz toga imamo $\bra{z,1}U_l^TY_{n+1}U_l\ket{z,1} = l(z)$.
-Ovo nam pokazuje da bar na nekom abstraktnom nivou imamo mogucnost da predstavimo bilo koju funkciju oznake kao kvantno kolo.
+Ovo nam pokazuje da bar na nekom abstraktnom nivou imamo mogućnost da predstavimo bilo koju funkciju oznake kao kvantno kolo.
 
-Objasnjenje kako da se napise operator $U_l$ kao produkt dve kubit unitarne transformacije. Zbog ovoga treba da se pređe na \textit{boolean} promenljive $b_i=\frac{1}{2}(1-z_i)$ i 
+Objasnjenje kako da se napiše operator $U_l$ kao produkt dve kubit unitarne transformacije. Zbog ovoga treba da se pređe na \textit{boolean} promenljive $b_i=\frac{1}{2}(1-z_i)$ i 
 neka funkcija oznake $l$ bude oblika $1-2b$ gde je $b \in {0,1}$. Sada možemo da iskoristimo \textbf{Reed-Muller} iskazivanje bilo koje \textit{boolean} funkcije u obliku bitova $b_1 \dots b_n$:
 \[
     b = a_0 \oplus (a_1b_1 \oplus a_2b_2 \oplus \dots a_nb_n) \oplus (a_{12}b_1b_2 \oplus a_{13}b_1b_3 \oplus \dots) \oplus \dots \oplus a_{12 \dots n}b_1b_2 \dots b_n
 \]
-gde su koeficijenati $a \in {0,1}$. Primecuje se da imamo $2^n$ koeficijenta i posto su oni ili 0 ili 1 da stvarno imao
-$2^{(2^n)}$ mogucih \textit{boolean} funkcija. Nasa funkcija $b$ može biti ekoponencijalno dugacka.
-Sada možemo da zapisemo unitarnu transformaciju koja zavisi od funkcije oznaka kao:
+gde su koeficijenati $a \in {0,1}$. Primećuje se da imamo $2^n$ koeficijenta i pošto su oni ili 0 ili 1 da stvarno ima $2^{(2^n)}$ mogućih \textit{boolean} funkcija.
+Naša funkcija $b$ može biti ekoponencijalno dugačka. Sada možemo da zapišemo unitarnu transformaciju koja zavisi od funkcije oznaka kao:
 \[
     U_l = e^{i\frac{\pi}{4}X_{n+1}}e^{-1\frac{\pi}{2}BX_{n+1}}
 \]
 gde je $B$ operator, dijagonalan u odnostu na kompuntacione baze, koji odgovara nama data funklcija $b$. 
-Svaka vrednostu u $B$ se mnozi sa $X_{n+1}$ tako da svaka vrednost je komutativna sa ostalim vrednostima. 
-Svaka član, različit od nule, u \textbf{Reed-Muller} formuli utice u $U_l$ na kontrolni \textit{bit flip} na izlaznom kubitu.
+Svaka vrednostu u $B$ se množi sa $X_{n+1}$ tako da svaka vrednost je komutativna sa ostalim vrednostima. 
+Svaki član, različit od nule, u \textbf{Reed-Muller} formuli utiče u $U_l$ na kontrolni \textit{bit flip} na izlaznom kubitu.
 
 Ovaj rezultat kvantno reprezentacije ima analog u klasicnoj teoriji \\
 reprezentacije \cite{Cybenko1989ApproximationBS}.
 Ona pokazuje da bilo koja \textit{boolean} funkcija ozneke može da se prestavi u neuralnoj mreži dubine tri, gde srednji slog 
-ima velicinu $2^n$. Ovako velika matrica ne bi mogla da se prestavi na klasicnim računarima, ali na kvantnim računarima, oni po prirori rade
+ima velicinu $2^n$. Ovako velika matrica ne bi mogla da se prestavi na klasičnim računarima, ali na kvantnim računarima, oni po prirori rade
 nad Hilbertovim prostorim sa eksponencijalnim dimenzijama. Ali jos nije dokazano da svaka \textit{boolean} funkcija može da se prestavi u
 kvantno kolo koje nije eksponencionalne dubine. Na tome se trenutno dosta radi u naucnim krugobima.
 
@@ -561,7 +559,7 @@ Ovo nam dozvoljava da napravimo unitarnu transformaciju koja implementira parnos
 \[
     U_{P_{\mathbb{S}}} = e^{i\frac{\pi}{4}X_{n+1}}e^{-i\frac{\pi}{2}\sum_j a_jB_jX_{n+1}}
 \]
-Kolo se sastoji od, najvise, $n$ operatora nad dva kubita koji su komutativni međusobno, gde je pridodati kubit u svim operatorima nad dva kubita.
+Kolo se sastoji od, najviše, $n$ operatora nad dva kubita koji su komutativni međusobno, gde je pridodati kubit u svim operatorima nad dva kubita.
 
 \subsubsection{Ucenje modela}
 U ovoj podsekciji ce se objasniti dve potencijalne metode kako da menja parametar $\overrightarrow{\theta}$ tako da se funkcija troška smanjejue.
@@ -570,13 +568,13 @@ Da bi smo ovo uradili treba da napravimo više merenje $Y_{n+1}$ za $U(\overrigh
 Da bi smo ovo uspeli sa verovatnoćom većom od $99\%$, procena of funkcije trosa koja je $\delta$ intervaluj od prave vrednosti funkcije troška
 treba da napravimo najmanje $2/\delta^2$ merenja($\delta \in (0,1)$).
 
-Nako sto procenimo vrednost funkcije troske želimo da izračunamo gradijent od funkcije trosa u odnosu na $\overrightarrow{\theta}$.
+Nako što procenimo vrednost funkcije troske želimo da izračunamo gradijent od funkcije trosa u odnosu na $\overrightarrow{\theta}$.
 Jedan od nacina jeste da menjamo jedenu po jednu promenljivu u $\overrightarrow{\theta}$. Nakon svake promene treba da se izračuna
 $\mathit{loss}(\overrightarrow{\theta'},z)$, gde $\overrightarrow{\theta'}$ je različit od $\overrightarrow{\theta}$ za neku malu vrednost u jednoj promenljivi.
 Ako bi se koristio simetrican izvod funkcije troška svaku promenljivu parametra bi mogli da izrazunamo do preciznosti $\eta$ u oko $1/\eta^3$ merenja.
 Ovaj proces bi trebao da se ponavlja $L$ puta da bi se dobio puni gradijent.
 
-Alternativna strategija jeste da se menja svaka promenljiva gradijenta, sto se koristi kada su sve unitarne transformacije oblika $e^{i\theta\Sigma}$.
+Alternativna strategija jeste da se menja svaka promenljiva gradijenta, što se koristi kada su sve unitarne transformacije oblika $e^{i\theta\Sigma}$.
 Ako posmatramo izvod za funkciju troška $\mathit{loss}(\overrightarrow{\theta},z)$ za parametar $\theta_k$, koji je vezan za transformaciju $U_k(\theta_k)$
 (koja ima i generalni Pauli-jer operator $\Sigma_k$). Sada:
 \[
@@ -671,7 +669,7 @@ Posmatrajmo operator $U_H(\beta) = e^{i\beta HX_{n+1}}$, gde je $\beta$ mala i p
 \]
 tako da ze dovoljno malo $\beta$ ovo je priblizno jednako $2\beta\bra{\psi}H\Ket{\psi}$ i tako imamo znak ocekivane vrednosti za 
 predikciju oznake koje je jednata sa tacnom oznakom. Ovako prikazana, ovo je funkcija oznake sa kvantnim kolima koja
-ima malu grešku. Mala greška dolazi iz toga sto $\bra{\psi}sin(2\beta H)\Ket{\psi}$ samo priblizno jednako $2\beta\bra{\psi}H\Ket{\psi}$
+ima malu grešku. Mala greška dolazi iz toga što $\bra{\psi}sin(2\beta H)\Ket{\psi}$ samo priblizno jednako $2\beta\bra{\psi}H\Ket{\psi}$
 Ako uzmemo da $\beta$ bude dosta manje od $1/\Vert H \Vert$ (inverz of norme matrice H), možemo da napravimo da nam greška bude mala.
 
 Posmatrajmo graf gde na svakoj ivici imamo \textit{ZZ} uparivanje sa koeficijenatom ili $+1$ ili $-1$.
