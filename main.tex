@@ -108,6 +108,11 @@ Kvantni računari se sastoje od kvantnih kola i elemntarnih kvantnih kapija koje
 \cite{nielsen_chuang_10th} \\
 Jedna od glavnih primena kvantnih računari jeste simulacija fizičkih sistema, bili oni kvantne ili klasinče prirode.
 %% Pogledati Quantum Computation and Quantum Information za dopune
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{files/media_sizes_full_QC-stack-fig-2.jpg}
+    \caption{Slika spoljašnjosti kvantnog računara \cite{QuantumComputerImage}}
+\end{figure}
 \subsection{Kvantna inforamcija}
 Kvantan informacija je informacija o stanju kvantnog sistema. O njihovim svojstvima bavi se \textbf{kvantna teorija informacije}.
 Takođe, kvantane informacije se mogu izmeriti na isti način kao i klasična informacija koristeći se \textit{Šenononvoj metodom}. 
@@ -282,8 +287,15 @@ ubrzanjem, u realnom svetu budu dosta sporiji i fizički zahtevniji (veličina k
 Jedan od najjednostavnijih primera metoda Kvantnog mašinskog učenja jeste \textbf{Quantum support vector machine} (QSVM). Klasičan SVM je metoda koja pronalazi optimalnu podelu hiper-ravni
 između dva različita skupa podataka, tako da sa velikom verovatnoćom svi podaci iz jednog skupa podataka ce se naći na jednoj polovini hiper-ravni. \cite{Quantum_machine_learning}
 \subsubsection{Klasičan algoritam}
-Ova metoda određuje klase koristeći linarnu funkciju $w^{T}x + b$. SVD predviđa prvu klasu ako je izlaz funkcije je pozitivan, a predviđa drugu klasu je izlaz negativan.
-Pošto kod većine slučajeva odvojenost između dve klase podataka nije linearzibilno odvojivo, sa SVM metodom koristi se i \textbf{Kernel metoda}. \\
+Ova metoda određuje klase koristeći linarnu funkciju $w^{T}x + b$. SVM predviđa prvu klasu ako je izlaz funkcije je pozitivan, a predviđa drugu klasu je izlaz negativan.
+Pošto kod većine slučajeva odvojenost između dve klase podataka nije linearzibilno odvojivo, sa SVM metodom koristi se i \textbf{Kernel metoda}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/512px-Kernel_Machine.png}
+    \caption{Ilustracija kernela za support vector mašinu \cite{SvmImage}}
+\end{figure}
+
 Pronalaženje optimalne hiper-ravni se sastoji od minimizacije $|w|^{2}/2$ u nejednačini $y_j(w*x_j+b) \geq 1$ za svako j. 
 Ovo minimizicija se može uraditi, ako uvedemo Karuš-Kun-Taker množioce (eng. Karush-Kuhn-Tucker multiplier) $\overrightarrow{\alpha} = (\alpha_1,...,\alpha_M)$ i maksimizujemo ih nad Lagranžovoj funkcijom:
 \[
@@ -512,6 +524,12 @@ U metodi koja je opisana, svaka unitarna opearcija se izvrsava nad izlazom preth
 Neka name je svaka unitarne transformacija oblika $e^{i\theta\Sigma}$, gde je $\Sigma$ produkt tenzora koji se sastoji iz skupa Paulijevih operatora, i rade nad nekolicinom kubita.
 Izvod operatora po $\overrightarrow{\theta}$ je ograničen po $L$, to jest po broju parametara. Ovo je značajno, jer znači da gradijent ne može da ode u beskonačnost i tako izbegavamo 
 veliki problem koji se može desiti klasičnim neuralnim mrežama.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{files/QNN.jpg}
+    \caption{Ilustracija kvantne neuralne mreže \cite{Classification_wit_QNN}}
+\end{figure}
 
 \subsubsection{Reprezentacija modela}
 Neka imamo $2^n$, $n$-bitnih stringova i vezano za njih postoje $2^{(2^n)}$ funkcija oznaka $l(z)$.
