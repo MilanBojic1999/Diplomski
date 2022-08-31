@@ -561,36 +561,36 @@ Ovo nam dozvoljava da napravimo unitarnu transformaciju koja implementira parnos
 \]
 Kolo se sastoji od, najviše, $n$ operatora nad dva kubita koji su komutativni međusobno, gde je pridodati kubit u svim operatorima nad dva kubita.
 
-\subsubsection{Ucenje modela}
-U ovoj podsekciji ce se objasniti dve potencijalne metode kako da menja parametar $\overrightarrow{\theta}$ tako da se funkcija troška smanjejue.
-Ako su nam dati paramteri $\overrightarrow{\theta}$ i trening primer $z$, prvo procenjujemo vrednost trosak od $\mathit{loss}(\overrightarrow{\theta},z)$.
-Da bi smo ovo uradili treba da napravimo više merenje $Y_{n+1}$ za $U(\overrightarrow{\theta})\Ket{z,1}$.
-Da bi smo ovo uspeli sa verovatnoćom većom od $99\%$, procena of funkcije trosa koja je $\delta$ intervaluj od prave vrednosti funkcije troška
+\subsubsection{Učenje modela}
+U ovoj podsekciji cu objasniti dve potencijalne metode kako da menja parametar $\overrightarrow{\theta}$ tako da se funkcija troška smanjuje.
+Ako su nam dati paramteri $\overrightarrow{\theta}$ i trening primer $z$, prvo procenjujemo vrednost trošak od $\mathit{loss}(\overrightarrow{\theta},z)$.
+Da bi smo ovo uradili treba da napravimo više merenja $Y_{n+1}$ za $U(\overrightarrow{\theta})\Ket{z,1}$.
+Da bi smo ovo uspeli sa verovatnoćom većom od $99\%$, procena of funkcije troška koja je $\delta$ intervalu od prave vrednosti funkcije troška
 treba da napravimo najmanje $2/\delta^2$ merenja($\delta \in (0,1)$).
 
-Nako što procenimo vrednost funkcije troske želimo da izračunamo gradijent od funkcije trosa u odnosu na $\overrightarrow{\theta}$.
-Jedan od nacina jeste da menjamo jedenu po jednu promenljivu u $\overrightarrow{\theta}$. Nakon svake promene treba da se izračuna
+Nakon što procenimo vrednost funkcije troška želimo da izračunamo gradijent od funkcije troša u odnosu na $\overrightarrow{\theta}$.
+Jedan od načina jeste da menjamo jednu po jednu promenljivu u $\overrightarrow{\theta}$. Nakon svake promene treba da se izračuna
 $\mathit{loss}(\overrightarrow{\theta'},z)$, gde $\overrightarrow{\theta'}$ je različit od $\overrightarrow{\theta}$ za neku malu vrednost u jednoj promenljivi.
-Ako bi se koristio simetrican izvod funkcije troška svaku promenljivu parametra bi mogli da izrazunamo do preciznosti $\eta$ u oko $1/\eta^3$ merenja.
+Ako bi se koristio simetričan izvod funkcije troška svaku promenljivu parametra bi mogli da izračunamo do preciznosti $\eta$ u oko $1/\eta^3$ merenja.
 Ovaj proces bi trebao da se ponavlja $L$ puta da bi se dobio puni gradijent.
 
 Alternativna strategija jeste da se menja svaka promenljiva gradijenta, što se koristi kada su sve unitarne transformacije oblika $e^{i\theta\Sigma}$.
 Ako posmatramo izvod za funkciju troška $\mathit{loss}(\overrightarrow{\theta},z)$ za parametar $\theta_k$, koji je vezan za transformaciju $U_k(\theta_k)$
-(koja ima i generalni Pauli-jer operator $\Sigma_k$). Sada:
+(koja ima i generalni Pauli-jev operator $\Sigma_k$). Sada:
 \[
     \frac{d\mathit{loss}(\overrightarrow{\theta},z)}{d\theta_k} = 2Im(\Bra{z,1}U_1^T \dots U_L^TY_{n+1}U_L \dots U_{k+1} \Sigma_k U_k \dots U_1 \Ket{z,1})
 \]
-Ako primetimo da su $Y_{n+1}$ i $\Sigma_k$ unitarni operatori, tada definisemo unitarni operator:
+Ako primetimo da su $Y_{n+1}$ i $\Sigma_k$ unitarni operatori, tada definišemo unitarni operator:
 \[
     \mathcal{U}(\overrightarrow{\theta}) = U_1^T \dots U_L^TY_{n+1}U_L \dots U_{k+1} \Sigma_k U_k \dots U_1
 \]
-tako da izvod možemo da zapisemo kao:
+tako da izvod možemo da zapišemo kao:
 \[
     \frac{d\mathit{loss}(\overrightarrow{\theta},z)}{d\theta_k} = 2Im(\Bra{z,1}\mathcal{U}\Ket{z,1})
 \]
-$\mathcal{U}(\overrightarrow{\theta})$ se možemo posmatrati kao kvanto kolo koji sadrzi $2L+2$ unitarnih transformacija.
+$\mathcal{U}(\overrightarrow{\theta})$ se možemo posmatrati kao kvantno kolo koji sadrži $2L+2$ unitarnih transformacija.
 Sada možemo da primenimo $\mathcal{U}(\overrightarrow{\theta})$ nad stanjem $\Ket{z,1}$. Ako koristimo dodati kubit, možemo da merimo imaginarni deo
-izvoda funkcije. Zapocecemo sa stanjem $\Ket{z,1}\frac{1}{\sqrt{2}}(\Ket{0}+\Ket{1})$ i primenicemo $i\mathcal{U}(\overrightarrow{\theta})$ na dodatim kubitom vrednosti $1$.
+izvoda funkcije. Zapocecemo sa stanjem $\Ket{z,1}\frac{1}{\sqrt{2}}(\Ket{0}+\Ket{1})$ i primenicemo $i\mathcal{U}(\overrightarrow{\theta})$ nad dodatim kubitom vrednosti $1$.
 Ovo kreira:
 \[
     \frac{1}{\sqrt{2}}(\Ket{z,1}\Ket{0} + i\mathcal{U}(\overrightarrow{\theta})\Ket{z,1}\Ket{1})
@@ -603,63 +603,63 @@ Sada kada izmerimo dodati kubit, verovatnoća da se dobije $0$ je:
 \[
     \frac{1}{2} - \frac{1}{2}Im(\bra{z,1}\mathcal{U}(\overrightarrow{\theta})\Ket{z,1})
 \]
-tako da, ponavljanjem ovog merenja možemo da dobijemo dobru procenu imaginarnog dela stanja iz kojeg možemo da izvucemo procenu k-te komponente trazenog gradijenta.
+tako da, ponavljanjem ovog merenja možemo da dobijemo dobru procenu imaginarnog dela stanja iz kojeg možemo da izvučemo procenu k-te komponente trazenog gradijenta.
 Ovaj metod izbegava numbricne nepreciznosti prethodne strategije. Cena ove metode je potreba da dodatim kubitom kao i kvatno kolo $2L+2$ dubine.
 
-Pošto samo izračunali gradijent, sada treba metod za izmenu $\overrightarrow{\theta}$. Neka je $\overrightarrow{g}$ gradijent funkcije troška po parametru $\overrightarrow{\theta}$.
+Pošto smo izračunali gradijent, sada treba metod za izmenu $\overrightarrow{\theta}$. Neka je $\overrightarrow{g}$ gradijent funkcije troška po parametru $\overrightarrow{\theta}$.
 Sada menjamo $\overrightarrow{\theta}$ u pravcu $\overrightarrow{g}$. Sa velicinom "koraka" $\gamma$ imamo
 \[
     \mathit{loss}(\overrightarrow{\theta}+\gamma \overrightarrow{g}) = \mathit{loss}(\overrightarrow{\theta},z)+ \gamma \overrightarrow{g}^2 + O(\gamma^2)
 \]
-Pošto želimo da smanjimo trosak na $0$ možemo da napravimo da:
+Pošto želimo da smanjimo trošak na $0$ možemo da napravimo da:
 \[
     \gamma = -\frac{\mathit{loss}(\overrightarrow{\theta},z)}{\overrightarrow{g}^2}
 \]
-Ovako nesto bi dovelo da trosak bude $0$ za trenutni primer, ali može da dovede do losih efekata za ostale primera. 
-Ovde se u klasicnom mašinskom učenju obicno uvodi promenljiva, stepem učenja $r \in (0,1]$ i onda imamo sledece:
+Ovako nešto bi dovelo da trošak bude $0$ za trenutni primer, ali može da dovede do loših efekata za ostale primera. 
+Ovde se u klasičnom mašinskom učenju obično uvodi promenljiva, stepem učenja $r \in (0,1]$ i onda imamo sledeće:
 \[
     \overrightarrow{\theta} \arrowvert \overrightarrow{\theta} - r(\frac{\mathit{loss}(\overrightarrow{\theta},z)}{\overrightarrow{g}^2})\overrightarrow{g}
 \]
-Deo uspesne implementacije mašinskog učenja je racionalno odaberemo vrednost stepena učenja.
+Deo uspešne implementacije mašinskog učenja je da racionalno odaberemo vrednost stepena učenja.
 
-\paragraph{Ucenje parnosti podskupa}
-Za dati podskup $\mathbb{S}$, unitarna transformacija $U_{P_\mathbb{S}}$ može da prikaze parnost podskupa za sve ulazne stringove.
-Na bi se "naucio" skup unitarnih operacija koji zavise od parametara, sa tim da za svaki podskup postoje parametri koji opisuju $U_{P_\mathbb{S}}$.
-Najlaksi nacin da se ovo postigne jeste da se koriste $n$ parametara
+\paragraph{Učenje parnosti podskupa}
+Za dati podskup $\mathbb{S}$, unitarna transformacija $U_{P_\mathbb{S}}$ može da prikaže parnost podskupa za sve ulazne stringove.
+Da bi se "naučio" skup unitarnih operacija koji zavise od parametara, sa tim da za svaki podskup postoje parametri koji opisuju $U_{P_\mathbb{S}}$.
+Najlakši način da se ovo postigne jeste da se koriste $n$ parametara
 \[
     U(\overrightarrow{\theta}) = e^{i\frac{\pi}{4}X_{n+1}}e^{-i\sum_j^n \theta_jB_jX_{n+1}}
 \]
 ovde se vidi da je reprezentacija savršena kada je $\theta_j = \frac{\pi}{2}$ ako je $j$ u podskupu i$\theta_j = 0$ ako $j$ nije u podskupu.
-Posle eksperimenta sa malim brojem kubita gde su uspeli da nauce model, njihov argument je da sa povecanjem velicine sistema postaje nemoguce da se nauci kvantni model.
-Da bi to pokazali, izračunali eksplicitnu formulu su ocekivanu vrednost za $Y_{n+1}$
+Posle eksperimenta sa malim brojem kubita gde su uspeli da nauče model, njihov argument je da sa povećanjem veličine sistema postaje nemoguće da se nauči kvantni model.
+Da bi to pokazali, izračunali eksplicitnu formulu za očekivanu vrednost za $Y_{n+1}$
 \[
     \bra{z,1}U^T(\overrightarrow{\theta})Y_{n+1}U(\overrightarrow{\theta})\Ket{z,1} = cos(2\sum_j\theta_jb_j)
 \]
 Sa oznakom $l(z)$ može se ubaciti u funkciju troška, ali sada može da se izračuna prosek
 troška za sve $2^n$ stringove, jer imamo eksplicitnu formulu za oznake i njihovo ocekivanje.
-Poštoje više verzija izračunate funkcije, koja zavise od izlaza $n \bmod 4$ i koliko bitova se nalazi u podskupu $\mathbb{S}$.
+Postoje više verzija izračunate funkcije, koja zavise od izlaza $n \bmod 4$ i koliko bitova se nalazi u podskupu $\mathbb{S}$.
 Za prikaz uzeli su primer gde je $n$ deljiv sa 4 i skup $\mathbb{S}$ sadrzi svih $n$ bitova.
-U tom slučaju prosecan trosak za sve stringove je 
+U tom slučaju prosečan trošak za sve stringove je 
 \[
     1 - cos(\theta_1 + \theta_2 + \dots \theta_n)sin(\theta_1)sin(\theta_2) \dots sin(\theta_n)
 \]
-Iz formule se vidi da je u minimum kada su sve $\theta=\frac{\pi}{2}$. Zamislite kakva bi bila pretraga minimuma (pored ovog primera) funkcije
+Iz formule se vidi da je u minimumu kada su sve $\theta=\frac{\pi}{2}$. Zamislite kakva bi bila pretraga minimuma (pored ovog primera) funkcije
 nad intervalom $[0\;\pi]^n$. Funkcija bi samo prikazivala vrednosti eksponencijalno blizu $1$, sem u eksponencijalno malim intervalima oko optimalnih uglova.
-Isto tako gradijent bi bio veoma mali sem oko optimalnih uglova. Zato cak i ako imamo pristup prosecnom trosku, nijedan metod koji se oslanja na gradijentalni pristup
-bi mogao biti koriscen za pronalazenje optimalnog ugla za bilo koji primer sa povecim $n$, gradijent bi radio izvan preciznosti masine u tom slučaju.
+Isto tako gradijent bi bio veoma mali sem oko optimalnih uglova. Zato čak i ako imamo pristup prosečcnom trosku, nijedan metod koji se oslanja na gradijentalni pristup
+ne bi mogao biti korisćen za pronalaženje optimalnog ugla za bilo koji primer sa povećim $n$, gradijent bi radio izvan preciznosti mašine u tom slučaju.
 
-\subsubsection{Ucenje osobina kvantnih stanja}
-Sa kvantnom neuralnom mrezom, ocekuje sa da na ulazu može da ima bilo koje kvantno stanje (koje nije izvedeno iz nekog klasicnog podatkja)
-i da može da nauci neke njegov osobine i da ih izbaci u obliku nekih oznaka. Ne postoji ni jedna klasicna neuralna mreža koja može to da uradi, jer klasicni računari ne mogu da prihvate kvantno stanje kao ulaz.
-Osnovna ideja je da se $n$-kubitno stanje $\Ket{\psi}$ ubaci u kvantnu neuralnu mrežu sa dodatim kubitom, koji sluzi za citanje rezultata, koji je postavljen na $1$.
+\subsubsection{Učenje osobina kvantnih stanja}
+Sa kvantnom neuralnom mrežom, očekuje sa da na ulazu može da ima bilo koje kvantno stanje (koje nije izvedeno iz nekog klasičnog podatka)
+i da može da nauči neke njegov osobine i da ih izbaci u obliku nekih oznaka. Ne postoji ni jedna klasična neuralna mreža koja može to da uradi, jer klasični računari ne mogu da prihvate kvantno stanje kao ulaz.
+Osnovna ideja je da se $n$-kubitno stanje $\Ket{\psi}$ ubaci u kvantnu neuralnu mrežu sa dodatim kubitom, koji služi za čitanje rezultata, koji je postavljen na $1$.
 Pa neka nam je data unitarna transformacija $U(\overrightarrow{\theta})$ tako da imamo stanje
 \[
     U(\overrightarrow{\theta})\Ket{\psi,1}
 \] 
-i onda merimo $Y_{n+1}$. Cilj ovoga je da namestimo da izlaz ovog merenje bude ekvivalntan nekim dvema oznaka koje oznacavaju neke osobine kvantog stanja.
+i onda merimo $Y_{n+1}$. Cilj ovoga je da namestimo da izlaz ovog merenje bude ekvivalentan nekim dvema oznaka koje označavaju neke osobine kvantog stanja.
 To je prikazano u sledecem primeru.
-Posmatrajmo Hamiltojev operator $H$ (eng. Hamiltonian), koji je suma lokalnih vredosti sa dodatnom osobino da ima i pozitivne i negetivne eigen vrednosti.
-Sa datim kvantnim stanjem $\ket{\psi}$, obelezava se oznakom koja pokazuje da li je ocekivana vrednost Hamiltoijevog operatora pozitivna ili negativna:
+Posmatrajmo Hamiltonijev operator $H$ (eng. Hamiltonian), koji je suma lokalnih vredosti sa dodatnom osobino da ima i pozitivne i negetivne eigen vrednosti.
+Sa datim kvantnim stanjem $\ket{\psi}$, obeležava se oznakom koja pokazuje da li je očekivana vrednost Hamiltonijevog operatora pozitivna ili negativna:
 \[
     l(\Ket{\psi}) = sign(\bra{\psi}H\Ket{\psi})
 \]
@@ -667,27 +667,26 @@ Posmatrajmo operator $U_H(\beta) = e^{i\beta HX_{n+1}}$, gde je $\beta$ mala i p
 \[
     \Bra{\psi,1}U_H^T(\beta)Y_{n+1}U_H(\beta)\Ket{\psi,1} = \bra{\psi}sin(2\beta H)\Ket{\psi}
 \]
-tako da ze dovoljno malo $\beta$ ovo je priblizno jednako $2\beta\bra{\psi}H\Ket{\psi}$ i tako imamo znak ocekivane vrednosti za 
-predikciju oznake koje je jednata sa tacnom oznakom. Ovako prikazana, ovo je funkcija oznake sa kvantnim kolima koja
-ima malu grešku. Mala greška dolazi iz toga što $\bra{\psi}sin(2\beta H)\Ket{\psi}$ samo priblizno jednako $2\beta\bra{\psi}H\Ket{\psi}$
-Ako uzmemo da $\beta$ bude dosta manje od $1/\Vert H \Vert$ (inverz of norme matrice H), možemo da napravimo da nam greška bude mala.
+tako da je dovoljno malo $\beta$ ovo je približno jednako $2\beta\bra{\psi}H\Ket{\psi}$ i tako imamo znak ocekivane vrednosti za 
+predikciju oznake koje je jednaka sa tačnom oznakom. Ovako prikazana, ovo je funkcija oznake sa kvantnim kolima koja ima malu grešku.
+Mala greška dolazi iz toga što $\bra{\psi}sin(2\beta H)\Ket{\psi}$ samo približno jednako $2\beta\bra{\psi}H\Ket{\psi}$
+Ako uzmemo da $\beta$ bude dosta manje od $1/\Vert H \Vert$ (inverz od norme matrice $H$), možemo da napravimo da nam greška bude mala.
 
 Posmatrajmo graf gde na svakoj ivici imamo \textit{ZZ} uparivanje sa koeficijenatom ili $+1$ ili $-1$.
-Hamiltonijev operator je oblika: $H = \sum_{i,j}J_{ij}Z_iZ_j$ gde prvobitna suma ogranicena na ivice grafa i $J_{ij}$ je ili $+1$ ili $-1$.
+Hamiltonijev operator je oblika: $H = \sum_{i,j}J_{ij}Z_iZ_j$ gde prvobitna suma je ograničena na ivice grafa i $J_{ij}$ je ili $+1$ ili $-1$.
 Neka postoje $M$ vrednosti u $H$. Prvo, treba da izaberemo $M$ uglova $\theta_{ij}$ i neka je kvantno kolo koje implementira transformaciju oblika:
 \[
     U(\overrightarrow{\theta}) = e^{i\sum_{i,j}J_{ij}Z_iZ_jX_{n+1}}
 \]
-Ako izaberemo $\theta_{ij}=\beta J_{ij}$ imamo operator $U_H(\beta)$ koja osigurava da možemo da označimo trazenu oznaku
-ako izaberemo malo $\beta$ \\
-Kvantno stanje $\Ket{\psi}$ je u Hilbertovom prostoru sa $2^n$ dimenzija i ne možemo da ocekujemo da naucimo oznake za svako stanje.
-Posmatrani Hamiltojev operator ima bitovnu strukturum, tako da možemo da se ogranicimo kvantna stanja sa bitnovnim strukturama.
-Tako da je predlozeno da se za treniranje koriste stanja samo sa ovom formom i za testiranje isto.
+Ako izaberemo $\theta_{ij}=\beta J_{ij}$ imamo operator $U_H(\beta)$ koja osigurava da možemo da označimo traženu oznaku ako izaberemo malo $\beta$ \\
+Kvantno stanje $\Ket{\psi}$ je u Hilbertovom prostoru sa $2^n$ dimenzija i ne možemo da očekujemo da naučimo oznake za svako stanje.
+Posmatrani Hamiltojev operator ima bitovnu strukturum, tako da možemo da se ograničimo kvantna stanja sa bitnovnim strukturama.
+Tako da je predloženo da se za treniranje koriste stanja samo sa ovom formom, kao i za testiranje.
 \section{Zakljucak}
-U ovom sam vam prikazao kraci uvod u kvantno računarstvo i kvantno mašinsko učenje. Takođe je dato primer nekoliko metoda kvantnog mašinskog učenja, 
+U ovom radu sam prikazao kraći uvod u kvantno računarstvo i kvantno mašinsko učenje. Takođe je dato nekoliko primer metoda kvantnog mašinskog učenja, 
 koja poboljšavaju svoje klasične ekvivalente. Glavni izazov trenutno je praktična primena, koja je strogo vezana za razvoj funkcionalnih kvantnih računara.
 
-Ostavljeno je dosta nepokrivenih metoda kvantnog mašinskog učenja, koje čitalac može da istraži.
+Ostavljeno je dosta metoda kvantnog mašinskog učenja, koje čitalac može da istraži.
 Savatovao bih praćenje daljeg razvoja ove oblasti, pošto je ona relativno mlada i ima dosta inovacija i poboljšavanja.
 
 \newpage
