@@ -25,15 +25,15 @@
 \newpage
 \section{Uvod}
 Prethodna decenija je bila obeležena mašinskim učenjem, sa njenom primenom u svakodnevnom životu običnih ljudi.
-U prethodnih nekoliko godine počelo je da se oseća usporenje inovacija i razvoja novih metoda,a u nekim oblastima su i dostignute granice računarskih resursa (npr. GPT-3).
-U rešeavanju ovog problema očekuje se da pomogne razvoj kvantnog računarstva, oblast koja koja se razvoja gotovo pola veka, ali tek u poslednjih nekoliko godina je došlo do
+Međutim, u prethodnih nekoliko godine počelo je da se oseća usporenje inovacija i razvoja novih metoda,a u nekim oblastima su i dostignute granice računarskih resursa (npr. GPT-3).
+U rešeavanju ovog problema očekuje se da pomogne razvoj kvantnog računarstva, oblast koja koja se razvija gotovo pola veka, ali tek u poslednjih nekoliko godina je došlo do
 povećanog interesovanja. Za kvantno računarstvo se očekuje da bude sledeće veliko remećenje tehnološkog poretka, sa približavanjem kvantnoj nadmoć svakog dana.
 
 Od kvantno mašinsko učenje se očekuje da bude prekretnica u mašinskom učenju kakvog danas znamo. Oblast je relativno mlada i trenutno se najviše bavi teoretskim razvojem.
 Neki od zadataka kojim se bavi jeste obrada kvantnih sistema i "učenje" njihovih osobina, brže i bolje prepoznavanje obrazaca u klasičnom sistemu, kao i
 otkrivanje nekih osobina klasičnog mašinskog učenja koji se nisu mogli primetiti u klasičnom sistemu.
 
-U ovom radu vas uvesti u osnove kvantnog računarstva i predstaviću nekoliko metoda kvantnog mašinskog učenja koji su bila istraživana u prethodnom periodu. 
+U ovom radu ću vas uvesti u osnove kvantnog računarstva i predstaviću nekoliko metoda kvantnog mašinskog učenja koji su bila istraživana u prethodnom periodu. 
 \section{Kvantno računarstvo}
 Pre nego što se počne pričati o Kvantnom mašinskom učenju, treba objasniti neki osnovni pojmovi da bi lakše razumeli ostatak rada.
 
@@ -51,7 +51,7 @@ Kubit (eng. Qubit ) je najmanja jedinica informacije u kvantnom računarstvu, sl
 Razlika od bita jeste u tome što kubit pored stanja 1 i 0, može da se nalazi i u superpoziciji između oba.
 Oni se mogu predstaviti formulom (koristeći "bra-ket" notaciju):
 \[ \ket{\gamma} =  \alpha\ket{0}+\beta\ket{1} \]
-Ovde su $\ket{0}$ i $\ket{1}$ zapravo stanja kao i kod klasičnog bita, a $\alpha$ i $\beta$ su kompleksni brojevi koji predstavljaju aplitude zadatih stanja i za njih važi:
+Ovde su $\ket{0}$ i $\ket{1}$ zapravo stanja kao i kod klasičnog bita, a $\alpha$ i $\beta$ su kompleksni brojevi koji predstavljaju amplitude zadatih stanja i za njih važi:
 
 \[ |\alpha|^2+|\beta|^2 = 1 \]
 Pošto stanje kubita ima dva stepena slobode što dovodi do toga da amplitude se mogu zapisati kao:
@@ -75,7 +75,7 @@ Matrice su unitarne sa oblikom $2^n \times 2^n$, gde je $n$ broj qubita na kojim
         1 & -1
     \end{bmatrix}
 \]
-bit flip kolo (zamenjuje aplitude na kubitu), ali nas najviše zanima rotaciono kolo:
+bit flip kolo (zamenjuje amplitude na kubitu), ali nas najviše zanima rotaciono kolo:
 \[
     R = \begin{bmatrix}
         \cos{\Theta} & -\sin{\Theta} \\
@@ -104,16 +104,16 @@ Ovakva memorija zahteva koherentni sistem materijala, jer bi u suprotnom kvantna
 \subsection{Kvantno računarstvo}
 Kvantno računarstvo je vrsta računarstva gde se koriste kolekcije fizičkih osobina kvantne mehanike kao što su superpozicija i kvantna uvezanost,
 tako da se izvrši neka kalkulacija. Uređaji koji izvršavaju kvante kalkulacije zovu se \textbf{kvantni računari}.
-Kvantni računari se sastoje od kvantnih kola i elemntarnih kvantnih kapija koje sluze za prenosenje i manipulisanje kvantnih inforamcija.
+Kvantni računari se sastoje od kvantnih kola i elemntarnih kvantnih kapija koje služe za prenošenje i manipulisanje kvantnih inforamcija.
 \cite{nielsen_chuang_10th} \\
-Jedna od glavnih primena Kvantnih računari jeste simulacija fizičkih sistema, bili oni kvantne ili klasinče prirode.
+Jedna od glavnih primena kvantnih računari jeste simulacija fizičkih sistema, bili oni kvantne ili klasinče prirode.
 %% Pogledati Quantum Computation and Quantum Information za dopune
 \subsection{Kvantna inforamcija}
 Kvantan informacija je informacija o stanju kvantnog sistema. O njihovim svojstvima bavi se \textbf{kvantna teorija informacije}.
-Takođe, kvantane informacije se mogu izmeriti na isti način kao i klasicna informacija koristeći se \textit{Šenononvoj metodom}. 
-Odnosno, postoji jednistveno merilo, to jest funkcija nad kvantnim stanjem, koje je funkcija verovatnoće, kontinuiteta i sumiranja.\cite{vlatko_v}
+Takođe, kvantane informacije se mogu izmeriti na isti način kao i klasična informacija koristeći se \textit{Šenononvoj metodom}. 
+Postoji jednistveno merilo, to jest funkcija nad kvantnim stanjem, koje je funkcija verovatnoće, kontinuiteta i sumiranja.\cite{vlatko_v}
 Ova funkcija se zove \textbf{von Neumann entropija} i za neki ulazni kubit $\varrho$ postoji ekvivalent u  \textbf{Shannon entropiji} $H$
-za neku slucajnu promenljivu $X$
+za neku slučajnu promenljivu $X$
 \[
     S(\varrho) = H(X)
 \]
@@ -121,13 +121,13 @@ za neku slucajnu promenljivu $X$
 Još jedna od merila za kvantno stanje jeste merenje "validnost" (eng. fidelity) između dva kvantna stanja $\ket{\phi}$ i $\ket{\psi}$.
 Neka je $F$ funkcija koja meri osobinu, ona meri verovatnoću da merenjem stanja $\ket{\phi}$ dobijemo stanje $\ket{\psi}$.
 Izlaz funkcije je između 0 i 1, gde ako je izlaz 0 onda su dva stanja ortogonalna jedna od drugog, a ako je izlaz 1 onda su dva stanja jednaka.\cite{vlatko_v}
-\subsubsection*{Odnost kvantne i klasicne teorije informacije}
+\subsubsection*{Odnost kvantne i klasične teorije informacije}
 Kvantna i klasična informacija se u dosta stvari razlikuju. Dok klasična informacija prolazi kroz sisteme sa dobro definisanim stanjima, može se kopirati i pri procesu merenja se ne menja,
 Kvantna informacija je enkodovana u kvantnim sistemima, ne može se kopirati i pri procesu merenje ona se menja. Takođe kvantan informacija ima neke osobine koje se ne
-mogu iskazati u klasicnoj informaciji, kao što su superpozicija i kvantan uvezanost \cite{Classical&quantum_info} \\
+mogu iskazati u klasičnoj informaciji, kao što su superpozicija i kvantan uvezanost \cite{Classical&quantum_info} \\
 Kvantana teorija informacije se bavi: 
 \begin{enumerate}
-    \item Prenošenje klasicnih informacija preko kvantnih kanala
+    \item Prenošenje klasičnih informacija preko kvantnih kanala
     \item Prenošenje kvantinih informacija preko kvantinh kanala
     \item Efekat kvantne uvezanosti na prenošenje informacija
     \item Informacioni aspekt kvantnog merenja, odnos između distribucije \\
@@ -144,7 +144,7 @@ Ako imamo parove $\{|v'_j|,\varphi_j\}$, čuvamo ih kao float brojeve u QRAM-u, 
 $\log_{2}N$ kubit kvantno stanje $\ket{v} = |\overrightarrow{v}|^{-\frac{1}{2}}\overrightarrow{v}$ u $O(\log N)$ koraka
 
 Kada smo kreirali kompresovane kvantne vektore od ulaznih vektora, možemo da vršimo transformacije koristeći kvantne algoritme, za dalje korišćenje podataka za mašinsko učenje.
-Ovaj proces zove se \textbf{postprocessing} i u opštem obliku njemu je potrebno $O(poly(\log{}N))$ koraka. \cite{lloyd2013quantum}
+Ovaj proces zove se \textbf{predprocesiranje} i u opštem obliku njemu je potrebno $O(poly(\log{}N))$ koraka. \cite{lloyd2013quantum}
 
 
 \section{Linearne algebra za kvantno mašinsko učenje}
@@ -168,7 +168,7 @@ Problemi se klasifikuju u \textbf{klase kompleksnosti}, oni se mogu posmatrati k
 vezane za komputaciona sredstva potrebna da bi se oni rešili (uglavnom vreme i prostor). \cite{nielsen_chuang_10th}\\
 
 \subsection{Primeri klasa kompleksnosti}
-Među kojima su najpoznatiji i najvažniji \textbf{P} i \textbf{NP}. Zbog prirode kvantnih računara objasniću neke druge klase kompleksnosti.
+Među najpoznatijim i najvažnijim klasama su \textbf{P} i \textbf{NP}. Zbog prirode kvantnih računara objasniću neke druge klase kompleksnosti.
 
 Klasa kompleksnosti \textbf{PSPASE} je klasa problema koja se mogu rešiti u polinimijalnom prostoru, ali sa neograničenim vremenom izvršavanja.
 
@@ -190,18 +190,18 @@ Formalija definicija bi bila:\cite{aaronson2013quantum}
     \end{itemize} 
 \end{definition}
 Ovako definisano može se primetitni da problemi iz \textbf{BQP} su dosta bliži problemima iz \textbf{BPP} nego iz \textbf{P}.
-\subsubsection*{Odnos sa klasnicnim klasam kompleksnosti}
-Prva stvar koja važi jeste da $\textbf{BPP} \subseteq \textbf{BQP}$, odnosno da sve što može da se uradi sa klasicnom probalističkim računarom može da 
+\subsubsection*{Odnos sa klasničnim klasam kompleksnosti}
+Prva stvar koja važi jeste da $\textbf{BPP} \subseteq \textbf{BQP}$, odnosno da sve što može da se uradi sa klasičnom probalističkim računarom može da 
 se uradi i na kvantnom računaru.
 
 Kada se traži gornja granica kvantnih problema prvo se dolazi do $\textbf{BQP} \subseteq \textbf{EXP}$, ovo znači da kvantni računari mogu da dovedu
-do najviše \textit{eksponencijalnog ubzanja} u odnosu na klasicni računar \cite{aaronson2013quantum}.
+do najviše \textit{eksponencijalnog ubzanja} u odnosu na klasični računar \cite{aaronson2013quantum}.
 Bolja gornja granica za $\textbf{BQP}$ jeste $\textbf{BQP} \subseteq \textbf{PP}$. Ovo su dokazali Adleman, DeMarrais i Huang u \cite{adleman1997quantum}
 \subsection{Primeri kvantnih algoritama}
 \subsubsection{Šorov algoritam}
-Pošto je trenetno najoptimalniji algoritam na klasičnom računaru (\textit{general number filed sieve}) se izvršava u sub-ekponencijalnom vremenu.
+Trenetno najoptimalniji algoritam na klasičnom računaru (\textit{general number filed sieve}) se izvršava u sub-ekponencijalnom vremenu.
 Šorov algoritam rešava problem nalaženja periode, koji može da se iskoristi za problem faktorizacije. \cite{QiskiShoreAlgo} \\
-\textbf{Problem}: ako imamo periodicnu funkciju
+\textbf{Problem}: ako imamo periodičnu funkciju
 \[
     f(x) = a^x \bmod N
 \]
@@ -355,7 +355,7 @@ zbog offset-a $b$. Promenljiva $\alpha_j$ ima ulogu određivanja distance od opt
         \overrightarrow{y}
     \end{bmatrix}
 \]
-U klasicnom algoritmu kopleksnost SVM sa funkcijom kvadratnog troška je $O(M^3)$ 
+U klasičnom algoritmu kopleksnost SVM sa funkcijom kvadratnog troška je $O(M^3)$ 
 
 U kvantnom algoritmu, zadatak je generisanje stanja $\Ket{b,\overrightarrow{\alpha}}$ koja opisuju hiper-ravan i onda klasifikuju stanja
 $\Ket{x}$. U algoritmu, rešavamo normalizovanu jednačinu $\hat{F}\Ket{b,\overrightarrow{\alpha}} = \Ket{y}$, gde je $\hat{F} = F/trF$ sa 
@@ -506,7 +506,7 @@ Ako je $z$ iz skupa za traniranje, reći ćemo da je model naučio podatke za tr
 Ovaj proces koji je opisan, primetićete, u klasičnom mašinskom učenje zove se "Stohasticko učenje".
 U tradicijonalnom mašinskom učenju sa neuronskim mrežama, parametri se prikazuju kao promenljive unutar matrice, koja je linarna u odnosu na unutrašnje vektore.
 Nad Komponentama tih vektora vrši se nelinearne transformacije, pre nego što se pomnože sa ostalim parametrima. 
-Uveđenje dobre nelinearnosti je jedan od glavnih delova uspešne implementiacije modela u klasicnom mašinskom učenju.
+Uveđenje dobre nelinearnosti je jedan od glavnih delova uspešne implementiacije modela u klasičnom mašinskom učenju.
 Ovu osobinu klasčnih neuralnim mreža teško je prebaciti u kvantni sistem, jer je kvantna mehanika, osnova celog koncepta kvantnog računarstva, samo po sebi linearna.
 U metodi koja je opisana, svaka unitarna opearcija se izvrsava nad izlazom prethodne operacije, pri čemu se između operacija ne izvršava nikakva nelinearna transformacije.
 Neka name je svaka unitarne transformacija oblika $e^{i\theta\Sigma}$, gde je $\Sigma$ produkt tenzora koji se sastoji iz skupa Paulijevih operatora, i rade nad nekolicinom kubita.
@@ -542,7 +542,7 @@ gde je $B$ operator, dijagonalan u odnostu na kompuntacione baze, koji odgovara 
 Svaka vrednostu u $B$ se množi sa $X_{n+1}$ tako da svaka vrednost je komutativna sa ostalim vrednostima. 
 Svaki član, različit od nule, u \textbf{Reed-Muller} formuli utiče u $U_l$ na kontrolni \textit{bit flip} na izlaznom kubitu.
 
-Ovaj rezultat kvantno reprezentacije ima analog u klasicnoj teoriji \\
+Ovaj rezultat kvantno reprezentacije ima analog u klasičnoj teoriji \\
 reprezentacije \cite{Cybenko1989ApproximationBS}.
 Ona pokazuje da bilo koja \textit{boolean} funkcija ozneke može da se prestavi u neuralnoj mreži dubine tri, gde srednji slog 
 ima velicinu $2^n$. Ovako velika matrica ne bi mogla da se prestavi na klasičnim računarima, ali na kvantnim računarima, oni po prirori rade
@@ -682,7 +682,7 @@ Ako izaberemo $\theta_{ij}=\beta J_{ij}$ imamo operator $U_H(\beta)$ koja osigur
 Kvantno stanje $\Ket{\psi}$ je u Hilbertovom prostoru sa $2^n$ dimenzija i ne možemo da očekujemo da naučimo oznake za svako stanje.
 Posmatrani Hamiltojev operator ima bitovnu strukturum, tako da možemo da se ograničimo kvantna stanja sa bitnovnim strukturama.
 Tako da je predloženo da se za treniranje koriste stanja samo sa ovom formom, kao i za testiranje.
-\section{Zakljucak}
+\section{Zaključak}
 U ovom radu sam prikazao kraći uvod u kvantno računarstvo i kvantno mašinsko učenje. Takođe je dato nekoliko primer metoda kvantnog mašinskog učenja, 
 koja poboljšavaju svoje klasične ekvivalente. Glavni izazov trenutno je praktična primena, koja je strogo vezana za razvoj funkcionalnih kvantnih računara.
 
