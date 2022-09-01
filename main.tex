@@ -111,11 +111,11 @@ Kvantni računari se sastoje od kvantnih kola i elementarnih kvantnih kapija koj
 \cite{nielsen_chuang_10th} \\
 Jedna od glavnih primena kvantnih računari jeste simulacija fizičkih sistema, bili oni kvantne ili klasične prirode.
 %% Pogledati Quantum Computation and Quantum Information za dopune
-\begin{figure}[ht]
+\begin{figure*}[ht]
     \centering
     \includegraphics[width=0.5\textwidth]{files/media_sizes_full_QC-stack-fig-2.jpg}
     \caption{Slika spoljašnjosti kvantnog računara \cite{QuantumComputerImage}}
-\end{figure}
+\end{figure*}
 
 \subsection{Kvantna informacija}
 Kvantna informacija je informacija o stanju kvantnog sistema. O njihovim svojstvima bavi se \textbf{kvantna teorija informacije}.
@@ -155,9 +155,7 @@ $\log_{2}N$ kubit kvantno stanje $\ket{v} = |\overrightarrow{v}|^{-\frac{1}{2}}\
 Kada smo kreirali kompresovane kvantne vektore od ulaznih vektora, možemo da vršimo transformacije koristeći kvantne algoritme, za dalje korišćenje podataka za mašinsko učenje.
 Ovaj proces zove se \textbf{pred procesiranje} i u opštem obliku njemu je potrebno $O(poly(\log{}N))$ koraka. \cite{lloyd2013quantum}
 
-
-\newpage
-\section{Linearne algebra za kvantno mašinsko učenje}
+\subsection{Linearne algebra za kvantno mašinsko učenje}
 Da bi videli kako kvantni računari poboljšavaju mašinsko učenje, treba da se vidi kako kvantni računari obrađuju linearnu algebru, jednu od osnova modernog mašinskog učenja. \\
 Tokom godina razvijeni su nekoliko kvantnih algoritama koji rešavaju probleme linearne algebre.
 Zajedno ti algoritmi se nazivaju \textbf{osnovni kvantni pod programi linearne algebre} (engl. qBLAS), i oni se koriste u izradi algoritama za kvantno mašinsko učenje.
@@ -173,7 +171,7 @@ Ovi algoritmi su korišćeni kao osnova naprednih metoda i algoritama za Kvantno
 Samo treba pripaziti kod pominjanja ovih algoritama, jer neki od njih koriste neke koncepte koji su samo teorijske prirode ili su teško kreirani u realnom svetu (npr. QRAM).
 
 \newpage
-\section{Kvantna teorija kompleksnosti}
+\section{Kvantna teorija kompleksnosti i kvantni algoritmi}
 U klasičnoj teoriji kompleksnosti klasifikuju se algoritamski problemi po njihovoj težini rešavanja.
 Problemi se klasifikuju u \textbf{klase kompleksnosti}, oni se mogu posmatrati kao kolekcija algoritamskih problema koji dele neke zajedničke osobine
 vezane za računskih sredstva potrebna da bi se oni rešili (uglavnom vreme i prostor). \cite{nielsen_chuang_10th}\\
@@ -259,13 +257,15 @@ koristeći se stanjem $\Ket{1}$, u tom slučaju ću da izmerimo fazu $\Phi$
 \]
 \subsubsection{SWAP Test}
 Ova rutina je jednostavan kvantni algoritam koji izražava skalarni produkt za dva ulazna kvantna stanja $\Ket{a}$ i $\Ket{b}$. \cite{fastovets2019machine}
-\begin{center}
+\begin{figure}[ht]
+\centering
 \begin{quantikz}[row sep={10mm,between origins}]
     \lstick{$\Ket{0}$} & \gate{H} & \ctrl{} & \gate{H} & \meter{} \\
     \lstick{$\Ket{a}$} & \qw & \swap{-1} & \qw & \qw \\
     \lstick{$\Ket{b}$} & \qw & \swap{-1} & \qw & \qw
 \end{quantikz}
-\end{center}
+\caption{Dijagram kvantnog kola za SWAP test. $\Ket{a}$ i $\Ket{b}$ su ulazna stanja, $\Ket{0}$ je dodatni kubit sa kojeg se čita rezultat \cite{QuantumComputerImage}}
+\end{figure}
 
 Verovatnoća da se pri merenju kontrolnog kubita dobije stanje $\Ket{0}$ je definisano kao:
 \[
@@ -427,7 +427,8 @@ Ova je metoda koja se koristi za smanjivanje dimenzija vektora podataka gde nam 
 Neka za svaku tačku $x^{(i)} \in \mathbb{C}^n$ želimo da transformišemo u tačku $c^{(i)} \in \mathbb{C}^l$ gde je $l < n$.
 Želimo da nađemo funkciju enkodovanja koja za ulaz $x$ vraća $c$, odnosno, $f(x)=c$. Takođe želimo da nađemo funkciju dekodovanja $g(f(x)) \approx x$.
 
-Zbog jednostavnosti, uzeću funkciju množenja matrica kao funkciju dekodovanja. Neka je $g(c)=Dc$, gde je
+Zbog jednostavnosti, uzeću funkciju množenja matrica kao funkciju\\
+dekodovanja. Neka je $g(c)=Dc$, gde je
 $D \in \mathbb{C}^{n \times l}$ matrica definisana za dekodovanje. Takođe zbog optimalnog izračunavanja funkcije enkodovanja, 
 PCA uvodi ograničenje da su kolone međusobno ortogonalne. Još jedno ograničenje koje može da se uvede u algoritam,
 i koji će dovesti do jedinstvenog rešenja, jeste da su sve kolone matrice $D$ u unitarnoj normi.
@@ -566,7 +567,8 @@ gde je $B$ operator, dijagonalan u odnosu na bazna stanja, koji odgovara nama da
 Svaka vrednosti u $B$ se množi sa $X_{n+1}$ tako da svaka vrednost je komutativna sa ostalim vrednostima. 
 Svaki član, različit od nule, u \textbf{Reed-Muller} formuli utiče u $U_l$ na kontrolni \textit{bit-flip} na izlaznom kubitu.
 
-Ovaj rezultat kvantno reprezentacije ima analog u klasičnoj teoriji reprezentacije \cite{Cybenko1989ApproximationBS}.
+Ovaj rezultat kvantno reprezentacije ima analog u klasičnoj teoriji\\
+reprezentacije \cite{Cybenko1989ApproximationBS}.
 Ona pokazuje da bilo koja \textit{boolean} funkcija oznake može da se prestavi u neuralnoj mreži dubine tri, gde srednji slog ima veličinu $2^n$.
 Ovako velika matrica ne bi mogla da se prestavi na klasičnim računarima, ali na kvantnim računarima, oni po prirodi rade
 nad Hilbertovim prostorima sa eksponencijalnim dimenzijama. Ali još nije dokazano da svaka \textit{boolean} funkcija može da se prestavi u
