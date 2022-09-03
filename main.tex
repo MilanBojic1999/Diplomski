@@ -27,7 +27,7 @@
 Prethodna decenija je bila obeležena mašinskim učenjem, sa njenom primenom u svakodnevnom životu običnih ljudi.
 Međutim, u prethodnih nekoliko godine počelo je da se oseća usporenje inovacija i razvoja novih metoda, a u nekim oblastima su i dostignute granice računarskih resursa (npr. GPT-3).
 U rešavanju ovog problema očekuje se da pomogne razvoj kvantnog računarstva, oblast koja koja se razvija gotovo pola veka, ali tek u poslednjih nekoliko godina je došlo do
-povećanog interesovanja. Za kvantno računarstvo se očekuje da bude sledeće veliko remećenje tehnološkog poretka, sa približavanjem kvantnoj nadmoć svakog dana.
+povećanog interesovanja. Za kvantno računarstvo se očekuje da bude sledeće veliko remećenje tehnološkog poretka, sa približavanjem kvantnoj nadmoći svakog dana.
 
 Od kvantno mašinsko učenje se očekuje da bude prekretnica u mašinskom učenju kakvog danas znamo. Oblast je relativno mlada i trenutno se najviše bavi teoretskim razvojem.
 Neki od zadataka kojim se bavi jeste obrada kvantnih sistema i "učenje" njihovih osobina, brže i bolje prepoznavanje obrazaca u klasičnom sistemu, kao i
@@ -539,7 +539,7 @@ veliki problem koji se može desiti klasičnim neuralnim mrežama.
 
 \subsubsection{Reprezentacija modela}
 Neka imamo $2^n$, $n$-bitnih stringova i vezano za njih postoje $2^{(2^n)}$ funkcija oznaka $l(z)$.
-Ako nam je data određena funkcija oznaka onda možemo da definišemo operator nad baznim stanjima kao:
+Ako nam je data određena funkcija oznaka, onda možemo da definišemo operator nad baznim stanjima kao:
 \[
     U_l\Ket{z,z_{n+1}} = e^{i\frac{\pi}{4}l(z)X_{n+1}}\Ket{z,z_{n+1}}
 \]
@@ -548,34 +548,32 @@ Tako da iz toga imamo:
 \[
     U_l^TY_{n+1}U_l = \cos(\frac{\pi}{4}l(Z))Y_{n+1} + sin(\frac{\pi}{4}l(Z))Z_{n+1}
 \]
-gde u formuli $l(Z)$ je interpretirana kao operator dijagonalan u odnosu na bazna stanja.
-Takođe, posto funkcija oznaka l(z) može da vrati ili $+1$ ili $-1$ iz toga imamo $\bra{z,1}U_l^TY_{n+1}U_l\ket{z,1} = l(z)$.
+gde u formuli, $l(Z)$ je interpretirana kao operator dijagonalan u odnosu na bazna stanja.
+Takođe, pošto funkcija oznaka l(z) može da vrati ili $+1$ ili $-1$, iz toga imamo $\bra{z,1}U_l^TY_{n+1}U_l\ket{z,1} = l(z)$.
 Ovo nam pokazuje da bar na nekom apstraktnom nivou imamo mogućnost da predstavimo bilo koju funkciju oznake kao kvantno kolo.
 
-Objašnjenje kako da se napiše operator $U_l$ kao produkt dve kubit unitarne transformacije. Zbog ovoga treba da se pređe na \textit{boolean} promenljive $b_i=\frac{1}{2}(1-z_i)$ i 
-neka funkcija oznake $l$ bude oblika $1-2b$ gde je $b \in {0,1}$. Sada možemo da iskoristimo \textbf{Reed-Muller} iskazivanje bilo koje \textit{boolean} funkcije u obliku bitova $b_1 \dots b_n$:
+Sada ću objasniti kako da se napiše operator $U_l$ kao produkt dve kubit unitarne transformacije. Zbog ovoga, treba da se pređe na \textit{boolean} promenljive $b_i=\frac{1}{2}(1-z_i)$ i 
+neka funkcija oznake $l$ bude oblika $1-2b$ gde je $b \in \{0,1\}$. Sada možemo da iskoristimo \textbf{Reed-Muller} zapisivanje bilo koje \textit{boolean} funkcije u obliku bitova $b_1 \dots b_n$:
 \[
     b = a_0 \oplus (a_1b_1 \oplus a_2b_2 \oplus \dots a_n b_n) \oplus (a_{12}b_1b_2 \oplus a_{13}b_1b_3 \oplus \dots) \oplus \dots \oplus a_{12 \dots n}b_1b_2 \dots b_n
 \]
-gde su koeficijenti $a \in {0,1}$. Primećuje se da imamo $2^n$ koeficijenta i pošto su oni ili 0 ili 1 da stvarno ima $2^{(2^n)}$ mogućih \textit{boolean} funkcija.
+gde su koeficijenti $a \in \{0,1\}$. Primećuje se da imamo $2^n$ koeficijenta, pošto su oni ili 0 ili 1, da stvarno ima $2^{(2^n)}$ mogućih \textit{boolean} funkcija.
 Naša funkcija $b$ može biti eksponencijalno dugačka. Sada možemo da zapišemo unitarnu transformaciju koja zavisi od funkcije oznaka kao:
 \[
     U_l = e^{i\frac{\pi}{4}X_{n+1}}e^{-1\frac{\pi}{2}BX_{n+1}}
 \]
-gde je $B$ operator, dijagonalan u odnosu na bazna stanja, koji odgovara nama data funkcija $b$. 
+gde je $B$ operator, dijagonalan u odnosu na bazna stanja, koji odgovara nama datoj funkciji $b$. 
 Svaka vrednosti u $B$ se množi sa $X_{n+1}$ tako da svaka vrednost je komutativna sa ostalim vrednostima. 
-Svaki član, različit od nule, u \textbf{Reed-Muller} formuli utiče u $U_l$ na kontrolni \textit{bit-flip} na izlaznom kubitu.
+Svaki član, različit od nule, u \textbf{Reed-Muller} formuli dovodi do kontrolnog \textit{bit-flip}-a u $U_l$ na izlaznom kubitu.
 
-Ovaj rezultat kvantno reprezentacije ima analog u klasičnoj teoriji\\
-reprezentacije \cite{Cybenko1989ApproximationBS}.
-Ona pokazuje da bilo koja \textit{boolean} funkcija oznake može da se prestavi u neuralnoj mreži dubine tri, gde srednji slog ima veličinu $2^n$.
-Ovako velika matrica ne bi mogla da se prestavi na klasičnim računarima, ali na kvantnim računarima, oni po prirodi rade
-nad Hilbertovim prostorima sa eksponencijalnim dimenzijama. Ali još nije dokazano da svaka \textit{boolean} funkcija može da se prestavi u
-kvantno kolo koje nije eksponencijalne dubine. Na tome se trenutno dosta radi u naučnim krugovima.
+Ovaj rezultat kvantnog predstavljanja ima analog u klasičnoj teoriji predstavljanja \cite{Cybenko1989ApproximationBS}.
+Ona pokazuje da bilo koja \textit{boolean} funkcija oznake može da se predstavi u neuralnoj mreži dubine tri, gde srednji slog ima veličinu $2^n$.
+Ovako velika matrica ne bi mogla da se predstavi na klasičnim računarima, ali na kvantnim računarima, oni po prirodi rade
+nad Hilbertovim prostorima sa eksponencijalnim dimenzijama. Ali još nije dokazano da svaka \textit{boolean} funkcija može da se predstavi u kvantno kolo koje nije eksponencijalne dubine.
 
 \paragraph*{Reprezentacija parnosti podskupa}
 Neka imamo datu funkciju oznaka koja vraća parnost podskupa bitova datog stringa. Neka je podskup $\mathbb{S}$
-i neka je $a_j=1$ ako bit $j$ je u podskupu i $a_j=0$ ako $j$ nije u podskupu. Reed-Muller formula za parnost podskup je:
+i neka je $a_j=1$ ako je bit $j$ u podskupu i $a_j=0$ ako $j$ nije u podskupu. Reed-Muller formula za parnost podskup je:
 \[
     P_{\mathbb{S}}(z) = \sum_j \oplus a_j b_j
 \]
@@ -583,13 +581,13 @@ Ovo nam dozvoljava da napravimo unitarnu transformaciju koja implementira parnos
 \[
     U_{P_{\mathbb{S}}} = e^{i\frac{\pi}{4}X_{n+1}}e^{-i\frac{\pi}{2}\sum_j a_jB_jX_{n+1}}
 \]
-Kolo se sastoji od, najviše, $n$ operatora nad dva kubita koji su komutativni međusobno, gde je pridodati kubit u svim operatorima nad dva kubita.
+Kolo se sastoji od, najviše, $n$ operatora nad dva kubita koji su međusobno komutativni, gde je pridodati kubit u svim operatorima nad dva kubita.
 
 \subsubsection{Učenje modela}
 U ovoj pod sekciji ću objasniti dve potencijalne metode kako da menja parametar $\overrightarrow{\theta}$ tako da se funkcija troška smanjuje.
 Ako su nam dati parametri $\overrightarrow{\theta}$ i trening primer $z$, prvo procenjujemo vrednost trošak od $\mathit{loss}(\overrightarrow{\theta},z)$.
 Da bi smo ovo uradili treba da napravimo više merenja $Y_{n+1}$ za $U(\overrightarrow{\theta})\Ket{z,1}$.
-Da bi smo ovo uspeli sa verovatnoćom većom od $99\%$, procena od funkcije troška koja je $\delta$ intervalu od prave vrednosti funkcije troška
+Da bi smo ovo uspeli sa verovatnoćom većom od $99\%$, procena od funkcije troška koja je u $\delta$ intervalu od prave vrednosti funkcije troška
 treba da napravimo najmanje $2/\delta^2$ merenja($\delta \in (0,1)$).
 
 Nakon što procenimo vrednost funkcije troška želimo da izračunamo gradijent od funkcije troška u odnosu na $\overrightarrow{\theta}$.
@@ -612,7 +610,7 @@ tako da izvod možemo da zapišemo kao:
 \[
     \frac{d\mathit{loss}(\overrightarrow{\theta},z)}{d\theta_k} = 2Im(\Bra{z,1}\mathcal{U}\Ket{z,1})
 \]
-$\mathcal{U}(\overrightarrow{\theta})$ se možemo posmatrati kao kvantno kolo koji sadrži $2L+2$ unitarnih transformacija.
+$\mathcal{U}(\overrightarrow{\theta})$ se može posmatrati kao kvantno kolo koji sadrži $2L+2$ unitarnih transformacija.
 Sada možemo da primenimo $\mathcal{U}(\overrightarrow{\theta})$ nad stanjem $\Ket{z,1}$. Ako koristimo dodati kubit, možemo da merimo imaginarni deo
 izvoda funkcije. Započećemo sa stanjem $\Ket{z,1}\frac{1}{\sqrt{2}}(\Ket{0}+\Ket{1})$ i primenićemo $i\mathcal{U}(\overrightarrow{\theta})$ nad dodatim kubitom vrednosti $1$.
 Ovo kreira:
@@ -628,7 +626,7 @@ Sada kada izmerimo dodati kubit, verovatnoća da se dobije $0$ je:
     \frac{1}{2} - \frac{1}{2}Im(\bra{z,1}\mathcal{U}(\overrightarrow{\theta})\Ket{z,1})
 \]
 tako da, ponavljanjem ovog merenja možemo da dobijemo dobru procenu imaginarnog dela stanja iz kojeg možemo da izvučemo procenu k-te komponente traženog gradijenta.
-Ovaj metod izbegava numeričke nepreciznosti prethodne strategije. Cena ove metode je potreba da dodatim kubitom kao i kvantno kolo $2L+2$ dubine.
+Ovaj metod izbegava numeričke nepreciznosti prethodne strategije. Cena ove metode je potreba za dodatnim kubitom kao i za kvantnim kolom $2L+2$ dubine.
 
 Pošto smo izračunali gradijent, sada treba metod za izmenu $\overrightarrow{\theta}$. Neka je $\overrightarrow{g}$ gradijent funkcije troška po parametru $\overrightarrow{\theta}$.
 Sada menjamo $\overrightarrow{\theta}$ u pravcu $\overrightarrow{g}$. Sa veličinom "koraka" $\gamma$ imamo
@@ -639,10 +637,10 @@ Pošto želimo da smanjimo trošak na $0$ možemo da napravimo da:
 \[
     \gamma = -\frac{\mathit{loss}(\overrightarrow{\theta},z)}{\overrightarrow{g}^2}
 \]
-Ovako nešto bi dovelo da trošak bude $0$ za trenutni primer, ali može da dovede do loših efekata za ostale primera. 
+Ovako nešto bi dovelo da trošak bude $0$ za trenutni primer, ali može da dovede do loših efekata za ostale primere.
 Ovde se u klasičnom mašinskom učenju obično uvodi promenljiva, stepen učenja $r \in (0,1]$ i onda imamo sledeće:
 \[
-    \overrightarrow{\theta} \arrowvert \overrightarrow{\theta} - r(\frac{\mathit{loss}(\overrightarrow{\theta},z)}{\overrightarrow{g}^2})\overrightarrow{g}
+    \overrightarrow{\theta} \to \overrightarrow{\theta} - r(\frac{\mathit{loss}(\overrightarrow{\theta},z)}{\overrightarrow{g}^2})\overrightarrow{g}
 \]
 Deo uspešne implementacije mašinskog učenja je da racionalno odaberemo vrednost stepena učenja.
 
@@ -653,13 +651,13 @@ Najlakši način da se ovo postigne jeste da se koriste $n$ parametara
 \[
     U(\overrightarrow{\theta}) = e^{i\frac{\pi}{4}X_{n+1}}e^{-i\sum_j^n \theta_jB_jX_{n+1}}
 \]
-ovde se vidi da je reprezentacija savršena kada je $\theta_j = \frac{\pi}{2}$ ako je $j$ u podskupu i$\theta_j = 0$ ako $j$ nije u podskupu.
+ovde se vidi da je reprezentacija savršena kada je $\theta_j = \frac{\pi}{2}$ ako je $j$ u podskupu i $\theta_j = 0$ ako $j$ nije u podskupu.
 Posle eksperimenta sa malim brojem kubita gde su uspeli da nauče model, njihov argument je da sa povećanjem veličine sistema postaje nemoguće da se nauči kvantni model.
 Da bi to pokazali, izračunali eksplicitnu formulu za očekivanu vrednost za $Y_{n+1}$
 \[
     \bra{z,1}U^T(\overrightarrow{\theta})Y_{n+1}U(\overrightarrow{\theta})\Ket{z,1} = \cos(2\sum_j\theta_jb_j)
 \]
-Sa oznakom $l(z)$ može se ubaciti u funkciju troška, ali sada može da se izračuna prosek
+Sa oznakom $l(z)$, ovo može se ubaciti u funkciju troška, ali sada može da se izračuna prosek
 troška za sve $2^n$ stringove, jer imamo eksplicitnu formulu za oznake i njihovo očekivanje.
 Postoje više verzija izračunate funkcije, koja zavise od izlaza $n \bmod 4$ i koliko bitova se nalazi u podskupu $\mathbb{S}$.
 Za prikaz uzeli su primer gde je $n$ deljiv sa 4 i skup $\mathbb{S}$ sadrži svih $n$ bitova.
@@ -669,7 +667,7 @@ U tom slučaju prosečan trošak za sve stringove je
 \]
 Iz formule se vidi da je u minimumu kada su sve $\theta=\frac{\pi}{2}$. Zamislite kakva bi bila pretraga minimuma (pored ovog primera) funkcije
 nad intervalom $[0\;\pi]^n$. Funkcija bi samo prikazivala vrednosti eksponencijalno blizu $1$, sem u eksponencijalno malim intervalima oko optimalnih uglova.
-Isto tako gradijent bi bio veoma mali sem oko optimalnih uglova. Zato čak i ako imamo pristup prosečnom trosku, nijedan metod koji se oslanja na gradijentni pristup
+Isto tako gradijent bi bio veoma mali sem oko optimalnih uglova. Zato čak i ako imamo pristup prosečnom trošku, nijedan metod koji se oslanja na gradijentni pristup
 ne bi mogao biti korišćen za pronalaženje optimalnog ugla za bilo koji primer sa povećim $n$, gradijent bi radio izvan preciznosti mašine u tom slučaju.
 
 \subsubsection{Učenje osobina kvantnih stanja}
@@ -691,8 +689,8 @@ Posmatrajmo operator $U_H(\beta) = e^{i\beta HX_{n+1}}$, gde je $\beta$ mala i p
 \[
     \Bra{\psi,1}U_H^T(\beta)Y_{n+1}U_H(\beta)\Ket{\psi,1} = \bra{\psi}sin(2\beta H)\Ket{\psi}
 \]
-tako da je dovoljno malo $\beta$ ovo je približno jednako $2\beta\bra{\psi}H\Ket{\psi}$ i tako imamo znak očekivane vrednosti za 
-predikciju oznake koje je jednaka sa tačnom oznakom. Ovako prikazana, ovo je funkcija oznake sa kvantnim kolima koja ima malu grešku.
+tako da za dovoljno malo $\beta$ ovo je približno jednako $2\beta\bra{\psi}H\Ket{\psi}$ i tako imamo znak očekivane vrednosti za 
+predikciju oznake, koja je jednaka tačnoj oznaci. Ovako prikazana, ovo je funkcija oznake sa kvantnim kolima koja ima malu grešku.
 Mala greška dolazi iz toga što $\bra{\psi}sin(2\beta H)\Ket{\psi}$ samo približno jednako $2\beta\bra{\psi}H\Ket{\psi}$
 Ako uzmemo da $\beta$ bude dosta manje od $1/\Vert H \Vert$ (inverzno od norme matrice $H$), možemo da napravimo da nam greška bude mala.
 
@@ -704,15 +702,18 @@ Neka postoje $M$ vrednosti u $H$. Prvo, treba da izaberemo $M$ uglova $\theta_{i
 \]
 Ako izaberemo $\theta_{ij}=\beta J_{ij}$ imamo operator $U_H(\beta)$ koja osigurava da možemo da označimo traženu oznaku ako izaberemo malo $\beta$ \\
 Kvantno stanje $\Ket{\psi}$ je u Hilbertovom prostoru sa $2^n$ dimenzija i ne možemo da očekujemo da naučimo oznake za svako stanje.
-Posmatrani Hamiltojev operator ima bitovnu strukturu, tako da možemo da se ograničimo kvantna stanja sa bitnovnim strukturama.
+Posmatrani Hamiltojev operator ima bitovnu strukturu, tako da možemo da se ograničimo kvantna stanja sa bitovnim strukturama.
 Tako da je predloženo da se za treniranje koriste stanja samo sa ovom formom, kao i za testiranje.
 \newpage
 \section{Zaključak}
-U ovom radu sam prikazao kraći uvod u kvantno računarstvo i kvantno mašinsko učenje. Takođe je dato nekoliko primer metoda kvantnog mašinskog učenja, 
+U ovom radu sam prikazao kraći uvod u kvantno računarstvo i kvantno mašinsko učenje. Takođe je dato nekoliko primera metoda kvantnog mašinskog učenja, 
 koja poboljšavaju svoje klasične ekvivalente. Glavni izazov trenutno je praktična primena, koja je strogo vezana za razvoj funkcionalnih kvantnih računara.
 
-Ostavljeno je dosta metoda kvantnog mašinskog učenja, koje čitalac može da istraži.
-Savetovao bih praćenje daljeg razvoja ove oblasti, pošto je ona relativno mlada i ima dosta inovacija i poboljšavanja.
+Ostavljeno je dosta metoda kvantnog mašinskog učenja, koje čitalac može da istraži, ali verujem da ove prikazane su dovoljne za razumevanje oblasti.
+Trenutak kada se dokaže kvantna nadmoći dovešće do većeg zainteresovanja ka svim oblastima povezane za kvantno računarstvo, 
+uključujući i kvantno mašinsko učenje. Tako da bih savetovao praćenje daljeg razvoja ove oblasti, pošto je ona relativno mlada
+i ima dosta inovacija i poboljšavanja.
+
 
 \newpage
 
