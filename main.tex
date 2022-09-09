@@ -34,11 +34,11 @@ Od kvantnog mašinskog učenja se očekuje da bude prekretnica u mašinskom uče
 Neki od zadataka kojim se bavi jeste obrada kvantnih sistema i ``učenje'' njihovih osobina, brže i bolje prepoznavanje obrazaca u klasičnom sistemu, kao i
 otkrivanje nekih osobina klasičnog mašinskog učenja koje se nisu mogle primetiti u klasičnom sistemu.
 
-U ovom radu će biti uvedene u osnove kvantnog računarstva i predstavljeno nekoliko metoda kvantnog mašinskog učenja koji su bili istraživani u prethodnom periodu.
+U ovom radu će biti uvedene osnove kvantnog računarstva i predstavljeno nekoliko metoda kvantnog mašinskog učenja koji su bili istraživani u prethodnom periodu.
 
 \newpage
 \section{Kvantno računarstvo}
-Pre nego što se počne pričati o Kvantnom mašinskom učenju, treba objasniti neke osnovne pojmove da bi se ostatk rada mogao lakše razumeti.
+Pre nego što se počne pričati o Kvantnom mašinskom učenju, treba objasniti neke osnovne pojmove da bi se ostatak rada mogao lakše razumeti.
 
 \subsection{Osnovni pojmovi}
 Potrebni pojmovi su:
@@ -66,7 +66,7 @@ Stanje kubita ima dva stepena slobode što dovodi do toga da amplitude se mogu z
 \]
 gde je $e^{i\phi}$ relativna faza kubita, a $\Theta$ ugao.
 
-Jedna od mogućih načina vizualizacije kvantnog stanja kubita jeste pomoću \textbf{Blohove sfere} (Slika 1).
+Jedan od mogućih načina vizualizacije kvantnog stanja kubita jeste pomoću \textbf{Blohove sfere} (Slika 1).
 Vizualizovano na sferi, klasični biti su na ``polovima'' sfere, na lokacijama gde se $\Ket{0}$ i $\Ket{1}$  takođe nalaze.
 Ostatak površine sfere je nepristupačan za klasičan bit, ali stanje kubita može se predstaviti bilo kojom tačkom na površini.
 Površina Blohove sfere je dvodimenzionalna, zato stanje kubita ima dva stepena slobode i može se predstaviti preko uglova $\phi$ i $\Theta$.
@@ -78,7 +78,7 @@ Površina Blohove sfere je dvodimenzionalna, zato stanje kubita ima dva stepena 
 
 Takođe možemo da vidimo da je $|\alpha|^2$ verovatnoća da se kubit nalazi u stanju 0, isto važi i za $ |\beta|^2$ i 1.
 Saznanje o tome u kom stanju se nalazi kubit se dobija merenjem kubita, kada bi kubit izašao iz superpozicije i ``pao'' u stanje 1 ili stanje 0. U tom slučaju kubit će imati ponašanje kao i običan bit, ali ovako gubimo pređašnje kvantno stanje kubita.
-U fizičkom svetu kubit se može predstaviti kao polarizovan foton,gde će dva stanja da se uzimaju kao vertikalna i horizontalna polarizacija.
+U fizičkom svetu kubit se može predstaviti kao polarizovan foton, gde će dva stanja da se uzimaju kao vertikalna i horizontalna polarizacija.
 \subsubsection*{Kvantna kapija}
 Kvantne kapije (engl. Quantum Gates) su logički predstavljene matricama i one rade nad određenim brojem kubita.
 Matrice su unitarne sa oblikom $2^n \times 2^n$, gde je $n$ broj kubita sa kojim radimo. Neke od poznatih kola su: Hademardovo kolo (stavlja kubit u superpoziciju)
@@ -103,13 +103,13 @@ U čistim stanjima oni su matematički zapravo proizvodi tenzora amplituda:
 \[
     \ket{\gamma} \otimes \ket{\delta} = \alpha_1\alpha_2\ket{00} + \alpha_1\beta_2\ket{01} + \beta_1\alpha_2\ket{10} + \beta_1\beta_2\ket{11}
 \]
-I ovako napisano kvantno stanje se može razdvojiti na dva kubita. Ali postoje i kvanta stanja koja se ne mogu razdvojiti npr.
+Ovako napisano kvantno stanje se može razdvojiti na dva kubita. Ali postoje i kvantna stanja koja se ne mogu razdvojiti npr.
 \[
  \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{11}
 \]
-Zanimljiva stvar kod spletenih kubita jeste u tome što dele informacije. Ako bi jedan kubit iz para odneli u neko veoma daleko mesto (na primer druga galaksija),
-i tamo bi ga izmerili, dobili bi smo 0 ili 1, međutim drugi kubit bi takođe upao u određeno stanje i to u istom trenutku kad smo izmerili prvi daleki kubit.
-Ovo je zapravo gde se nalazi glavna različitost između klasičnog i kvantnog računarstva, ova pojava ne postoji u klasičnom računarstvu i ne može se "lako" simulirati.
+Zanimljiva stvar kod spletenih kubita jeste u tome što dele informacije. Ako bismo jedan kubit iz para odneli u neko veoma daleko mesto (na primer druga galaksija),
+i tamo bismo ga izmerili, dobili bismo 0 ili 1, međutim drugi kubit bi takođe upao u određeno stanje i to u istom trenutku kad smo izmerili prvi daleki kubit.
+Ovo je zapravo gde se nalazi glavna različitost između klasičnog i kvantnog računarstva, ova pojava ne postoji u klasičnom računarstvu i ne može se lako simulirati.
 \subsubsection*{Kvantni registri}
 Kvantni registri se sastoje od kvantnog stanja od $m$ spletenih kubita i mogu predstavljati do $2^m$ vrednosti stanja istovremeno.
 Kvantna memorija su uređaji koji čuvaju kvantna stanja fotona, bez uništavanja kvantne informacije koja se nalazi u fotonu.
@@ -118,8 +118,7 @@ Ovakva memorija zahteva koherentni sistem materijala, jer bi u suprotnom kvantna
 \subsection{Kvantno računarstvo}
 Kvantno računarstvo je vrsta računarstva gde se koriste kolekcije fizičkih osobina kvantne mehanike kao što su superpozicija i kvantna spletenost,
 tako da se izvrši neka kalkulacija. Uređaji koji izvršavaju kvantne kalkulacije zovu se \textbf{kvantni računari} (Slika 2).
-Kvantni računari se sastoje od kvantnih kola i elementarnih kvantnih kapija koje služe za prenošenje i manipulisanje kvantnih informacija.
-\cite{nielsen_chuang_10th} \\
+Kvantni računari se sastoje od kvantnih kola i elementarnih kvantnih kapija koje služe za prenošenje i manipulisanje kvantnih informacija \cite{nielsen_chuang_10th}. \\
 Jedna od glavnih primena kvantnih računara jeste simulacija fizičkih sistema, bili oni kvantne ili klasične prirode.
 %% Pogledati Quantum Computation and Quantum Information za dopune
 \begin{figure*}[ht]
@@ -131,7 +130,7 @@ Jedna od glavnih primena kvantnih računara jeste simulacija fizičkih sistema, 
 \subsection{Kvantna informacija}
 Kvantna informacija je informacija o stanju kvantnog sistema. Njihovim svojstvima bavi se \textbf{kvantna teorija informacije}.
 Takođe, kvantne informacije se mogu izmeriti na isti način kao i klasična informacija koristeći se \textit{Šenonovom metodom}. 
-Postoji jedinstveno merilo, to jest funkcija nad kvantnim stanjem, koja je funkcija verovatnoće, kontinuiteta i sumiranja.\cite{vlatko_v}
+Postoji jedinstveno merilo, to jest funkcija nad kvantnim stanjem, koja je funkcija verovatnoće, kontinuiteta i sumiranja \cite{vlatko_v}.
 Ova funkcija se zove \textbf{fon Nojmanova entropija} i za neki ulazni kubit $\varrho$ postoji ekvivalent u \textbf{Šenonovoj entropiji} $H$
 za neku slučajnu promenljivu $X$
 \[
@@ -139,8 +138,8 @@ za neku slučajnu promenljivu $X$
 \]
 %% Opisati metod u Appendix-u možda
 Još jedno od merila za kvantno stanje jeste merenje validnosti (engl. fidelity) između dva kvantna stanja $\ket{\phi}$ i $\ket{\psi}$.
-Neka je $F$ funkcija koja meri osobinu, odnostno meri verovatnoću da merenjem stanja $\ket{\phi}$ dobijemo stanje $\ket{\psi}$.
-Izlaz funkcije je između 0 i 1, gde ako je izlaz 0 onda su dva stanja ortogonalna jedna od drugog, a ako je izlaz 1 onda su dva stanja jednaka \cite{vlatko_v}.
+Neka je $F$ funkcija koja meri verovatnoću da merenjem stanja $\ket{\phi}$ dobijemo stanje $\ket{\psi}$.
+Izlaz funkcije je između 0 i 1, gde ako je izlaz 0 onda su dva stanja ortogonalna jedno od drugog, a ako je izlaz 1 onda su dva stanja jednaka \cite{vlatko_v}.
 \subsubsection*{Odnos kvantne i klasične teorije informacije}
 Kvantna i klasična informacija se u dosta stvari razlikuju.  Klasična informacija prolazi kroz sisteme sa dobro definisanim stanjima, može se kopirati i pri procesu merenja se ne menja.
 Kvantna informacija je kodirana u kvantnim sistemima, ne može se kopirati i pri procesu merenja ona se menja. Takođe kvantna informacija ima neke osobine koje se ne
@@ -150,7 +149,7 @@ Kvantna teorija informacije se bavi:
     \item Prenošenjem klasičnih informacija preko kvantnih kanala
     \item Prenošenjem kvantnih informacija preko kvantnih kanala
     \item Efektima kvantne spletenosti na prenošenje informacija
-    \item Informacionm aspektma kvantnog merenja, odnosa između distribucije \\
+    \item Informacionim aspektma kvantnog merenja, odnosa između distribucije \\
     kvantnog stanja i preciznog merenja
 \end{enumerate}
 \subsubsection{Priprema podataka}
@@ -161,7 +160,7 @@ Neka imamo kompleksan vektor $\overrightarrow{v}$ sa $N=2^n$ dimenzija, gde su n
 \]
 
 Ako imamo parove $\{|v'_j|,\varphi_j\}$, čuvamo ih kao realne brojeve u QRAM-u, onda možemo da konstruišemo
-$\log_{2}N$ kvantnih stanja $\ket{v} = |\overrightarrow{v}|^{-\frac{1}{2}}\overrightarrow{v}$ u $O(\log N)$ koraka
+$\log_{2}N$ kvantnih stanja $\ket{v} = |\overrightarrow{v}|^{-\frac{1}{2}}\overrightarrow{v}$ u $O(\log N)$ koraka.
 
 Kada smo kreirali kompresovane kvantne vektore od ulaznih vektora, možemo da vršimo transformacije koristeći kvantne algoritme, za dalje korišćenje podataka za mašinsko učenje.
 Ovaj proces zove se \textbf{pred procesiranje} i u opštem obliku njemu je potrebno $O(poly(\log{}N))$ koraka \cite{lloyd2013quantum}.
@@ -190,7 +189,7 @@ vezane za računske resurse potrebne da bi se rešili (uglavnom vreme i prostor)
 \subsection{Primeri klasa kompleksnosti}
 Među najpoznatijim i najvažnijim klasama su \textbf{P} i \textbf{NP}. Zbog prirode kvantnih računara biće objašnjene neke druge klase kompleksnosti.
 
-Klasa kompleksnosti \textbf{PSPASE} je klasa problema koji se mogu rešiti u polinomskom prostoru, ali sa neograničenim vremenom izvršavanja.
+Klasa kompleksnosti \textbf{PSPASE} (Polynomial Space) je klasa problema koji se mogu rešiti u polinomskom prostoru, ali sa neograničenim vremenom izvršavanja.
 
 
 Klasa kompleksnosti \textbf{PP} (Probabilistic Polynomial-Time) je klasa problema za koje postoji nasumični algoritam u polinomskom vremenu koji vraća
@@ -211,7 +210,7 @@ Formalnija definicija bi bila \cite{aaronson2013quantum}:
 \end{definition}
 Ovako definisano, može se primetiti da problemi iz \textbf{BQP} su dosta bliži problemima iz \textbf{BPP} nego iz \textbf{P}.
 \subsubsection*{Odnos sa klasičnim klasama kompleksnosti}
-Prva stvar koja važi jeste da $\textbf{BPP} \subseteq \textbf{BQP}$, odnosno da sve što može da se uradi sa klasičnom probalističkim računarom može da 
+Prva stvar koja važi jeste da $\textbf{BPP} \subseteq \textbf{BQP}$, odnosno da sve što može da se uradi sa klasičnom probabilistički računarom može da 
 se uradi i na kvantnom računaru.
 
 Kada se traži gornja granica kvantnih problema prvo se dolazi do $\textbf{BQP} \subseteq \textbf{EXP}$, ovo znači da kvantni računari mogu da dovedu
@@ -221,7 +220,7 @@ Bolja gornja granica za $\textbf{BQP}$ jeste $\textbf{BQP} \subseteq \textbf{PP}
 \subsubsection{Šorov algoritam}
 Trenutno optimalan algoritam na klasičnom računaru (\textit{general number filed sieve}) se izvršava u sub-eksponencijalnom vremenu.
 Šorov algoritam rešava problem nalaženja periode, koji može da se iskoristi za problem faktorizacije \cite{QiskiShoreAlgo}.\\
-\textbf{Problem}: ako imamo periodičnu funkciju
+\textbf{Problem}: neka imamo periodičnu funkciju
 \[
     f(x) = a^x \bmod N
 \]
@@ -233,7 +232,7 @@ gde su $a$ i $N$ prirodni brojevi, $a < N$, koji nemaju zajedničkog faktora. Pe
 \[
     U\Ket{y} = \Ket{ay \bmod N}
 \]
-Tako da bi sopstvena vrednost za $U$ bila jednaka superpoziciji stanja $\Ket{u_0}$
+tako da bi sopstvena vrednost za $U$ bila jednaka superpoziciji stanja $\Ket{u_0}$
 \[
     \Ket{u_0}=\frac{1}{\sqrt{r}}\sum_{k=0}^{r-1}\Ket{a^k \bmod N}
 \]
@@ -256,7 +255,7 @@ Sada, možemo ova stanja da pomnožimo sa $s \in N_0$ što će uticati na krajnj
 \[
     U\Ket{u_s} = e^\frac{2\pi is}{r}\Ket{u_s}
 \]
-Sada imamo jedinstveno sopstveno stanja za svako $s$ ($0 \leq s \leq r-1$). Ako saberemo sva dobijena sopstvena stanja, 
+Sada imamo jedinstveno sopstveno stanje za svako $s$ ($0 \leq s \leq r-1$). Ako saberemo sva dobijena sopstvena stanja, 
 razlike u fazama se poništavaju međusobno tako da se dobije stanje $\Ket{1}$
 \[
     \frac{1}{\sqrt{r}}\sum_{s=0}^{r-1}\Ket{u_s} = \Ket{1}
@@ -267,7 +266,7 @@ koristeći se stanjem $\Ket{1}$, u tom slučaju će izmerena faza $\Phi$ biti:
     \Phi = \frac{s}{r}
 \]
 \subsubsection{SWAP Test}
-Ova rutina je jednostavan kvantni algoritam koji izražava skalarni proizvod za dva ulazna kvantna stanja $\Ket{a}$ i $\Ket{b}$ \cite{fastovets2019machine}.
+Ova rutina je jednostavan kvantni algoritam koji izražava skalarni proizvod za dva ulazna kvantna stanja $\Ket{a}$ i $\Ket{b}$ (Slika 3) \cite{fastovets2019machine}.
 \begin{figure}[ht]
 \centering
 \begin{quantikz}[row sep={10mm,between origins}]
@@ -285,12 +284,12 @@ Verovatnoća da se pri merenju kontrolnog kubita dobije stanje $\Ket{0}$ je defi
 gde je $F(\Ket{a},\Ket{b}) = |\Braket{a|b}|^2$ validnost između dva kvantna stanja.
 Verovatnoća $P(\Ket{0}) = 0.5$ znači da su kvantna stanja  $\Ket{a}$ i $\Ket{b}$ su međusobno ortogonalna, 
 a verovatnoća $P(\Ket{0}) = 1$ znači da su kvantna stanja identična. Ova rutina treba da se ponavlja više puta da bi se dobila dobra procena vrednosti validnosti. \\
-SWAP test se može koristiti za izračunavanje Euklidove distance između kvantnih stanja u više dimenzionom prostoru, kao i u velikom broju kvantnih algoritama.
+SWAP test se može koristiti za izračunavanje Euklidove distance između kvantnih stanja u višedimenzionom prostoru, kao i u velikom broju kvantnih algoritama.
 
 \newpage
 \section{Kvantno mašinsko učenje}
 Kvantno mašinsko učenje je spoj kvantnih računara i mašinskog učenja. U programima Kvantnog mašinskog učenja koriste se kvantni algoritmi (npr. qBLAS algoritmi, SWAP test)
-kao deo metoda optimizacije slične klasičnim metodama mašinskog učenja. 
+kao deo metoda optimizacije sličnih klasičnim metodama mašinskog učenja. 
 
 Prema vrsti podataka koji se obrađuju oblast možemo da delimo na dve podoblasti:
 \begin{enumerate}
@@ -302,10 +301,10 @@ ubrzanjem, u realnom svetu budu dosta sporiji i fizički zahtevniji (veličina k
 
 \subsection{Kvantna metoda potpornih vektora}
 Jedan od najjednostavnijih primera metoda Kvantnog mašinskog učenja jeste \textbf{Kvantna metoda potpornih vektora} (engl. Quantum Support-vector machine - QSVM). Klasičan SVM je metoda koja pronalazi optimalnu podelu hiper-ravni
-između dva različita skupa podataka, tako da sa velikom verovatnoćom svi podaci iz jednog skupa podataka će se naći na jednoj polovini hiper-ravni. \cite{Quantum_machine_learning}
+između dva različita skupa podataka, tako da sa velikom verovatnoćom svi podaci iz jednog skupa podataka će se naći na jednoj polovini hiper-ravni \cite{Quantum_machine_learning}.
 \subsubsection{Klasičan algoritam}
 Ova metoda određuje klase koristeći linearnu funkciju $w^{T}x + b$. SVM predviđa prvu klasu ako je izlaz funkcije pozitivan, a predviđa drugu klasu ako je izlaz negativan.
-Pošto kod većine slučajeva pripadnost između dve klase podataka nije odvojiva linearnom hiper-ravni, sa SVM metodom koristi se i \textbf{Kernel metoda}.
+Pošto kod većine slučajeva pripadnost između dve klase podataka nije odvojiva linearnom hiper-ravni, sa SVM metodom koristi se i \textbf{Kernel metoda} (Slika 4).
 
 \begin{figure}[ht]
     \centering
@@ -314,13 +313,13 @@ Pošto kod većine slučajeva pripadnost između dve klase podataka nije odvojiv
 \end{figure}
 
 Pronalaženje optimalne hiper-ravni se sastoji od minimizovanja $|w|^{2}/2$ u nejednačini $y_j(w*x_j+b) \geq 1$ za svako j. 
-Ovo minimizovanje se može uraditi, ako uvedemo Karuš-Kun-Taker množioce (engl. Karush-Kuhn-Tucker multiplier) $\overrightarrow{\alpha} = (\alpha_1,...,\alpha_M)$ i maksimizujemo ih nad Lagranžovoj funkcijom:
+Ovo minimizovanje se može uraditi, ako uvedemo Karuš-Kun-Taker množioce (engl. Karush-Kuhn-Tucker multiplier) $\overrightarrow{\alpha} = (\alpha_1,...,\alpha_M)$ i maksimizujemo ih nad Lagranžovom funkcijom:
 \[
     L(\overrightarrow{\alpha}) = \sum_{j=1}^{M}{y_j\alpha_j} - \frac{1}{2}\sum_{j,k=1}^{M}{\alpha_j\alpha_kx_jx_k}
 \]
 sa sledećim ograničenjima $\sum_{j=1}^{M}{\alpha_j=0}$ i $\forall j \leq M $ $y_j\alpha_j \geq 0$. Tako da, parametri za hiper-ravan se izvode kao:
 $w = \sum_{j=1}^{M}\alpha_jx_j$ i $b = y_j - wx_j$ (za one $j$ gde važi da $\alpha_j \neq 0$). Mali broj $\alpha_j$ je različito od nule, takve promenljive se odnose na vektore $x_j$ koji leže na ravni,
-ti vektori se zovu \textbf{Potporni vektori}(engl. Support vectors) \cite{rebentrost2014quantum}.
+ti vektori se zovu \textbf{Potporni vektori} (engl. Support vectors) \cite{rebentrost2014quantum}.
 
 Kernel metoda transformiše podatke u prostor gde su dve klase linearno odvojive. Metoda se oslanja na to da se linearna funkcija
 može zapisati isključivo kao skalarni proizvod između primera.
@@ -328,13 +327,13 @@ može zapisati isključivo kao skalarni proizvod između primera.
     w^{T}x + b = b + \sum_{i=1}^m \alpha_i x^T x_i
 \]
 gde je $x_i$ trening primer, a $\alpha$ je vektor koeficijenata. Ovako zapisivanje funkcije nam dozvoljava da zamenimo $x$ sa izlazom funkcije $\phi(x)$, a skalarni proizvod sa funkcijom $k(x,x_i) = \phi(x)*\phi(x_i)$.
-Funkcija $k$ se zove \textbf{kernel}, dok funkcija $\phi$ je funkcija koja preslikava podatke iz jednog prostora u drugi. Operator $\langle * \rangle$ predstavlja unutrašnji proizvod ekvivalentno $\phi(x)^T\phi(x_i)$. \cite{goodfellow2016deep}
+Funkcija $k$ se zove \textbf{kernel}, dok funkcija $\phi$ je funkcija koja preslikava podatke iz jednog prostora u drugi. Operator $\langle * \rangle$ predstavlja unutrašnji proizvod ekvivalentno $\phi(x)^T\phi(x_i)$ \cite{goodfellow2016deep}.
 
 Kada zamenimo skalarni proizvod sa kernelom, funkciju predikcije možemo da zapišemo kao
 \[
     f(x) = b + \sum_i \alpha_{i}k(x,x_i)
 \]
-Jedna od velikih mana kernel metode jeste da, cena procene izlaza kernel funkcije je linearna u odnosu na broj trening primera, jer $i$-ti indeks označava člana $\alpha_ik(x,x_i)$ kernel funkcije. \cite{goodfellow2016deep} \\
+Jedna od velikih mana kernel metode jeste da, cena procene izlaza kernel funkcije je linearna u odnosu na broj trening primera, jer $i$-ti indeks označava člana $\alpha_ik(x,x_i)$ kernel funkcije \cite{goodfellow2016deep}. \\
 Složenost SVM je $O(log(1/\epsilon)M^2(N+M))$, gde je $\epsilon$ preciznost rešenja, $N$ je broj dimenzija prostora nad kojem radimo, a $M$ je broj trening primera. \\
 Takođe krajnje rešenje je binarni klasifikator za neki vektor $x$:
 \[
@@ -388,7 +387,7 @@ U klasičnom algoritmu kompleksnost SVM sa funkcijom kvadratnog troška je $O(M^
 
 U kvantnom algoritmu, zadatak je generisanje stanja $\Ket{b,\overrightarrow{\alpha}}$ koja opisuju hiper-ravan i onda klasifikuju stanja
 $\Ket{x}$. U algoritmu, rešavamo normalizovanu jednačinu $\hat{F}\Ket{b,\overrightarrow{\alpha}} = \Ket{y}$, gde je $\hat{F} = F/trF$ sa 
-ograničenjem $\Vert F \Vert \leq 1$. Klasa će biti određenja kao verovatnoća uspeha pri SWAP testu između $\Ket{b,\overrightarrow{\alpha}}$ i
+ograničenjem $\Vert F \Vert \leq 1$. Klasa će biti određena kao verovatnoća uspeha pri SWAP testu između $\Ket{b,\overrightarrow{\alpha}}$ i
 $\Ket{x}$. Za izračunavanje inverzne matrice kvantnim algoritmom, matrica $\hat{F}$ mora da se razdvoji na jednostavne elemente.
 Tako da, matrica $\hat{F}$ može da se razdvoji na sledeće elemente $\hat{F} = (J+K+\gamma^{-1}\mathbb{1})/trF$,
 gde je matrica
@@ -398,8 +397,8 @@ gde je matrica
         \overrightarrow{1} & 0 \\
     \end{bmatrix}
 \]
-Takođe, za procenu faze pravimo formulaciju Lijevog proizvoda \\
-$e^{-i\hat{F}\varDelta{t}} = e^{-i\gamma^{-1}\mathbb{1}\varDelta{t}/trF}e^{-iJ\varDelta{t}/trF}e^{-iK\varDelta{t}/trF} + O(\varDelta{t})$.
+Takođe, za procenu faze pravimo formulaciju Lijevog proizvoda 
+$e^{-i\hat{F}\varDelta{t}} =$ $e^{-i\gamma^{-1}\mathbb{1}\varDelta{t}/trF}$$e^{-iJ\varDelta{t}/trF}$$e^{-iK\varDelta{t}/trF}$ $+ O(\varDelta{t})$.
 Za njega važi da ima dve sopstvene vrednosti oblika $\lambda_{\pm} = \pm \sqrt{M}$, a istovetno, 
 sopstvena stanja su oblika $\Ket{\lambda_{\pm}} = \frac{1}{\sqrt{2}}(\Ket{0} \pm \frac{1}{\sqrt{M}}\sum_{k=1}^M\Ket{k})$.
 Za matricu $\gamma^{-1}\overrightarrow{1}$ dve sopstvene vrednosti su $v_1 = 0$ i $v_2 = \gamma^{-1}M$.
@@ -444,7 +443,7 @@ Jedan od načina na koji hoćemo da nađemo optimalnu projekciju $c$ za ulaz $x$
 \[
   c^{*} = \underset{c}{\mathrm{argmin}} \Vert x-g(c) \Vert_2^2.
 \]
-Ovo pronalaženje minimalne distance će dovesti do optimalnog rešenje problema $c=D^{T}x$ \cite{goodfellow2016deep}. Tako da funkcija enkodovanja je oblika:
+Ovo pronalaženje minimalne distance će dovesti do optimalnog rešenja problema $c=D^{T}x$ \cite{goodfellow2016deep}. Tako da funkcija kodiranja je oblika:
 \[
 f(x) = D^T x
 \]
@@ -462,10 +461,10 @@ Posle procesa izvođenja \cite{goodfellow2016deep}, jednačina za optimalnu matr
     D^{*} =\underset{D}{\mathrm{argmin}}  Tr(D^TX^TXD) \text{ gde važi } D^TD = I_l
 \] 
 gde nam je $X \in C^{m \times n}$ matrica gde su redovi ulazni vektori $x$. Ova jednačina se može rešiti koristeći dekompoziciju sopstvenih stanja,
-gde bi se pronašli sopstveni vektor za $X^TX$ za najveću sopstvenu vrednost. 
+gde bi se pronašao sopstveni vektor za $X^TX$ za najveću sopstvenu vrednost. 
 \subsubsection{Kvantni algoritam}
-U kvantnom algoritmu bitno nam je da nađemo sopstvene vektore i sopstvene vrednosti za ulaz. Ovo se dosta oslanja na drugi deo metode koji je opisan u sekciji posvećena \textit{Kvantnoj metodi potpornih vektora} .
-Ako izaberemo nasumičan vektor $v_j$ iz skupa ulaznih vektora, kreiramo kvantno stanje $\Ket{v_j}$; tada možemo da kreiramo matricu gustine $\rho = (1/N)\sum_j\Ket{v}\Bra{v}$ gde je $N$ veličina skupa vektora. \cite{Quantum_machine_learning}
+U kvantnom algoritmu bitno nam je da nađemo sopstvene vektore i sopstvene vrednosti za ulaz. Ovo se dosta oslanja na drugi deo metode koji je opisan u sekciji posvećenoj \textit{Kvantnoj metodi potpornih vektora}.
+Ako izaberemo nasumičan vektor $v_j$ iz skupa ulaznih vektora, kreiramo kvantno stanje $\Ket{v_j}$; tada možemo da kreiramo matricu gustine $\rho = (1/N)\sum_j\Ket{v}\Bra{v}$ gde je $N$ veličina skupa vektora \cite{Quantum_machine_learning}.
 Slično \textbf{qSVM} nad matricom gustine $\rho$ možemo da apliciramo algoritam procene faze stanja. Odnosno, da primenimo $e^{-i \rho t}$, $t$ puta nad inicijalnim stanjem:
 \[
     \Ket{v_j}\Ket{0} \to \sum_i \psi_i\Ket{\chi_i}\Ket{\widetilde{r_i}}
@@ -484,7 +483,7 @@ U radu \cite{Classification_wit_QNN}, autori su predstavili osnove algoritama za
 U radu su dati neki primeri, neke prednosti i neki nedostaci kvantnog pristupa neuralnim mrežama.
 
 Neka imamo unarni skup stringova $\phi$ oblika $z=z_1 z_2 \dots z_n$ gde svako $z_i$ je bit čija vrednost može da bude $+1$ ili $-1$,
-kao i binarne oznake $l(z)$ koje mogu da bude $+1$ ili $-1$. Zbog jednostavnosti neka se u našem skupu nalaze sve permutacije ovako opisanog stringa, to jest neka $|\phi|=2^n$.
+kao i binarne oznake $l(z)$ koje mogu da budu $+1$ ili $-1$. Zbog jednostavnosti neka se u našem skupu nalaze sve permutacije ovako opisanog stringa, to jest neka $|\phi|=2^n$.
 Predstavićemo kvantni proces koji radi na $n+1$ kubita (poslednji kubit služi kao izlaz procesa). Kvantni proces se sastoji od unitarnih transformacija ulaznih stanja: ${U_a(\theta)}$.
 Svaka transformacija radi nad podskupom ulaznih kubita i zavisi od promenljive $\theta$. Izabraćemo podskup od $L$ transformacija:
 \[
@@ -494,7 +493,7 @@ koje zavise od $L$ parametara $\overrightarrow{\theta}=\theta_{L} \theta_{L-1} \
 \[
     \Ket{z,1} = \Ket{z_1, z_2, \dots z_n, 1}
 \]
-Primenjivanje unitarne transformacije vraća stanje: $U(\overrightarrow{\theta})\Ket{z,1}$.
+Primenjivanje unitarne transformacije vraća stanje: $U(\overrightarrow{\theta})\Ket{z,1}$ (Slika 5).
 Na izlazu meri se dodati kubit sa Puali-jevim operatorom $\sigma_y$, koji se kasnije naziva i $Y_{n+1}$.
 Tako da na kraju imamo izlaz $+1$ ili $-1$. Cilj je isti kao i kod klasičnih neuralnih mreža, a to je da se nauči proces da vraća tačne vrednosti za dati ulazni string.
 Pošto merenje izlaznog kubita nije sigurno, odnosno merenjem kubita dobijamo tačnu vrednost sa nekom verovatnoćom, uvodimo transformaciju:
@@ -503,7 +502,7 @@ Pošto merenje izlaznog kubita nije sigurno, odnosno merenjem kubita dobijamo ta
 \]
 koja predstavlja prosečnu vrednost merenja, ako $Y_{n+1}$ merimo na više kopija originalnog izlaza.
 
-Ovde, kao i u klasičnoj neuralnoj mreži, cilj nam je da nađemo parametar $\overrightarrow{\theta}$ koja vraća tačnu vrednost sa velikom preciznošću.
+Ovde, kao i u klasičnoj neuralnoj mreži, cilj nam je da nađemo parametar $\overrightarrow{\theta}$ koji vraća tačnu vrednost sa velikom preciznošću.
 Slično prethodnoj postavci imamo: $L$ unitarnih promenljivih sa korespondentnim promenljivama $\overrightarrow{\theta}$, kao i ulazni string $z$; 
 tada možemo da predstavimo funkciju troška kao:
 \[
@@ -558,7 +557,7 @@ Tako da iz toga imamo:
     U_l^TY_{n+1}U_l = \cos(\frac{\pi}{4}l(Z))Y_{n+1} + sin(\frac{\pi}{4}l(Z))Z_{n+1}
 \]
 gde u formuli, $l(Z)$ je interpretirana kao operator dijagonalan u odnosu na bazna stanja.
-Takođe, pošto funkcija oznaka l(z) može da vrati ili $+1$ ili $-1$, iz toga imamo $\bra{z,1}U_l^TY_{n+1}U_l\ket{z,1} = l(z)$.
+Takođe, pošto funkcija oznaka $l(z)$ može da vrati ili $+1$ ili $-1$, iz toga imamo $\bra{z,1}U_l^TY_{n+1}U_l\ket{z,1} = l(z)$.
 Ovo nam pokazuje da bar na nekom apstraktnom nivou imamo mogućnost da predstavimo bilo koju funkciju oznake kao kvantno kolo.
 
 Sada ćemo objasniti kako da se napiše operator $U_l$ kao proizvod dve kubit unitarne transformacije. Zbog ovoga, treba da se pređe na \textit{boolean} promenljive $b_i=\frac{1}{2}(1-z_i)$ i 
@@ -577,7 +576,7 @@ Svaki član, različit od nule, u \textbf{Reed-Muller} formuli dovodi do kontrol
 
 Ovaj rezultat kvantnog predstavljanja ima analog u klasičnoj teoriji predstavljanja \cite{Cybenko1989ApproximationBS}.
 Ona pokazuje da bilo koja \textit{boolean} funkcija oznake može da se predstavi u neuralnoj mreži dubine tri, gde srednji slog ima veličinu $2^n$.
-Ovako velika matrica ne bi mogla da se predstavi na klasičnim računarima, ali bi mogli na kvantnim računarima, koji po prirodi rade
+Ovako velika matrica ne bi mogla da se predstavi na klasičnim računarima, ali bi mogla na kvantnim računarima, koji po prirodi rade
 nad Hilbertovim prostorima sa eksponencijalnim dimenzijama. Ali još nije dokazano da svaka \textit{boolean} funkcija može da se predstavi u kvantnom kolu koje nije eksponencijalne dubine.
 
 \paragraph*{Reprezentacija parnosti podskupa}
@@ -607,7 +606,7 @@ Ovaj proces bi trebalo da se ponavlja $L$ puta da bi se dobio puni gradijent.
 
 Alternativna strategija jeste da se menja svaka promenljiva gradijenta, što se koristi kada su sve unitarne transformacije oblika $e^{i\theta\Sigma}$.
 Ako posmatramo izvod za funkciju troška $\mathit{loss}(\overrightarrow{\theta},z)$ za parametar $\theta_k$, koji je vezan za transformaciju $U_k(\theta_k)$
-(koja ima i generalni Pauli-jev operator $\Sigma_k$). Sada:
+(koja ima i generalni Pauli-jev operator $\Sigma_k$), tada imamo:
 \[
     \frac{d\mathit{loss}(\overrightarrow{\theta},z)}{d\theta_k} = 2Im(\Bra{z,1}U_1^T \dots U_L^TY_{n+1}U_L \dots U_{k+1} \Sigma_k U_k \dots U_1 \Ket{z,1})
 \]
@@ -626,7 +625,7 @@ Ovo kreira:
 \[
     \frac{1}{\sqrt{2}}(\Ket{z,1}\Ket{0} + i\mathcal{U}(\overrightarrow{\theta})\Ket{z,1}\Ket{1})
 \]
-Ako primenimo Hademardovu kapiju na dodatim kubitom dobijamo:
+Ako primenimo Hademardovu kapiju nad dodatim kubitom dobijamo:
 \[
     \frac{1}{2}(\Ket{z,1}+\mathcal{U}(\overrightarrow{\theta})\Ket{z,1}\Ket{0}) + \frac{1}{2}(\Ket{z,1}-i\mathcal{U}(\overrightarrow{\theta})\Ket{z,1}\Ket{1})
 \]
@@ -661,8 +660,8 @@ najlakši način da se ovo postigne jeste da se koriste $n$ parametara
     U(\overrightarrow{\theta}) = e^{i\frac{\pi}{4}X_{n+1}}e^{-i\sum_j^n \theta_jB_jX_{n+1}}
 \]
 Ovde se vidi da je reprezentacija savršena kada je $\theta_j = \frac{\pi}{2}$ ako je $j$ u podskupu i $\theta_j = 0$ ako $j$ nije u podskupu.
-Posle eksperimenta sa malim brojem kubita gde su uspeli da nauče model, njihov argument je da sa povećanjem veličine sistema postaje nemoguće da se nauči kvantni model.
-Da bi to pokazali, izračunali eksplicitnu formulu za očekivanu vrednost za $Y_{n+1}$
+Posle eksperimenta sa malim brojem kubita gde su autori iz \cite{Classification_wit_QNN} uspeli da nauče model, njihov argument je da sa povećanjem veličine sistema postaje nemoguće da se nauči kvantni model.
+Da bi to pokazali, izračunali su eksplicitnu formulu za očekivanu vrednost za $Y_{n+1}$
 \[
     \bra{z,1}U^T(\overrightarrow{\theta})Y_{n+1}U(\overrightarrow{\theta})\Ket{z,1} = \cos(2\sum_j\theta_jb_j)
 \]
@@ -687,9 +686,9 @@ Neka nam je data unitarna transformacija $U(\overrightarrow{\theta})$ tako da im
 \[
     U(\overrightarrow{\theta})\Ket{\psi,1}
 \] 
-i onda merimo $Y_{n+1}$. Cilj ovoga je da namestimo da izlaz ovog merenje bude ekvivalentan nekim dvema oznakama koje označavaju neke osobine kvantnog stanja.
+i onda merimo $Y_{n+1}$. Cilj ovoga je da namestimo da izlaz ovog merenja bude ekvivalentan nekim dvema oznakama koje označavaju neke osobine kvantnog stanja.
 To je prikazano u sledećem primeru.
-Posmatrajmo Hamiltonov operator $H$ (engl. Hamiltonian), koji je suma lokalnih vrednosti sa dodatnom osobino da ima i pozitivne i negativne sopstvene vrednosti.
+Posmatrajmo Hamiltonov operator $H$ (engl. Hamiltonian), koji je suma lokalnih vrednosti sa dodatnom osobinom da ima i pozitivne i negativne sopstvene vrednosti.
 Sa datim kvantnim stanjem $\ket{\psi}$, obeležava se oznakom koja pokazuje da li je očekivana vrednost Hamiltonovog operatora pozitivna ili negativna:
 \[
     l(\Ket{\psi}) = sign(\bra{\psi}H\Ket{\psi})
@@ -705,21 +704,21 @@ Ako uzmemo da $\beta$ bude dosta manje od $1/\Vert H \Vert$ (inverzno od norme m
 
 Posmatrajmo graf gde na svakoj ivici imamo \textit{ZZ} uparivanje sa koeficijentom ili $+1$ ili $-1$.
 Hamiltonov operator je oblika: $H = \sum_{i,j}J_{ij}Z_iZ_j$ gde prvobitna suma je ograničena na ivice grafa i $J_{ij}$ je ili $+1$ ili $-1$.
-Neka postoje $M$ vrednosti u $H$. Prvo, treba da izaberemo $M$ uglova $\theta_{ij}$ i neka je kvantno kolo koje implementira transformaciju oblika:
+Neka postoji $M$ vrednosti u $H$. Prvo, treba da izaberemo $M$ uglova $\theta_{ij}$ i neka je kvantno kolo koje implementira transformaciju oblika:
 \[
     U(\overrightarrow{\theta}) = e^{i\sum_{i,j}J_{ij}Z_iZ_jX_{n+1}}
 \]
 Ako izaberemo $\theta_{ij}=\beta J_{ij}$ imamo operator $U_H(\beta)$ koji osigurava da možemo da označimo traženu oznaku ako izaberemo malo $\beta$.\\
 Kvantno stanje $\Ket{\psi}$ je u Hilbertovom prostoru sa $2^n$ dimenzija i ne možemo da očekujemo da naučimo oznake za svako stanje.
-Posmatrani Hamiltonov operator ima bitovsku strukturu, tako da možemo da se ograničimo kvantna stanja sa bitskim strukturama.
+Posmatrani Hamiltonov operator ima bitovsku strukturu, tako da možemo da se ograničimo na kvantna stanja sa bitskim strukturama.
 Tako je predloženo da se za treniranje koriste stanja samo sa ovom formom, kao i za testiranje.
 \newpage
 \section{Zaključak}
-U ovom radu je prikazano kraći uvod u kvantno računarstvo i kvantno mašinsko učenje. Takođe je dato nekoliko primera metoda kvantnog mašinskog učenja, 
+U ovom radu je prikazan kraći uvod u kvantno računarstvo i kvantno mašinsko učenje. Takođe je dato nekoliko primera metoda kvantnog mašinskog učenja, 
 koji poboljšavaju svoje klasične ekvivalente. Glavni izazov trenutno je praktična primena, koja je strogo vezana za razvoj funkcionalnih kvantnih računara.
 
 Ostavljeno je dosta metoda kvantnog mašinskog učenja, koje čitalac može da istraži, ali su ove prikazane verovatno dovoljne za razumevanje oblasti.
-Trenutak kada se dokaže kvantna nadmoć dovešće do većeg zainteresovanja ka svim oblastima povezane za kvantno računarstvo, 
+Trenutak kada se dokaže kvantna nadmoć dovešće do većeg interesovanja ka svim oblastima povezanim za kvantno računarstvo, 
 uključujući i kvantno mašinsko učenje. Svakako se savetuje praćenje daljeg razvoja ove oblasti, pošto je ona relativno mlada
 i ima dosta inovacija i poboljšavanja.
 
