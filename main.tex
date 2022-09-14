@@ -163,7 +163,7 @@ Ako imamo parove $\{|v'_j|,\varphi_j\}$, čuvamo ih kao realne brojeve u QRAM-u,
 $\log_{2}N$ kvantnih stanja $\ket{v} = |\overrightarrow{v}|^{-\frac{1}{2}}\overrightarrow{v}$ u $O(\log N)$ koraka.
 
 Kada smo kreirali kompresovane kvantne vektore od ulaznih vektora, možemo da vršimo transformacije koristeći kvantne algoritme, za dalje korišćenje podataka za mašinsko učenje.
-Ovaj proces zove se \textbf{pred procesiranje} i u opštem obliku njemu je potrebno $O(poly(\log{}N))$ koraka \cite{lloyd2013quantum}.
+Ovaj proces zove se \textbf{predprocesiranje} i u opštem obliku njemu je potrebno $O(poly(\log{}N))$ koraka \cite{lloyd2013quantum}.
 
 \subsection{Linearna algebra za kvantno mašinsko učenje}
 Da bi se videlo kako kvantni računari poboljšavaju mašinsko učenje, treba da se vidi kako kvantni računari obrađuju linearnu algebru, jednu od osnova modernog mašinskog učenja. \\
@@ -460,7 +460,7 @@ Posle procesa izvođenja \cite{goodfellow2016deep}, jednačina za optimalnu matr
 \[
     D^{*} =\underset{D}{\mathrm{argmin}}  Tr(D^TX^TXD) \text{ gde važi } D^TD = I_l
 \] 
-gde nam je $X \in C^{m \times n}$ matrica gde su redovi ulazni vektori $x$. Ova jednačina se može rešiti koristeći dekompoziciju sopstvenih stanja,
+gde nam je $X \in \mathbb{C}^{m \times n}$ matrica gde su redovi ulazni vektori $x$. Ova jednačina se može rešiti koristeći dekompoziciju sopstvenih stanja,
 gde bi se pronašao sopstveni vektor za $X^TX$ za najveću sopstvenu vrednost. 
 \subsubsection{Kvantni algoritam}
 U kvantnom algoritmu bitno nam je da nađemo sopstvene vektore i sopstvene vrednosti za ulaz. Ovo se dosta oslanja na drugi deo metode koji je opisan u sekciji posvećenoj \textit{Kvantnoj metodi potpornih vektora}.
@@ -469,7 +469,7 @@ Slično \textbf{qSVM} nad matricom gustine $\rho$ možemo da apliciramo algorita
 \[
     \Ket{v_j}\Ket{0} \to \sum_i \psi_i\Ket{\chi_i}\Ket{\widetilde{r_i}}
 \] 
-gde je $\Ket{\chi_i}$ sopstveni vektor od matrice $\rho$, $\widetilde{r_i}$ procena sopstvene vrednosti, a $\psi_i = \Braket{\chi_i|v_j+}$.
+gde je $\Ket{\chi_i}$ sopstveni vektor od matrice $\rho$, $\widetilde{r_i}$ procena sopstvene vrednosti, a $\psi_i = \Braket{\chi_i|\psi}$.
 I primenom SWAP testa nad dobijenim stanjem, dobijamo stanje:
 \[
     \sum_i r_i \Ket{\chi_i}\Bra{\chi_i}\otimes \Ket{\widetilde{r_i}}\Bra{\widetilde{r_i}}
@@ -512,7 +512,7 @@ Možemo primetiti da ova funkcija troška je linearna i da je minimum u $0$, jer
 Pretpostavimo da kvantna neuralna mreža radi savršeno, tako da za svaki ulazni string $z$, merenje uvek vraća tačnu oznaku.
 To onda znači da optimalna promenljiva $\overrightarrow{\theta}$ postoji i da je minimum za funkciju troška u $0$ za sve ulaze $z$.
 
-Neka imamo skup stringova \(S\) za treniranje, sa njihovim oznakama. Postoji kvantni proces koji ima mogućnost da
+Neka imamo skup stringova $\mathbb{S}$ za treniranje, sa njihovim oznakama. Postoji kvantni proces koji ima mogućnost da
 prikaže tražene oznake i zavisi od parametara $\overrightarrow{\theta}$. Opisaćemo proces kako da dođemo do optimalnih parametara $\overrightarrow{\theta}$.
 Neka počnemo sa nasumičnom promenljivom $\overrightarrow{\theta}$ (ili ako imamo neku pretpostavku početne vrednosti parametara). Izaberimo neki string $z^1$ iz skupa za treniranje.
 Primenjujemo kvantni proces nad izabranim stringom:
@@ -525,7 +525,7 @@ funkciju troška za string $z^1$. Postoje dva načina da se uradi traženo: (1) 
 (2) da izračunamo izvod funkcije troška po $\overrightarrow{\theta}$ i da se malo pomerimo ka pravcu koji minimizuje funkciju.
 Ovo nam daje novi parametar $\overrightarrow{\theta^1}$. Sada biramo ponovo iz skupa neki string $z^2$ i ponavljamo prethodni proces ali sa parametrom $\overrightarrow{\theta^1}$.
 Ovako dobijamo novi parametar $\overrightarrow{\theta^2}$ koji ima manju funkciju troška za string $z^2$ nego parametar $\overrightarrow{\theta^1}$.
-Ovako prolazimo kroz proces sve dok ne prođemo kroz ceo skup $S$. Kao rezultat ovoga generisana je sekvenca parametara $\overrightarrow{\theta^1}, \overrightarrow{\theta^2}, \dots \overrightarrow{\theta^S}$.
+Ovako prolazimo kroz proces sve dok ne prođemo kroz ceo skup $\mathbb{S}$. Kao rezultat ovoga generisana je sekvenca parametara $\overrightarrow{\theta^1}, \overrightarrow{\theta^2}, \dots \overrightarrow{\theta^S}$.
 Ako je učenje parametara uspešno, onda bi bilo dobijeno da operator $U(\overrightarrow{\theta^S})$, kada se primeni na stanju $\Ket{z,1}$, vraća stanje koje kada se izmeri na izlazu vraća tačnu oznaku $l(z)$.
 Ako je $z$ iz skupa za treniranje, reći ćemo da je model naučio podatke za treniranje. Ako je $z$ izvan skupa za treniranje, možemo reći da je model naučio da generalizuje i za neviđene podatke.
 
@@ -575,7 +575,7 @@ Svaka vrednosti u $B$ se množi sa $X_{n+1}$ tako da svaka vrednost je komutativ
 Svaki član, različit od nule, u \textbf{Reed-Muller} formuli dovodi do kontrolnog \textit{bit-flip}-a u $U_l$ na izlaznom kubitu.
 
 Ovaj rezultat kvantnog predstavljanja ima analog u klasičnoj teoriji predstavljanja \cite{Cybenko1989ApproximationBS}.
-Ona pokazuje da bilo koja \textit{boolean} funkcija oznake može da se predstavi u neuralnoj mreži dubine tri, gde srednji slog ima veličinu $2^n$.
+Ona pokazuje da bilo koja \textit{boolean} funkcija oznake može da se predstavi u neuralnoj mreži dubine tri, gde srednji sloj ima veličinu $2^n$.
 Ovako velika matrica ne bi mogla da se predstavi na klasičnim računarima, ali bi mogla na kvantnim računarima, koji po prirodi rade
 nad Hilbertovim prostorima sa eksponencijalnim dimenzijama. Ali još nije dokazano da svaka \textit{boolean} funkcija može da se predstavi u kvantnom kolu koje nije eksponencijalne dubine.
 
